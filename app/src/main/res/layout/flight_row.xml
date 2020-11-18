@@ -7,6 +7,10 @@
     android:paddingBottom="10dp">
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     <TextView
         android:id="@+id/wylot_z"
         android:layout_width="wrap_content"
@@ -80,7 +84,11 @@
         android:elevation="7dp"
         android:fontFamily="@font/robotoregular"
         android:text="TextView"
+<<<<<<< Updated upstream
         android:textColor="#000000"
+=======
+        android:textColor="#00000"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintTop_toBottomOf="@+id/cena" />
 
@@ -91,23 +99,37 @@
         android:elevation="7dp"
         android:fontFamily="@font/robotoregular"
         android:text="TextView"
+<<<<<<< Updated upstream
         android:textColor="#000000"
+=======
+        android:paddingTop="10dp"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@+id/view3" />
 
+<<<<<<< Updated upstream
     <View
+=======
+    <ImageView
+>>>>>>> Stashed changes
         android:id="@+id/view3"
         android:layout_width="330dp"
         android:layout_height="101dp"
         android:layout_marginTop="10dp"
+<<<<<<< Updated upstream
         android:layout_marginBottom="10dp"
         android:background="@drawable/bg_flights_row"
         android:elevation="6dp"
         android:padding="5dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+=======
+        android:background="@drawable/bg_flights_row"
+        android:elevation="16dp"
+        android:padding="16dp"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
