@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.Toast
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
-import com.example.trip_planner_andrid_app.DatePickerCalendar
 import java.text.SimpleDateFormat
 import java.util.*
 
