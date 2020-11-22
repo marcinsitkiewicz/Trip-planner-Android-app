@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Trip-planner-Andrid-app</string>
+    <string name="data">Data</string>
 </resources>

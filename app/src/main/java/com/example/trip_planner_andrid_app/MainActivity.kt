@@ -12,8 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button2.setOnClickListener{
-            startActivity(Intent(this, FlightsListActivity::class.java))
+        button4.setOnClickListener(){
+            startActivity(Intent(this, SearchForFlightsActivity::class.java))
         }
+
     }
 }

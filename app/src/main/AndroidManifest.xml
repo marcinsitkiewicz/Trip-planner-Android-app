@@ -24,6 +24,10 @@
 
 
 		<activity android:name=".flights.FlightsListActivity"
+			android:parentActivityName=".SearchForFlightsActivity">
+		</activity>
+
+		<activity android:name=".SearchForFlightsActivity"
 			android:parentActivityName=".MainActivity">
 		</activity>
 
