@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         dbButton.setOnClickListener {
             startActivity(Intent(this, FirestoreConnectionActivity::class.java))
         }
+
+        authButton.setOnClickListener {
+            startActivity(Intent(this, AuthenticationActivity::class.java))
+        }
     }
 }
 

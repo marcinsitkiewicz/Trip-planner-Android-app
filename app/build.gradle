@@ -44,4 +44,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     // Declare the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    // Declare the dependency for the Firebase Authentication library
+    implementation 'com.google.firebase:firebase-auth-ktx'
 }

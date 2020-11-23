@@ -21,7 +21,17 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button4"
-        android:text="dbTEST"
+        android:text="db_TEST"
+        android:layout_margin="10dp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <Button android:id="@+id/authButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dbButton"
+        android:text="auth_TEST"
         android:layout_margin="10dp"
         tools:ignore="MissingConstraints"
         />
