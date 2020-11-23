@@ -107,3 +107,4 @@ fabric.properties
 app/build
 # End of https://www.toptal.com/developers/gitignore/api/intellij
 .gradle
+.idea
