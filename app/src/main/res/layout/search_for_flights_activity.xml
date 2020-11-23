@@ -193,6 +193,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
+        android:layout_marginBottom="3dp"
         android:fontFamily="@font/robotobold"
         android:text="Przylot"
         android:textColor="#FFFFFF"
