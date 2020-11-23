@@ -16,8 +16,8 @@ import java.util.*
 class SearchForFlightsActivity : AppCompatActivity() {
 
     private val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-    private lateinit var outboundDateString : String
-    private lateinit var inboundDateString : String
+    private var outboundDateString : String = ""
+    private var inboundDateString : String = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,6 @@ class SearchForFlightsActivity : AppCompatActivity() {
             selectDate.set(Calendar.DAY_OF_MONTH, i3)
             val date = formatDate.format(selectDate.time)
             outboundDateString = date.toString()
-            Toast.makeText(this, "Date: $date", Toast.LENGTH_SHORT).show()
             btn_timePickerWylot.text=date
 
         }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))
@@ -61,7 +60,6 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 selectDate.set(Calendar.DAY_OF_MONTH, i3)
                 val date = formatDate.format(selectDate.time)
                 inboundDateString = date.toString()
-                Toast.makeText(this, "Date: $date", Toast.LENGTH_SHORT).show()
                 btn_timePickerPrzylot.text=date
 
             }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))

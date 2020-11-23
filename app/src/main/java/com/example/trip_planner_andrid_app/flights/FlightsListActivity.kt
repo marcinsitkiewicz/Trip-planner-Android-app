@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.trip_planner_andrid_app.MainAdapter
+import com.example.trip_planner_andrid_app.FlightsAdapter
 import com.example.trip_planner_andrid_app.R
 import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
 import com.google.gson.GsonBuilder
@@ -27,15 +27,25 @@ class FlightsListActivity : AppCompatActivity() {
         val outboundDateString = intent.getStringExtra("outboundDateString")
         val inboundDateString = intent.getStringExtra("inboundDateString")
 
-        queryUrl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/PL/PLN/pl-PL/" +
-                originPlace +
-                "/" +
-                destinationPlace +
-                "/" +
-                outboundDateString +
-                "/" +
-                inboundDateString
-
+        if (inboundDateString == null) {
+            queryUrl =
+                "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/PL/PLN/pl-PL/" +
+                        originPlace +
+                        "/" +
+                        destinationPlace +
+                        "/" +
+                        outboundDateString
+        } else {
+            queryUrl =
+                "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/PL/PLN/pl-PL/" +
+                        originPlace +
+                        "/" +
+                        destinationPlace +
+                        "/" +
+                        outboundDateString +
+                        "/" +
+                        inboundDateString
+        }
         runOnUiThread {
             recyclerView_main.layoutManager = LinearLayoutManager(this)
         }
@@ -73,7 +83,7 @@ class FlightsListActivity : AppCompatActivity() {
         val searchFeed =  gson.fromJson(body, SkyscannerResults.SearchFeed::class.java)
 
         runOnUiThread {
-            recyclerView_main.adapter = MainAdapter(searchFeed)
+            recyclerView_main.adapter = FlightsAdapter(searchFeed, this)
         }
     }
 }
