@@ -6,6 +6,8 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
+.idea/*
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -39,8 +41,9 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
-# *.ipr
+app/app.iml
+
+ *.ipr
 
 # CMake
 cmake-build-*/
@@ -108,3 +111,8 @@ app/build
 # End of https://www.toptal.com/developers/gitignore/api/intellij
 .gradle
 .idea
+
+.gradle/*
+local.properties
+/app/app.iml
+/Trip-planner-Andrid-app.iml
