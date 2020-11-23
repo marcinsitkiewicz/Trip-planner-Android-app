@@ -13,6 +13,7 @@ class MainAdapter(private val searchFeed: SkyscannerResults.SearchFeed): Recycle
         return searchFeed.Quotes.count()
     }
 
+    // initialize view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent?.context)
         val cellForRow = layoutInflater.inflate(R.layout.flight_row, parent, false)
@@ -22,10 +23,11 @@ class MainAdapter(private val searchFeed: SkyscannerResults.SearchFeed): Recycle
     // lot: 1 2 3 4 5 6 7 8
     // prz: 1 2 1 2 1 2 1 2
 
+    //update row data
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val flight = searchFeed.Quotes.get(position)
-        val place1 = searchFeed.Places.get(1)
-        val place2 = searchFeed.Places.get(0)
+        val flight = searchFeed.Quotes[position]
+        val place1 = searchFeed.Places[1]
+        val place2 = searchFeed.Places[0]
 
         val direct : String
         direct = if (flight.Direct)
@@ -40,7 +42,7 @@ class MainAdapter(private val searchFeed: SkyscannerResults.SearchFeed): Recycle
         holder.view.przesiadki.text = direct
 
         searchFeed.Carriers.forEach {
-            if (it.CarrierId == flight.OutboundLeg.CarrierIds.get(0)) {
+            if (it.CarrierId == flight.OutboundLeg.CarrierIds[0]) {
                 holder.view.przewoznik.text = it.Name
             }
         }
