@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "87469648655",
+    "firebase_url": "https://projekt-kompetencyjny-20237.firebaseio.com",
+    "project_id": "projekt-kompetencyjny-20237",
+    "storage_bucket": "projekt-kompetencyjny-20237.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87469648655:android:c32a85ef8e16c06efeec7a",
+        "android_client_info": {
+          "package_name": "com.example.trip_planner_andrid_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87469648655-8cbn2j7vnvjbc2q20v84eu7ihejhapoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCytI1UK_DmfUXK5vmJWV9jH5Oxe9Ehz4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87469648655-8cbn2j7vnvjbc2q20v84eu7ihejhapoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

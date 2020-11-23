@@ -31,6 +31,10 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
+		<activity android:name=".FirestoreConnectionActivity"
+			android:parentActivityName=".MainActivity">
+		</activity>
+
 	</application>
 
 </manifest>

@@ -14,8 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-    button4.setOnClickListener(){
+        button4.setOnClickListener {
             startActivity(Intent(this, SearchForFlightsActivity::class.java))
+        }
+
+        dbButton.setOnClickListener {
+            startActivity(Intent(this, FirestoreConnectionActivity::class.java))
         }
     }
 }
