@@ -12,37 +12,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
+            android:fontFamily="@font/robotomedium"
+            android:drawableStart="@drawable/ic_flight_takeoff"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
             android:text="TextView"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/view3" />
+            app:layout_constraintTop_toTopOf="@+id/view3"/>
 
-    <TextView
-            android:id="@+id/wylot_z2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
-            android:text="TextView"
-            android:textColor="#000000"
-            app:layout_constraintStart_toStartOf="@+id/view3" app:layout_constraintTop_toBottomOf="@+id/przylot_do"
-            android:layout_marginTop="44dp"/>
+
     <TextView
             android:id="@+id/data_wylotu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
             android:elevation="7dp"
             android:fontFamily="@font/robotoregular"
             android:text="TextView"
             android:textColor="#4800D0"
-            app:layout_constraintStart_toEndOf="@+id/wylot_z"
-            app:layout_constraintTop_toTopOf="@+id/view3" />
+
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            android:layout_marginEnd="30dp" app:layout_constraintTop_toTopOf="@+id/view3"
+            android:layout_marginTop="8dp"/>
+
 
     <TextView
             android:id="@+id/data_wylotu2"
@@ -52,74 +46,51 @@
             android:fontFamily="@font/robotoregular"
             android:text="TextView"
             android:textColor="#4800D0"
-            app:layout_constraintStart_toEndOf="@+id/wylot_z2"
-            app:layout_constraintTop_toBottomOf="@+id/data_przylotu" android:layout_marginTop="44dp"
-            android:layout_marginStart="25dp"/>
+
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view3" android:layout_marginBottom="8dp"/>
     <TextView
             android:id="@+id/przylot_do"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="152dp"
             android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
+            android:fontFamily="@font/robotomedium"
+            android:drawableLeft="@drawable/ic_flight_land"
+            android:drawablePadding="10dp"
             android:text="TextView"
             android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintStart_toStartOf="@+id/view3" app:layout_constraintTop_toBottomOf="@+id/wylot_z"
-            app:layout_constraintVertical_bias="1.0"/>
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="@+id/view3" app:layout_constraintTop_toBottomOf="@+id/przesiadki"
+            android:layout_marginTop="15dp"/>
 
-    <TextView
-            android:id="@+id/przylot_do2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
-            android:text="TextView"
-            android:textColor="#000000"
-            app:layout_constraintStart_toStartOf="@+id/view3" app:layout_constraintTop_toBottomOf="@+id/wylot_z2"
-            android:layout_marginTop="48dp"/>
-    <TextView
-            android:id="@+id/data_przylotu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="10dp"
-            android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
-            android:text="TextView"
-            android:textColor="#4800D0"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintStart_toEndOf="@+id/przylot_do"
-            app:layout_constraintTop_toBottomOf="@+id/data_wylotu" app:layout_constraintVertical_bias="0.26"/>
-
-    <TextView
-            android:id="@+id/data_przylotu2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
-            android:text="TextView"
-            android:textColor="#4800D0"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintStart_toEndOf="@+id/przylot_do2"
-            app:layout_constraintTop_toBottomOf="@+id/data_wylotu2" app:layout_constraintVertical_bias="0.8"
-            android:layout_marginStart="25dp"/>
     <TextView
             android:id="@+id/cena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
             android:elevation="7dp"
             android:fontFamily="@font/robotobold"
             android:text="TextView"
             android:textColor="#4800D0"
-            app:layout_constraintEnd_toEndOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/view3" app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintVertical_bias="0.454" android:textSize="24sp"/>
+            app:layout_constraintBottom_toBottomOf="@+id/view3"
+            app:layout_constraintEnd_toStartOf="@+id/waluta"
+            app:layout_constraintTop_toTopOf="@+id/view3"
+            android:textSize="20sp" android:layout_marginEnd="5dp"/>
 
+
+    <TextView
+            android:id="@+id/waluta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:elevation="7dp"
+            android:fontFamily="@font/robotobold"
+            android:text="PLN"
+            android:textColor="#4800D0"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/view3" app:layout_constraintBottom_toBottomOf="@+id/view3"
+            app:layout_constraintTop_toTopOf="@+id/view3" android:layout_marginEnd="30dp"/>
     <TextView
             android:id="@+id/przewoznik"
             android:layout_width="wrap_content"
@@ -128,9 +99,10 @@
             android:fontFamily="@font/robotoregular"
             android:text="TextView"
             android:textColor="#000000"
-            app:layout_constraintTop_toTopOf="@+id/view3"
-            app:layout_constraintBottom_toTopOf="@+id/cena" app:layout_constraintStart_toEndOf="@+id/przesiadki"
-            android:layout_marginStart="48dp" app:layout_constraintVertical_bias="0.511"/>
+
+            app:layout_constraintEnd_toEndOf="@+id/view3" app:layout_constraintTop_toBottomOf="@+id/data_wylotu"
+            android:layout_marginEnd="30dp" android:layout_marginTop="15dp"/>
+
     <TextView
             android:id="@+id/przewoznik2"
             android:layout_width="wrap_content"
@@ -139,9 +111,10 @@
             android:fontFamily="@font/robotoregular"
             android:text="TextView"
             android:textColor="#000000"
-            app:layout_constraintStart_toEndOf="@+id/przesiadki"
-            android:layout_marginStart="48dp" app:layout_constraintTop_toBottomOf="@+id/cena"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"/>
+
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            android:layout_marginEnd="30dp" app:layout_constraintBottom_toTopOf="@+id/data_wylotu2"
+            android:layout_marginBottom="15dp"/>
     <TextView
             android:id="@+id/przesiadki"
             android:layout_width="wrap_content"
@@ -149,29 +122,16 @@
             android:elevation="7dp"
             android:fontFamily="@font/robotoregular"
             android:text="TextView"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintEnd_toEndOf="@+id/view3"
+            android:textColor="#515151"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/view3" app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintVertical_bias="0.19"/>
-    <TextView
-            android:id="@+id/przesiadki2"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:elevation="7dp"
-            android:fontFamily="@font/robotoregular"
-            android:text="TextView"
-            android:textColor="#000000"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/data_wylotu2"
-            app:layout_constraintBottom_toBottomOf="@+id/view3" app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintEnd_toStartOf="@+id/przewoznik2" app:layout_constraintHorizontal_bias="0.737"
-            app:layout_constraintVertical_bias="0.018"/>
+            app:layout_constraintTop_toBottomOf="@+id/wylot_z"/>
     <View
             android:id="@+id/view3"
-            android:layout_width="330dp"
-            android:layout_height="250dp"
+            android:layout_width="350dp"
+            android:layout_height="240dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_flights_row"
@@ -181,5 +141,61 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/wylot_z2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:elevation="7dp"
+            android:fontFamily="@font/robotomedium"
+            android:drawableStart="@drawable/ic_flight_takeoff"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintBottom_toTopOf="@+id/przesiadki2"/>
+
+    <TextView
+            android:id="@+id/przesiadki2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="TextView"
+            android:textColor="#515151"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            android:layout_marginStart="45dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/przylot_do2"/>
+
+    <TextView
+            android:id="@+id/przylot_do2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:elevation="7dp"
+            android:fontFamily="@font/robotomedium"
+            android:drawableLeft="@drawable/ic_flight_land"
+            android:drawablePadding="10dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintBottom_toBottomOf="@+id/view3"
+            android:layout_marginBottom="8dp"/>
+    <View
+            android:id="@+id/divider"
+            android:layout_width="140dp"
+            android:layout_height="2dp"
+            android:background="@color/grey_100"
+            app:layout_constraintTop_toBottomOf="@+id/przylot_do"
+            app:layout_constraintBottom_toTopOf="@+id/wylot_z2" android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/view3" android:backgroundTint="@color/grey_100"
+            android:elevation="6dp"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
