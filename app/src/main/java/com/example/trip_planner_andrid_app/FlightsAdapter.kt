@@ -54,7 +54,7 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
                 "Bezpośredni"
             else "Przesiadki"
 
-            outboundDate.text = flight.OutboundLeg.DepartureDate
+            outboundDate.text = flight.OutboundLeg.DepartureDate.substring(0, 10)
             price.text = flight.MinPrice.toString()
             isDirect.text = direct
 
@@ -101,9 +101,9 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
                 "Bezpośredni"
             else "Przesiadki"
 
-            outboundDate.text = flight.OutboundLeg.DepartureDate
+            outboundDate.text = flight.OutboundLeg.DepartureDate.substring(0, 10)
 
-            inboundDate.text = flight.InboundLeg.DepartureDate
+            inboundDate.text = flight.InboundLeg.DepartureDate.substring(0, 10)
 
             price.text = flight.MinPrice.toString()
 
