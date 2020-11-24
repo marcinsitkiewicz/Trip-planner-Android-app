@@ -5,6 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
+
 //import com.example.trip_planner_andrid_app.flights.data.SkyscannerQuery
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         authButton.setOnClickListener {
             startActivity(Intent(this, AuthenticationActivity::class.java))
+            button4.setOnClickListener() {
+                startActivity(Intent(this, SearchForFlightsActivity::class.java))
+            }
+            button6.setOnClickListener() {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
         }
     }
 }
