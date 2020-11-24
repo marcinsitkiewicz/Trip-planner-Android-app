@@ -44,6 +44,11 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
+		<activity android:name=".HomeActivity"
+			android:parentActivityName=".LoginActivity"
+			tools:ignore="Instantiatable">
+		</activity>
+
 
 	</application>
 

@@ -25,14 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         authButton.setOnClickListener {
             startActivity(Intent(this, AuthenticationActivity::class.java))
-            button4.setOnClickListener() {
-                startActivity(Intent(this, SearchForFlightsActivity::class.java))
-            }
-            button6.setOnClickListener() {
-                startActivity(Intent(this, LoginActivity::class.java))
-            }
+        }
+
+        button4.setOnClickListener() {
+            startActivity(Intent(this, SearchForFlightsActivity::class.java))
+        }
+
+        button6.setOnClickListener() {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
-
-
