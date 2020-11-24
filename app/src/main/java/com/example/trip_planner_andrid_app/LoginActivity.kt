@@ -10,6 +10,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login_screen_activity.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.login_screen_activity.*
+import kotlinx.android.synthetic.main.login_screen_activity.clickableTextView_register
+import kotlinx.android.synthetic.main.register_screen_activity.*
 
 
 public class LoginActivity : AppCompatActivity() {
@@ -28,6 +32,10 @@ public class LoginActivity : AppCompatActivity() {
             val password = field_password.text.toString()
 
             signIn(email, password)
+        }
+
+        clickableTextView_register.setOnClickListener() {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
