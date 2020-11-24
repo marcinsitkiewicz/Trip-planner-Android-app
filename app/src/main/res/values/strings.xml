@@ -17,5 +17,6 @@
     <string name="firebase_status_fmt">Firebase UID: %s</string>
     <string name="reload">Reload</string>
     <string name="email_address">Email…</string>
-    <string name="password">Password…</string>
+    <string name="password">Hasło…</string>
+    <string name="password_rpt">Powtórz hasło…</string>
 </resources>
