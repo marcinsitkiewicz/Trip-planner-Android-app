@@ -2,7 +2,6 @@
     <string name="app_name">Trip-planner-Andrid-app</string>
     <string name="app_name_ok">Trip Planner App</string>
     <string name="data">Data</string>
-
     <!--SignIn/SignUp-->
     <string name="desc_firebase_lockup">Firebase logo and name</string>
     <string name="emailpassword_title_text">Email and Password</string>
@@ -17,4 +16,6 @@
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
     <string name="firebase_status_fmt">Firebase UID: %s</string>
     <string name="reload">Reload</string>
+    <string name="email_address">Email…</string>
+    <string name="password">Password…</string>
 </resources>
