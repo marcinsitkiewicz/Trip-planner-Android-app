@@ -1,7 +1,6 @@
 package com.example.trip_planner_andrid_app
 
 import android.annotation.SuppressLint
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
 import android.content.Context
-import kotlinx.android.synthetic.main.flight_row.view.*
 
 
 class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, private val context: Context) :
@@ -32,7 +30,6 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
 
     internal class OneWayHolder(itemView: View) : ViewHolder(itemView) {
         private var outboundDate: TextView = itemView.findViewById(R.id.data_wylotu) as TextView
-        private var arrivalDate: TextView = itemView.findViewById(R.id.data_przylotu) as TextView
         private var price: TextView = itemView.findViewById(R.id.cena) as TextView
         private var outboundPlace: TextView = itemView.findViewById(R.id.wylot_z) as TextView
         private var destinationPlace: TextView = itemView.findViewById(R.id.przylot_do) as TextView
@@ -41,27 +38,24 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
 
         fun setOneWayFlight(searchFeed: SkyscannerResults.SearchFeed) {
             val flight = searchFeed.Quotes[adapterPosition]
-            val place1 : SkyscannerResults.Place
-            val place2 : SkyscannerResults.Place
 
-            if (flight.OutboundLeg.OriginId == searchFeed.Places[0].PlaceId) {
-                place1 = searchFeed.Places[0]
-                place2 = searchFeed.Places[1]
-            } else {
-                place1 = searchFeed.Places[1]
-                place2 = searchFeed.Places[0]
+
+            searchFeed.Places.forEach {
+                if (it.PlaceId == flight.OutboundLeg.OriginId) {
+                    outboundPlace.text = it.Name
+                }
+                if (it.PlaceId == flight.OutboundLeg.DestinationId) {
+                    destinationPlace.text = it.Name
+                }
             }
 
             val direct : String
             direct = if (flight.Direct)
-                "Przesiadki"
-            else "Brak przesiadek"
+                "Bezpośredni"
+            else "Przesiadki"
 
             outboundDate.text = flight.OutboundLeg.DepartureDate
-            outboundPlace.text = place1.CityName
-            arrivalDate.text = flight.OutboundLeg.DepartureDate
             price.text = flight.MinPrice.toString()
-            destinationPlace.text = place2.CityName
             isDirect.text = direct
 
             searchFeed.Carriers.forEach {
@@ -76,11 +70,9 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
         private var outboundDate: TextView = itemView.findViewById(R.id.data_wylotu) as TextView
         private var outboundPlace: TextView = itemView.findViewById(R.id.wylot_z) as TextView
         private var arrivalPlace: TextView = itemView.findViewById(R.id.przylot_do) as TextView
-        private var arrivalDate: TextView = itemView.findViewById(R.id.data_przylotu) as TextView
 
         private var inboundDate: TextView = itemView.findViewById(R.id.data_wylotu2) as TextView
         private var inboundPlace: TextView = itemView.findViewById(R.id.wylot_z2) as TextView
-        private var arrivalDate2: TextView = itemView.findViewById(R.id.data_przylotu2) as TextView
         private var arrivalPlace2: TextView = itemView.findViewById(R.id.przylot_do2) as TextView
 
         private var price: TextView = itemView.findViewById(R.id.cena) as TextView
@@ -92,23 +84,26 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
 
         fun setTwoWayFlight(searchFeed: SkyscannerResults.SearchFeed) {
             val flight = searchFeed.Quotes[adapterPosition]
-            val place1 = searchFeed.Places[1]
-            val place2 = searchFeed.Places[0]
+
+            searchFeed.Places.forEach {
+                if (it.PlaceId == flight.OutboundLeg.OriginId) {
+                    outboundPlace.text = it.Name
+                    arrivalPlace2.text = it.Name
+                }
+                if (it.PlaceId == flight.OutboundLeg.DestinationId) {
+                    inboundPlace.text = it.Name
+                    arrivalPlace.text = it.Name
+                }
+            }
 
             val direct : String
             direct = if (flight.Direct)
-                "Przesiadki"
-            else "Brak przesiadek"
+                "Bezpośredni"
+            else "Przesiadki"
 
             outboundDate.text = flight.OutboundLeg.DepartureDate
-            outboundPlace.text = place1.CityName
-            arrivalDate.text = flight.OutboundLeg.DepartureDate
-            arrivalPlace.text = place2.CityName
 
             inboundDate.text = flight.InboundLeg.DepartureDate
-            inboundPlace.text = place2.CityName
-            arrivalDate2.text = flight.InboundLeg.DepartureDate
-            arrivalPlace2.text = place1.CityName
 
             price.text = flight.MinPrice.toString()
 
