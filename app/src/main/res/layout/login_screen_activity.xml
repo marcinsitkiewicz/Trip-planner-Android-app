@@ -37,9 +37,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/field_password"
+        app:layout_constraintVertical_bias="0.341" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -62,11 +61,11 @@
         android:background="@drawable/custom_input_login"
         android:drawableStart="@drawable/custom_email_icon"
         android:drawablePadding="12dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:ems="10"
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
