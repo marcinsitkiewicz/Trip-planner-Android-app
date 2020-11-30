@@ -8,7 +8,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.home_activity.*
 
 
-
 class HomeActivity() : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -31,6 +30,7 @@ class HomeActivity() : AppCompatActivity() {
         if (user != null) {
             status.text = getString(R.string.emailpassword_status_fmt,
                 user.email, user.isEmailVerified)
+            detail.text = getString(R.string.firebase_status_fmt, user.uid)
         }
         else
         {
