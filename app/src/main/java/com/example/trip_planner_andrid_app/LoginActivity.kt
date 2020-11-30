@@ -10,13 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login_screen_activity.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.login_screen_activity.*
 import kotlinx.android.synthetic.main.login_screen_activity.clickableTextView_register
-import kotlinx.android.synthetic.main.register_screen_activity.*
 
-
-public class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -56,8 +52,8 @@ public class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, HomeActivity()::class.java))
                 } else {
                     // If sign in fails, display a message to the user
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Operacja się nie powiodła.",
+                        Toast.LENGTH_LONG).show()
                 }
             }
         closeKeyBoard()
