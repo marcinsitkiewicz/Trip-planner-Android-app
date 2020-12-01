@@ -34,9 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/bg_plane"
             android:orientation="vertical">
 
@@ -62,323 +61,318 @@
                 android:textStyle="bold"
                 android:layout_gravity="center" />
 
-            <GridLayout
-
-                android:id="@+id/Seats_plane_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:columnCount="4"
-                android:orientation="vertical"
-                android:useDefaultMargins="true"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginBottom="20dp">
-
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="0"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="0"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--1st row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--2nd row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--3rd row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="3"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="3"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="3"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="3"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--4th row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--5th row-->
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--5th row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="5"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--6th row-->
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="0"
-                    android:layout_row="6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="1"
-                    android:layout_row="6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="2"
-                    android:layout_row="6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_column="3"
-                    android:layout_row="6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bg_seat_plane" />
-
-                <!--5th row-->
+                <GridLayout
+                    android:id="@+id/Plane_seats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:columnCount="4"
+                    android:orientation="vertical"
+                    android:useDefaultMargins="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp">
 
 
-            </GridLayout>
+                    <RadioButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="0"
+                        android:background="@drawable/custom_seat"
+                        android:button="@null" />
+
+
+                    <RadioButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="0"
+                        android:background="@drawable/custom_seat"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="0"
+                        android:background="@drawable/custom_seat"
+                        android:button="@null"/>
+
+                    <RadioButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="0"
+                        android:background="@drawable/custom_seat"
+                        android:button="@null"/>
+
+                    <!--1st row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--2nd row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--3rd row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--4th row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--5th row-->
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--5th row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <!--6th row-->
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+                        android:layout_row="6"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="1"
+                        android:layout_row="6"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="2"
+                        android:layout_row="6"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_seat_plane" />
+
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_column="3"
+                        android:layout_row="6"
+                        android:background="@drawable/custom_seat" />
+
+                    <!--5th row-->
+
+                </GridLayout>
+
 
         </LinearLayout>
 
