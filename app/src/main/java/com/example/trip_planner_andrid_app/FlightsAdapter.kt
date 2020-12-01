@@ -1,6 +1,7 @@
 package com.example.trip_planner_andrid_app
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
 import android.content.Context
+import android.os.Bundle
+import androidx.fragment.app.FragmentManager
+import com.example.trip_planner_andrid_app.flights.FlightDetails
+import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 
 
-class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, private val context: Context) :
+class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
+                     private val context: Context,
+                     private val callback: (Any) -> Unit
+                     ) :
     RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int{
@@ -139,8 +147,10 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed, priva
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_ONE_WAY) {
             (viewHolder as OneWayHolder).setOneWayFlight(searchFeed)
+            viewHolder.itemView.setOnClickListener(callback)
         } else {
             (viewHolder as TwoWayHolder).setTwoWayFlight(searchFeed)
+            viewHolder.itemView.setOnClickListener(callback)
         }
     }
 
