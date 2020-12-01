@@ -1,33 +1,589 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    >
+    android:background="@drawable/bg_flight_details">
 
     <TextView
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Test"
-        android:textSize="30sp"
-        android:textColor="#000" />
+        android:padding="20dp"
+        android:text="Flight Details"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn1"
-        android:text="Test button"
-        android:layout_margin="20dp" />
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1dp"-->
+    <!--        android:background="@color/colorDivider" />-->
+    <RelativeLayout
+        android:id="@+id/Details_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:background="@drawable/bg_flight_details_color">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn2"
-        android:text="Test button2"
-        android:layout_margin="20dp" />
+        <LinearLayout
+            android:id="@+id/Plane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="30dp"
+
+            android:background="@drawable/bg_plane"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Flight_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:text="Economy Class"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a seat"
+                android:textColor="#BFA6FE"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+            <GridLayout
+
+                android:id="@+id/Seats_plane_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:columnCount="4"
+                android:orientation="vertical"
+                android:useDefaultMargins="true"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="0"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="0"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--1st row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--2nd row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="2"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="2"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="2"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--3rd row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="3"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="3"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="3"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--4th row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--5th row-->
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="4"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--5th row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="5"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="5"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="5"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="5"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--6th row-->
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_row="6"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_row="6"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="2"
+                    android:layout_row="6"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_column="3"
+                    android:layout_row="6"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_seat_plane" />
+
+                <!--5th row-->
 
 
+            </GridLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="start">
+
+
+            <LinearLayout
+                android:id="@+id/Details_Origin"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/Orign-fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Sydney"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/Orign-code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="(SYD)"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BFA6FE" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Details_Destination"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/Destination-fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="London"
+                    android:textColor="#FFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Destination-code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="(LCY)"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BFA6FE" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Details_Depart"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/Depart-header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Depart"
+                    android:textColor="#BFA6FE"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Depart-hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="8:30 AM"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Details_FlightNo"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/FlightNo-header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Flight No"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#BFA6FE" />
+
+                <TextView
+                    android:id="@+id/FlightNo-number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="EK008"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Details_SeatNo"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/SeatNo-header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Seat No"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#BFA6FE" />
+
+                <TextView
+                    android:id="@+id/SeatNo-number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="17"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Details_TicketPrice"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/TicketPrice-header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Ticket Price"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BFA6FE" />
+
+                <TextView
+                    android:id="@+id/TicketPrice-price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="$790"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AddToFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-1dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
