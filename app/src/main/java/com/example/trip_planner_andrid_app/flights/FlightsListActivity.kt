@@ -81,13 +81,41 @@ class FlightsListActivity : AppCompatActivity() {
     }
 
     private fun fetchJsonToDataClass(body: String) {
-        val gson = GsonBuilder().create()
-        val searchFeed =  gson.fromJson(body, SkyscannerResults.SearchFeed::class.java)
+        val searchFeed =  GsonBuilder().create().fromJson(body, SkyscannerResults.SearchFeed::class.java)
 
         runOnUiThread {
             recyclerView_main.adapter = FlightsAdapter(searchFeed, this){
                 val flightDetails = FlightDetails()
-                    flightDetails.show(supportFragmentManager, "FlightDetails")
+                lateinit var originCity : String
+                lateinit var destinationCity : String
+                lateinit var originIata : String
+                lateinit var destinationIata : String
+                val args = Bundle()
+                val flight = searchFeed.Quotes[it]
+
+                for (place in searchFeed.Places) {
+
+                    if (place.PlaceId == flight.OutboundLeg.OriginId) {
+                        originCity = place.CityName
+                        originIata = place.IataCode
+                    }
+
+                    if (place.PlaceId == flight.OutboundLeg.DestinationId) {
+                        destinationCity = place.CityName
+                        destinationIata = place.IataCode
+                    }
+                }
+
+                args.putString("departureDate", flight.OutboundLeg.DepartureDate)
+                args.putString("price", flight.MinPrice.toString())
+                args.putString("originPlace", originCity)
+                args.putString("destinationPlace", destinationCity)
+                args.putString("originIata", originIata)
+                args.putString("destinationIata", destinationIata)
+
+                flightDetails.arguments = args
+
+                flightDetails.show(supportFragmentManager, "FlightDetails")
             }
         }
     }
