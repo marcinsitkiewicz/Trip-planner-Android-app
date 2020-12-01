@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="HardcodedText,MissingConstraints" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/wylotZ"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
         tools:ignore="MissingConstraints"
         tools:text="@tools:sample/date/ddmmyy" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/przylotDo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
