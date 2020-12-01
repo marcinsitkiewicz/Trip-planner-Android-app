@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="20dp"
-        android:text="Flight Details"
+        android:text="Szczegóły lotu"
         android:textSize="18sp"
         android:textColor="#000"
         android:textStyle="bold" />
@@ -34,8 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="80dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
 
             android:background="@drawable/bg_plane"
             android:orientation="vertical">
@@ -44,10 +44,10 @@
                 android:id="@+id/Flight_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="40dp"
-                android:text="Economy Class"
+                android:layout_marginRight="15dp"
+                android:text="Klasa ekonomiczna"
                 android:textColor="#FFF"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -56,7 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select a seat"
+                android:text="Wybór miejsc"
                 android:textColor="#BFA6FE"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -397,21 +397,21 @@
                 android:gravity="start">
 
                 <TextView
-                    android:id="@+id/Orign-fullname"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/Origin_fullname"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
                     android:text="Sydney"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="#FFF" />
 
                 <TextView
-                    android:id="@+id/Orign-code"
+                    android:id="@+id/Origin_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="(SYD)"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -426,10 +426,10 @@
                 android:gravity="start">
 
                 <TextView
-                    android:id="@+id/Destination-fullname"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/Destination_fullname"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
                     android:text="London"
                     android:textColor="#FFF"
@@ -437,10 +437,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Destination-code"
+                    android:id="@+id/Destination_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="(LCY)"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -458,9 +458,9 @@
                     android:id="@+id/Depart-header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Depart"
+                    android:text="Wylot o"
                     android:textColor="#BFA6FE"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -469,7 +469,7 @@
                     android:id="@+id/Depart-hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="8:30 AM"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -487,9 +487,9 @@
                     android:id="@+id/FlightNo-header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Flight No"
+                    android:text="Numer lotu"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#BFA6FE" />
@@ -498,7 +498,7 @@
                     android:id="@+id/FlightNo-number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="EK008"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -516,9 +516,9 @@
                     android:id="@+id/SeatNo-header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Seat No"
+                    android:text="Numer miejsca"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#BFA6FE" />
@@ -527,7 +527,7 @@
                     android:id="@+id/SeatNo-number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="17"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -535,7 +535,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/Details_TicketPrice"
+
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -545,18 +545,18 @@
                     android:id="@+id/TicketPrice-header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Ticket Price"
+                    android:text="Cena biletu"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#BFA6FE" />
 
                 <TextView
-                    android:id="@+id/TicketPrice-price"
+                    android:id="@+id/TicketPrice_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:text="$790"
                     android:textSize="30sp"
                     android:textStyle="bold"

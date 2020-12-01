@@ -18,7 +18,7 @@ import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 
 class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
                      private val context: Context,
-                     private val callback: (Any) -> Unit
+                     private val callback: (result: Int) -> Unit
                      ) :
     RecyclerView.Adapter<ViewHolder>() {
 
@@ -147,10 +147,14 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_ONE_WAY) {
             (viewHolder as OneWayHolder).setOneWayFlight(searchFeed)
-            viewHolder.itemView.setOnClickListener(callback)
+            viewHolder.itemView.setOnClickListener{
+                callback.invoke(position)
+            }
         } else {
             (viewHolder as TwoWayHolder).setTwoWayFlight(searchFeed)
-            viewHolder.itemView.setOnClickListener(callback)
+            viewHolder.itemView.setOnClickListener{
+                callback.invoke(position)
+            }
         }
     }
 
