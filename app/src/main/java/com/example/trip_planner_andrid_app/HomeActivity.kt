@@ -1,5 +1,6 @@
 package com.example.trip_planner_andrid_app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -35,11 +36,13 @@ class HomeActivity() : AppCompatActivity() {
         else
         {
             finish()
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
     private fun signOut() {
         auth.signOut()
         finish()
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

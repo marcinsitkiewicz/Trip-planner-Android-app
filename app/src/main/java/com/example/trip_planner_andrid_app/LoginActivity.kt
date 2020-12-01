@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         clickableTextView_register.setOnClickListener() {
+            finish()
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }

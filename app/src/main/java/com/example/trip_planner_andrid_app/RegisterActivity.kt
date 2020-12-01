@@ -25,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         clickableTextView_login.setOnClickListener() {
+            finish()
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
@@ -69,6 +70,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     addUserToDatabase()
+                    finish()
                     startActivity(Intent(this, HomeActivity()::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
@@ -88,8 +90,8 @@ class RegisterActivity : AppCompatActivity() {
             valid = false
         }
         else if (!isEmailValid(email)) {
-            register_field_email.error = "Wprowadź poprawny adres email,\n" +
-                                "n.p. twoje.imie@domena.pl"
+            register_field_email.error = "Wprowadź poprawny adres email\n" +
+                                "np.: twoje.imie@domena.pl"
             valid = false
         }
         else {
