@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import com.example.trip_planner_andrid_app.flights.FlightDetails
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 
 //import com.example.trip_planner_andrid_app.flights.data.SkyscannerQuery
