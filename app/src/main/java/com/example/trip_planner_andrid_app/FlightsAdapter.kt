@@ -18,8 +18,7 @@ import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 
 class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
                      private val context: Context,
-                     private val callback: (result: Int) -> Unit
-                     ) :
+                     private val callback: (result: Int) -> Unit) :
     RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int{

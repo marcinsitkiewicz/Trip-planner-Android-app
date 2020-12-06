@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/toggle_widget_clicked_right"
+          android:color="@color/black"
+          android:state_checked="true">
+    </item>
+    <item android:drawable="@drawable/toggle_widget_clicked_right"
+          android:color="@color/black"
+          android:state_pressed="true">
+    </item>
+
+    <item android:drawable="@android:color/transparent" android:color="@color/white">
+    </item>
+
+</selector>

@@ -55,6 +55,23 @@
         app:layout_constraintVertical_bias="0.39"
         tools:ignore="ContentDescription,MissingConstraints,UnknownId" />
 
+    <TextView
+            android:id="@+id/emptyInfo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotomedium"
+            android:textColor ="@color/colorGrey"
+            android:text="Przykro nam, ale nie znaleźliśmy żadnego lotu, który pasuje do twoich preferencji."
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:drawableTop="@drawable/ic_info_outline"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView_main"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView_main"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView_main"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView_main" />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_main"
         android:layout_width="match_parent"

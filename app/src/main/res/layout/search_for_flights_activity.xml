@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SearchForFlightsActivity">
 
+
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -15,32 +16,79 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:translationZ="90dp" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="450dp"
-        android:background="@drawable/bg_purple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        tools:ignore="MissingConstraints" />
 
     <View
-        android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="450dp"
+            android:background="@drawable/bg_purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:ignore="MissingConstraints"/>
+    <RadioGroup
+            android:checkedButton="@+id/one_way"
+            android:id="@+id/fight_type"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/toggle_widget_outline"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+    >
 
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_wylot"
-        app:layout_constraintBottom_toTopOf="@+id/wylotText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="MissingConstraints" />
+        <RadioButton
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginStart="1dp"
+                android:id="@+id/one_way"
+                android:background="@drawable/toggle_widget_background_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@drawable/toggle_widget_background_left"
+                android:text="W jedną stronę"/>
+
+        <RadioButton
+                android:layout_marginEnd="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:id="@+id/two_way"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background_right"
+                android:button="@null"
+                android:gravity="center"
+                android:text="W obie strony"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@drawable/toggle_widget_background_right"
+                />
+    </RadioGroup>
+
+    <View
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_wylot"
+            app:layout_constraintBottom_toTopOf="@+id/wylotText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/button2"
@@ -100,29 +148,29 @@
         tools:ignore="HardcodedText,MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/robotobold"
-        android:text="Wyszukaj swój lot"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/wylotZ"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="HardcodedText,MissingConstraints" />
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/robotobold"
+            android:text="Wyszukaj swój lot"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@+id/wylotZ"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:ignore="HardcodedText,MissingConstraints"/>
 
     <AutoCompleteTextView
         android:id="@+id/wylotZ"
-        android:layout_width="0dp"
+        android:layout_width="0dp" 
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
+        android:textSize="18sp"
         android:ems="14"
-        android:hint="WYLOT Z"
+        android:hint="Skąd?"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@+id/view3"
@@ -130,20 +178,20 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btn_timePickerWylot"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="66dp"
-        android:layout_marginBottom="45dp"
-        android:background="@drawable/bg_date_picker"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toStartOf="@+id/btn_timePickerPrzylot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        tools:ignore="MissingConstraints"
-        tools:text="@tools:sample/date/ddmmyy" />
+            android:id="@+id/btn_datePicker"
+            android:drawableStart="@drawable/ic_date_range"
+            android:paddingStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/bg_date_picker"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3"/>
 
 
     <!--    <EditText-->
@@ -159,18 +207,6 @@
     <!--        app:layout_constraintTop_toTopOf="@+id/view2"-->
     <!--        tools:ignore="MissingConstraints" />-->
 
-    <Button
-        android:id="@+id/btn_timePickerPrzylot"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="31dp"
-        android:background="@drawable/bg_date_picker"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_timePickerWylot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_timePickerWylot"
-        app:layout_constraintTop_toTopOf="@+id/btn_timePickerWylot"
-        tools:ignore="MissingConstraints"
-        tools:text="@tools:sample/date/ddmmyy" />
 
     <AutoCompleteTextView
         android:id="@+id/przylotDo"
@@ -179,7 +215,8 @@
         android:layout_marginStart="1dp"
         android:layout_marginBottom="2dp"
         android:ems="14"
-        android:hint="PRZYLOT DO"
+        android:textSize="18sp"
+        android:hint="Dokąd?"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/wylotZ"
         app:layout_constraintTop_toBottomOf="@+id/wylotZ"
@@ -188,28 +225,62 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+            android:id="@+id/data_wylotu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/robotoregular"
+            android:text=""
+            android:elevation="3dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
+            app:layout_constraintTop_toBottomOf="@+id/wylotText" />
+
+    <TextView
+            android:id="@+id/data_przylotu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/robotoregular"
+            android:text=""
+            android:elevation="3dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/data_wylotu"
+            app:layout_constraintTop_toBottomOf="@+id/wylotText" />
+
+    <TextView
         android:id="@+id/wylotText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="3dp"
-        android:fontFamily="@font/robotobold"
-        android:text="Wylot"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="@+id/btn_timePickerWylot"
-        app:layout_constraintBottom_toTopOf="@+id/btn_timePickerWylot" />
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/robotoregular"
+        android:textColor = "@color/colorPrimaryDarkPurple"
+        android:text="Data wylotu"
+        android:elevation="3dp"
+        android:textSize="13sp"
+
+        app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
+        app:layout_constraintTop_toTopOf="@+id/btn_datePicker" />
 
     <TextView
-        android:id="@+id/przylotText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="3dp"
-        android:fontFamily="@font/robotobold"
-        android:text="Przylot"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btn_timePickerPrzylot"
-        app:layout_constraintStart_toStartOf="@+id/btn_timePickerPrzylot"
-        tools:ignore="MissingConstraints" />
+            android:id="@+id/przylotText"
+            android:textColor = "@color/colorPrimaryDarkPurple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/robotoregular"
+            android:text=" - data przylotu"
+            android:elevation="4dp"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/wylotText"
+            app:layout_constraintTop_toTopOf="@+id/btn_datePicker" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

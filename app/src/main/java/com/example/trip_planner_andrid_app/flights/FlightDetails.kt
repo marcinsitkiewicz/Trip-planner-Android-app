@@ -43,7 +43,7 @@ class FlightDetails: BottomSheetDialogFragment() {
         originCode.text = originIata
         destinationFullname.text = destinationCity
         destinationCode.text = destinationIata
-        ticketPrice.text = price + " PLN"
+        ticketPrice.text = "$price PLN"
 
 
         var numberOfCheckboxesChecked = 0
