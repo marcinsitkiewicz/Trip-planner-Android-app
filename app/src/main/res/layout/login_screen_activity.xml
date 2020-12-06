@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg_login_screen"
     android:orientation="vertical">
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveFooter"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleY="-1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:mwhWaves="MultiWave"
+        app:mwhColorAlpha="0.50"
+        app:mwhStartColor="#FFFFFF"
+        app:mwhCloseColor="#FFFFFF"/>
 
     <!--        android:gravity="center_vertical|center_horizontal"-->
     <!--        android:hint="   Login..."-->
@@ -15,16 +25,6 @@
     <!--        app:layout_constraintHorizontal_bias="0.0"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
-
-    <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="585dp"
-        android:layout_height="1000dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rounded_background" />
 
     <Button
         android:id="@+id/login_button"
@@ -48,11 +48,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/field_email"
+        app:layout_constraintBottom_toTopOf="@+id/field_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+
         app:srcCompat="@drawable/logo_login_screen" />
+
+
 
     <EditText
         android:id="@+id/field_email"
@@ -71,6 +73,8 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/field_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +97,8 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,15 +3,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.GridView
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
 import com.example.trip_planner_andrid_app.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.flight_details.*
+
 
 class FlightDetails: BottomSheetDialogFragment() {
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.flight_details, container, false)
@@ -40,6 +45,42 @@ class FlightDetails: BottomSheetDialogFragment() {
         destinationCode.text = destinationIata
         ticketPrice.text = "$price PLN"
 
+
+        var numberOfCheckboxesChecked = 0
+        var lastChecked: CheckBox
+        fun seatListener(seat : CheckBox){
+            seat.setOnClickListener { isChecked ->
+                if (numberOfCheckboxesChecked >= 2) {
+                    if(seat.isChecked){
+//                        lastChecked = seat
+                    for (i in 0 until seats.childCount) {
+                        val mChild: CheckBox = seats.getChildAt(i) as CheckBox
+                        if(seat == mChild) continue
+                        if(mChild.isChecked){
+                            mChild.isChecked = false
+                            break}
+
+
+                    }
+                    }else{
+                        seat.isChecked = false
+                        numberOfCheckboxesChecked--}
+                } else {
+                    if (seat.isChecked) {
+                        lastChecked = seat
+                        numberOfCheckboxesChecked++
+                    } else {
+                        seat.isChecked = false
+                        numberOfCheckboxesChecked--
+                    }
+                }
+            }
+        }
+
+        seatListener(seat1)
+        seatListener(seat2)
+        seatListener(seat3)
+        seatListener(seat4)
 
     }
 
