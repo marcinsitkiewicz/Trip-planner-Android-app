@@ -1,23 +1,29 @@
 package com.example.trip_planner_andrid_app
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.Pair
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class SearchForFlightsActivity : AppCompatActivity() {
 
-    private val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+    private val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private val formatText = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
+
     private var outboundDateString : String = ""
     private var inboundDateString : String = ""
 
@@ -32,44 +38,72 @@ class SearchForFlightsActivity : AppCompatActivity() {
             val originPlace = wylotZ.text.toString().split("-")[1].trim() + "-sky"
             val destinationPlace = przylotDo.text.toString().split("-")[1].trim() + "-sky"
             val intent = Intent(this, FlightsListActivity::class.java)
+
             intent.putExtra("originPlace", originPlace)
             intent.putExtra("destinationPlace", destinationPlace)
+            if (two_way.isChecked) {
+                intent.putExtra("inboundDateString", inboundDateString)
+            }
+            else {
+                intent.putExtra("inboundDateString", "")
+            }
             intent.putExtra("outboundDateString", outboundDateString)
-            intent.putExtra("inboundDateString", inboundDateString)
+            setIntent(intent)
             startActivity(intent)
         }
 
+        var oneWay = true
+        data_przylotu.visibility = View.INVISIBLE
+        przylotText.visibility = View.INVISIBLE
 
-        btn_timePickerWylot.setOnClickListener(View.OnClickListener { val getDate = Calendar.getInstance()
-        val datepicker = DatePickerDialog(this, android.R.style.Theme_Material_Light_Dialog_Alert, DatePickerDialog.OnDateSetListener{datePicker, i, i2, i3 ->
+        one_way.setOnClickListener {
+            oneWay = true
+            data_przylotu.visibility = View.INVISIBLE
+            przylotText.visibility = View.INVISIBLE
+        }
 
-            val selectDate = Calendar.getInstance()
-            selectDate.set(Calendar.YEAR, i)
-            selectDate.set(Calendar.MONTH, i2)
-            selectDate.set(Calendar.DAY_OF_MONTH, i3)
-            val date = formatDate.format(selectDate.time)
-            outboundDateString = date.toString()
-            btn_timePickerWylot.text=date
+        two_way.setOnClickListener {
+            oneWay = false
+            data_przylotu.visibility = View.VISIBLE
+            przylotText.visibility = View.VISIBLE
+        }
 
-        }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))
-            datepicker.show()
-        })
+        btn_datePicker.setOnClickListener {
+            if (oneWay) {
+                println(oneWay)
+                val builder = MaterialDatePicker.Builder.datePicker()
+                val constraintsBuilderRange = CalendarConstraints.Builder()
+                val dateValidator = DateValidatorPointForward.now()
+                constraintsBuilderRange.setValidator(dateValidator)
+                builder.setCalendarConstraints(constraintsBuilderRange.build())
+                builder.setTitleText("Lot w jedną stronę")
+                val picker: MaterialDatePicker<Long> = builder.build()
+                picker.addOnPositiveButtonClickListener { selection ->
+                    outboundDateString = formatDate.format(selection)
+                    data_wylotu.text = formatText.format(selection)
+                }
+                picker.show(supportFragmentManager, picker.toString())
 
-        btn_timePickerPrzylot.setOnClickListener(View.OnClickListener { val getDate = Calendar.getInstance()
-            val datepicker = DatePickerDialog(this, android.R.style.Theme_Material_Light_Dialog_Alert, DatePickerDialog.OnDateSetListener{datePicker, i, i2, i3 ->
-
-                val selectDate = Calendar.getInstance()
-                selectDate.set(Calendar.YEAR, i)
-                selectDate.set(Calendar.MONTH, i2)
-                selectDate.set(Calendar.DAY_OF_MONTH, i3)
-                val date = formatDate.format(selectDate.time)
-                inboundDateString = date.toString()
-                btn_timePickerPrzylot.text=date
-
-            }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))
-            datepicker.show()
-        })
-
+            } else {
+                println(oneWay)
+                val builder: MaterialDatePicker.Builder<Pair<Long, Long>> = MaterialDatePicker.Builder.dateRangePicker()
+                val constraintsBuilderRange = CalendarConstraints.Builder()
+                val dateValidator = DateValidatorPointForward.now()
+                constraintsBuilderRange.setValidator(dateValidator)
+                builder.setCalendarConstraints(constraintsBuilderRange.build())
+                builder.setTitleText("Lot w obie strony")
+                val picker: MaterialDatePicker<Pair<Long, Long>> = builder.build()
+                picker.addOnPositiveButtonClickListener { selection ->
+                    val startDate = selection.first
+                    val endDate = selection.second
+                    outboundDateString = formatDate.format(startDate)
+                    inboundDateString = formatDate.format(endDate)
+                    data_wylotu.text = formatText.format(startDate)
+                    data_przylotu.text = " - " + formatText.format(endDate)
+                }
+                picker.show(supportFragmentManager, picker.toString())
+            }
+        }
     }
 
     private fun setAutocomplete() {

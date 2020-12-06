@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Trip-planner-Andrid-app</string>
     <string name="app_name_ok">Trip Planner App</string>
     <string name="data">Data</string>
@@ -19,4 +19,42 @@
     <string name="email_address">Email…</string>
     <string name="password">Hasło…</string>
     <string name="password_rpt">Powtórz hasło…</string>
+
+
+        <string name="mtrl_picker_range_header_title" description="Indicates that the user must take the action of picking dates within the calendar to form a range [CHAR_LIMIT=60]"
+                tools:override="true">Wybierz daty</string>
+        <string name="mtrl_picker_date_header_title" description="Indicates that the user must take the action of picking a date within the calendar [CHAR_LIMIT=60] " tools:override="true">Wybierz datę</string>
+        <string name="mtrl_picker_range_header_unselected" description="Placeholders for two dates separated by a dash representing a range [CHAR_LIMIT=60]" tools:override="true">Wylot - Powrót</string>
+        <string name="mtrl_picker_range_header_only_start_selected" description="Placeholders for two dates separated by a dash representing a range where start date has been selected [CHAR_LIMIT=60]" tools:override="true">%1$s – Powrót</string>
+        <string name="mtrl_picker_range_header_only_end_selected" description="Placeholders for two dates separated by a dash representing a range where end date has been selected [CHAR_LIMIT=60]" tools:override="true">Wylot – %1$s</string>
+        <string name="mtrl_picker_range_header_selected" tools:override="true" description="Two dates separated by a dash representing a range [CHAR_LIMIT=60]">%1$s – %2$s</string>
+        <string name="mtrl_picker_date_header_unselected" tools:override="true" description="Placeholder for a single date [CHAR_LIMIT=60]">Wybrane daty</string>
+        <string name="mtrl_picker_date_header_selected" tools:override="true" description="A single date [CHAR_LIMIT=60]">%1$s</string>
+        <string name="mtrl_picker_confirm" tools:override="true" description="Button text to indicate that the widget will save the user's selection [CHAR_LIMIT=16]">@android:string/ok</string>
+        <string name="mtrl_picker_cancel" tools:override="true" description="Button text to indicate that the widget will ignore the user's selection [CHAR_LIMIT=16]" translatable="false">@android:string/cancel</string>
+        <string name="mtrl_picker_text_input_date_hint" tools:override="true" description="Label for a single date selected by the user [CHAR_LIMIT=60]">Data</string>
+        <string name="mtrl_picker_text_input_date_range_start_hint" tools:override="true" description="Label for the start date in a range selected by the user [CHAR_LIMIT=60]">Wylot</string>
+        <string name="mtrl_picker_text_input_date_range_end_hint" tools:override="true" description="Label for the end date in a range selected by the user [CHAR_LIMIT=60]">Powrót</string>
+        <string name="mtrl_picker_text_input_year_abbr" tools:override="true" description="A 1 character abbreviation for year. It will be part of a string such as dd/mm/yyyy or mm/dd/yyyy or y.mm.dd. [CHAR_LIMIT=2]">r</string>
+        <string name="mtrl_picker_text_input_month_abbr" tools:override="true" description="A 1 character abbreviation for month. It will be part of a string such as dd/mm/yyyy or mm/dd/yyyy or y.mm.dd. [CHAR_LIMIT=2]">m</string>
+        <string name="mtrl_picker_text_input_day_abbr" tools:override="true" description="A 1 character abbreviation for day. It will be part of a string such as dd/mm/yyyy or mm/dd/yyyy or y.mm.dd. [CHAR_LIMIT=2]">d</string>
+        <string name="mtrl_picker_save" tools:override="true" description="Confirms the selection [CHAR_LIMIT=12]">Zapisz</string>
+        <string name="mtrl_picker_invalid_range" tools:override="true" description="Notifies the user that the two entered dates do not represent a valid range of dates [CHAR_LIMIT=36]">Błędny zakres dat.</string>
+        <string name="mtrl_picker_out_of_range" tools:override="true" description="Notifies the user that the entered date is outside the allowed range [CHAR_LIMIT=36]">Poza zakresem: %1$s</string>
+
+        <string name="mtrl_picker_invalid_format" tools:override="true" description="Indicates that the user entered date cannot be parsed because its format is wrong. [CHAR_LIMIT=36]">Błędny format.</string>
+        <string name="mtrl_picker_invalid_format_use" tools:override="true" description="Tells a user what format is expected for their date entry. [CHAR_LIMIT=18]">Użyj: %1$s</string>
+        <string name="mtrl_picker_invalid_format_example" tools:override="true" description="Tells a user what an example valid entry looks like. [CHAR_LIMIT=18]">Przykład: %1$s</string>
+
+        <string name="mtrl_picker_toggle_to_calendar_input_mode" tools:override="true" description="a11y string to indicate this button changes the input mode to a calendar [CHAR_LIMIT=NONE]">Przełącz na widok kalendarza</string>
+        <string name="mtrl_picker_toggle_to_text_input_mode" tools:override="true" description="a11y string to indicate this button changes the input mode to a text field [CHAR_LIMIT=NONE]">Przełącz na widok tekstowy</string>
+        <string name="mtrl_picker_a11y_prev_month" tools:override="true" description="a11y string to indicate this button moves the calendar to the previous month [CHAR_LIMIT=NONE]">Zmień na poprzedni miesiąc</string>
+        <string name="mtrl_picker_a11y_next_month" tools:override="true" description="a11y string to indicate this button moves the calendar to the next month [CHAR_LIMIT=NONE]">Zmień na następny miesiąc</string>
+        <string name="mtrl_picker_toggle_to_year_selection" tools:override="true" description="a11y string to indicate this button switches the user to choosing a year [CHAR_LIMIT=NONE]">Wybierz rok</string>
+        <string name="mtrl_picker_toggle_to_day_selection" tools:override="true" description="a11y string to indicate this button switches the user to choosing a day [CHAR_LIMIT=NONE]">Wybierz dzień</string>
+        <string name="mtrl_picker_day_of_week_column_header" tools:override="true" description="a11y string to indicate this is a header for a column of days for one day of the week (e.g., Monday) [CHAR_LIMIT=NONE]">Kolumna dni: %1$s</string>
+        <string name="mtrl_picker_announce_current_selection" tools:override="true" description="a11y string read on selection change to indicate the new selection [CHAR_LIMIT=NONE]">Aktualnie wybrane: %1$s</string>
+        <string name="mtrl_picker_navigate_to_year_description" tools:override="true" description="a11y string that informs the user that tapping this button will switch the year [CHAR_LIMIT=NONE]">Przejdź do roku %1$s</string>
+
+
 </resources>
