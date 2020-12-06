@@ -111,6 +111,7 @@
         android:fontFamily="@font/robotobold"
         android:text="TextView"
         android:textColor="#4800D0"
+        android:textSize="20sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/waluta"
