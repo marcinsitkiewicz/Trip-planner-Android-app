@@ -2,7 +2,7 @@
 <shape xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#99473A7B"/>
+    <solid android:color="#99473A7B" tools:ignore="StateListReachable"/>
     <corners
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
@@ -10,5 +10,5 @@
         android:bottomRightRadius="10dp"
         />
     <stroke android:width="3dp"
-        android:color="#E6DBD5FF"/>
+        android:color="#E6DBD5FF" tools:ignore="StateListReachable"/>
 </shape>
