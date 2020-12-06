@@ -62,6 +62,7 @@
                 android:layout_gravity="center" />
 
                 <GridLayout
+                    android:id="@+id/seats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -92,6 +93,7 @@
                         android:button="@null" />
 
                     <CheckBox
+                        android:id="@+id/seat3"
                         android:layout_width="35dp"
                         android:layout_height="45dp"
                         android:layout_column="2"
@@ -100,6 +102,7 @@
                         android:button="@null"/>
 
                     <CheckBox
+                        android:id="@+id/seat4"
                         android:layout_width="35dp"
                         android:layout_height="45dp"
                         android:layout_column="3"

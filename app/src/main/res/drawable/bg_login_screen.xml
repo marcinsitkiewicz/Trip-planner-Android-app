@@ -8,9 +8,4 @@
         android:endColor="#A95FFF"
         android:angle="90"
         />
-
-    <corners
-        android:bottomLeftRadius="180dp"
-        android:bottomRightRadius="180dp"/>
-
 </shape>

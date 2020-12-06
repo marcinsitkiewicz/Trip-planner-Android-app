@@ -3,7 +3,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
+import android.widget.CheckBox
+import android.widget.GridView
 import android.widget.TextView
 import com.example.trip_planner_andrid_app.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -45,19 +46,41 @@ class FlightDetails: BottomSheetDialogFragment() {
         ticketPrice.text = price + " PLN"
 
 
-        var numberOfCheckboxesChecked = 1
-        seat1.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked && numberOfCheckboxesChecked >= 2) {
-                seat1.isChecked = false
-            } else {
-                if (isChecked) {
-                    numberOfCheckboxesChecked++
+        var numberOfCheckboxesChecked = 0
+        var lastChecked: CheckBox
+        fun seatListener(seat : CheckBox){
+            seat.setOnClickListener { isChecked ->
+                if (numberOfCheckboxesChecked >= 2) {
+                    if(seat.isChecked){
+//                        lastChecked = seat
+                    for (i in 0 until seats.childCount) {
+                        val mChild: CheckBox = seats.getChildAt(i) as CheckBox
+                        if(seat == mChild) continue
+                        if(mChild.isChecked){
+                            mChild.isChecked = false
+                            break}
+
+
+                    }
+                    }else{
+                        seat.isChecked = false
+                        numberOfCheckboxesChecked--}
                 } else {
-                    numberOfCheckboxesChecked--
+                    if (seat.isChecked) {
+                        lastChecked = seat
+                        numberOfCheckboxesChecked++
+                    } else {
+                        seat.isChecked = false
+                        numberOfCheckboxesChecked--
+                    }
                 }
             }
         }
 
+        seatListener(seat1)
+        seatListener(seat2)
+        seatListener(seat3)
+        seatListener(seat4)
 
     }
 
