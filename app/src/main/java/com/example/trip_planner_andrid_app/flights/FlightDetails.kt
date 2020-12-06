@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.flight_details.*
 
 class FlightDetails: BottomSheetDialogFragment() {
 
+    val seatsChecked = ArrayList<CheckBox>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,31 +49,23 @@ class FlightDetails: BottomSheetDialogFragment() {
 
 
         var numberOfCheckboxesChecked = 0
-        var lastChecked: CheckBox
         fun seatListener(seat : CheckBox){
             seat.setOnClickListener { isChecked ->
                 if (numberOfCheckboxesChecked >= 2) {
                     if(seat.isChecked){
-//                        lastChecked = seat
-                    for (i in 0 until seats.childCount) {
-                        val mChild: CheckBox = seats.getChildAt(i) as CheckBox
-                        if(seat == mChild) continue
-                        if(mChild.isChecked){
-                            mChild.isChecked = false
-                            break}
-
-
-                    }
+                        seatsChecked.add(seat)
+                        seatsChecked[0].isChecked = false
+                        seatsChecked.removeAt(0)
                     }else{
-                        seat.isChecked = false
+                        seatsChecked.remove(seat)
                         numberOfCheckboxesChecked--}
                 } else {
                     if (seat.isChecked) {
-                        lastChecked = seat
                         numberOfCheckboxesChecked++
+                        seatsChecked.add(seat)
                     } else {
-                        seat.isChecked = false
                         numberOfCheckboxesChecked--
+                        seatsChecked.remove(seat)
                     }
                 }
             }
