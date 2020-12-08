@@ -65,4 +65,13 @@
             android:text="SAVE"
     />
 
+    <Button android:id="@+id/getButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton"
+        android:layout_margin="10dp"
+        android:text="GET"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
