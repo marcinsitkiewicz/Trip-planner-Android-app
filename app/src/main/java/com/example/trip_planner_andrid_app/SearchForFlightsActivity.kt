@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -14,6 +15,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.authentication_activity.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +50,16 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 intent.putExtra("inboundDateString", "")
             }
             intent.putExtra("outboundDateString", outboundDateString)
+
+            if (TextUtils.isEmpty(originPlace)) {
+                wylotZ.error = "Wprowadź miejsce wylotu"
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(destinationPlace)) {
+                przylotDo.error = "Wprowadź miejsce przylotu"
+                return@setOnClickListener
+            }
+            
             setIntent(intent)
             startActivity(intent)
         }
@@ -108,17 +120,24 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
     private fun setAutocomplete() {
         val jsonFileString = getJsonDataFromAsset(applicationContext, "data.json")
+        val jsonFileString2 = getJsonDataFromAsset(applicationContext, "countries.json")
 
         val airports =  GsonBuilder().create().fromJson(jsonFileString, AirportGson.airportsList::class.java)
-        val airportsList = ArrayList<String>()
+        val countries =  GsonBuilder().create().fromJson(jsonFileString2, CountriesGson.countriesList::class.java)
+        val autocompleteList = ArrayList<String>()
+
+        for(c in countries.countries) {
+            autocompleteList.add(c.country + ", wszystkie lotniska - " + c.alfa_2)
+        }
 
         for(a in airports.airports) {
-            airportsList.add(a.city + " " + a.name + " - " + a.iata)
+            autocompleteList.add(a.city + " " + a.name + " - " + a.iata)
         }
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_dropdown_item_1line, airportsList
+                android.R.layout.simple_dropdown_item_1line, autocompleteList
         )
+
         val textView = findViewById<AutoCompleteTextView>(R.id.wylotZ)
         val textView2 = findViewById<AutoCompleteTextView>(R.id.przylotDo)
 
@@ -128,6 +147,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
     private fun getJsonDataFromAsset(context: Context, filename: String): String? {
         return context.assets.open(filename).bufferedReader().use { it.readText() }
+
     }
 }
 

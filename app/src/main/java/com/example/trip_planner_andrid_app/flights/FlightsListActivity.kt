@@ -37,6 +37,8 @@ class FlightsListActivity : AppCompatActivity() {
         val outboundDateString = intent.getStringExtra("outboundDateString")
         val inboundDateString = intent.getStringExtra("inboundDateString")
 
+        from_to.text = originPlace?.split("-")!![0].trim() + " - " + destinationPlace?.split("-")!![0].trim()
+        flight_date.text = outboundDateString
 
         println(originPlace)
         println(destinationPlace)
@@ -98,9 +100,13 @@ class FlightsListActivity : AppCompatActivity() {
         val searchFeed =  GsonBuilder().create().fromJson(body, SkyscannerResults.SearchFeed::class.java)
 
         runOnUiThread {
+
             if (searchFeed.Quotes.isEmpty()) {
                 emptyInfo.visibility = VISIBLE
             }
+            val count = searchFeed.Quotes.count()
+            found.text = "Znaleziono $count loty."
+
             recyclerView_main.adapter = FlightsAdapter(searchFeed, this){
                 val flightDetails = FlightDetails()
                 lateinit var originCity : String

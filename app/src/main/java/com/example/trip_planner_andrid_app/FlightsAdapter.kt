@@ -1,7 +1,7 @@
 package com.example.trip_planner_andrid_app
 
 import android.annotation.SuppressLint
-import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +9,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
-import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.FragmentManager
-import com.example.trip_planner_andrid_app.flights.FlightDetails
-import com.example.trip_planner_andrid_app.flights.FlightsListActivity
+import kotlin.random.Random
+import kotlin.random.Random.Default.nextInt
 
 
-class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
-                     private val context: Context,
-                     private val callback: (result: Int) -> Unit) :
+class FlightsAdapter(
+    private val searchFeed: SkyscannerResults.SearchFeed,
+    private val context: Context,
+    private val callback: (position: Int) -> Unit
+) :
     RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int{
@@ -42,9 +41,24 @@ class FlightsAdapter(private val searchFeed: SkyscannerResults.SearchFeed,
         private var destinationPlace: TextView = itemView.findViewById(R.id.przylot_do) as TextView
         private var isDirect: TextView = itemView.findViewById(R.id.przesiadki) as TextView
         private var carrier: TextView = itemView.findViewById(R.id.przewoznik) as TextView
+        private var time: TextView = itemView.findViewById(R.id.godzina) as TextView
 
         fun setOneWayFlight(searchFeed: SkyscannerResults.SearchFeed) {
             val flight = searchFeed.Quotes[adapterPosition]
+
+            val hours = nextInt(0,23)
+            val minutes = nextInt(0, 11) * 5
+
+            val flightTime : String
+
+            flightTime = if (minutes < 10) {
+                if (hours < 10) "0$hours:0$minutes"
+                else "$hours:0$minutes"
+            } else if (hours < 10) {
+                "0$hours:$minutes"
+            } else "$hours:$minutes"
+
+            time.text = flightTime
 
 
             searchFeed.Places.forEach {
