@@ -40,6 +40,10 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
+		<activity android:name=".flights.data.NewFlightDetails"
+			android:parentActivityName=".MainActivity">
+		</activity>
+
 		<activity android:name=".LoginActivity"
 			android:parentActivityName=".MainActivity"
 			android:windowSoftInputMode="adjustResize">
