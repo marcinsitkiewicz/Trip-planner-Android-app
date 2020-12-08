@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.icu.util.TimeZone.getDefault
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -81,10 +82,19 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
 
         btn_datePicker.setOnClickListener {
+            val calendar = Calendar.getInstance(TimeZone.getDefault())
+            val currentYear = calendar.get(Calendar.YEAR)
+
+            calendar.set(Calendar.YEAR, currentYear)
+            val startYear = calendar.timeInMillis
+
+            calendar.set(Calendar.YEAR, currentYear + 2)
+            val endYear = calendar.timeInMillis
+
             if (oneWay) {
                 println(oneWay)
                 val builder = MaterialDatePicker.Builder.datePicker()
-                val constraintsBuilderRange = CalendarConstraints.Builder()
+                val constraintsBuilderRange = CalendarConstraints.Builder().setStart(startYear).setEnd(endYear)
                 val dateValidator = DateValidatorPointForward.now()
                 constraintsBuilderRange.setValidator(dateValidator)
                 builder.setCalendarConstraints(constraintsBuilderRange.build())
@@ -99,7 +109,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
             } else {
                 println(oneWay)
                 val builder: MaterialDatePicker.Builder<Pair<Long, Long>> = MaterialDatePicker.Builder.dateRangePicker()
-                val constraintsBuilderRange = CalendarConstraints.Builder()
+                val constraintsBuilderRange = CalendarConstraints.Builder().setStart(startYear).setEnd(endYear)
                 val dateValidator = DateValidatorPointForward.now()
                 constraintsBuilderRange.setValidator(dateValidator)
                 builder.setCalendarConstraints(constraintsBuilderRange.build())

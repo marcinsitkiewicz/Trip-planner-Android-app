@@ -55,6 +55,19 @@
         <string name="mtrl_picker_day_of_week_column_header" tools:override="true" description="a11y string to indicate this is a header for a column of days for one day of the week (e.g., Monday) [CHAR_LIMIT=NONE]">Kolumna dni: %1$s</string>
         <string name="mtrl_picker_announce_current_selection" tools:override="true" description="a11y string read on selection change to indicate the new selection [CHAR_LIMIT=NONE]">Aktualnie wybrane: %1$s</string>
         <string name="mtrl_picker_navigate_to_year_description" tools:override="true" description="a11y string that informs the user that tapping this button will switch the year [CHAR_LIMIT=NONE]">Przejdź do roku %1$s</string>
+    <string name="wybierz_siedzenie">Wybierz siedzenie</string>
+
+    <string-array name="class_list">
+        <item>Klasa ekonomiczna</item>
+        <item>Klasa premium</item>
+        <item>Klasa business</item>
+    </string-array>
+    <string-array name="how_much_seats">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 
 
 </resources>

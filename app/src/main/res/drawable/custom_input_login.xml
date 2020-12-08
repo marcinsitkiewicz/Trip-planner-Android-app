@@ -4,15 +4,13 @@
         <shape android:shape="rectangle">
             <solid android:color="#40FFFFFF"/>
             <corners android:radius="10dp"/>
-            <stroke android:color="#FFFF" android:width="3dp"/>
         </shape>
     </item>
 
     <item android:state_enabled="true" >
         <shape android:shape="rectangle">
-            <solid android:color="#40FFFFFF"/>
+            <solid android:color="#66FFFFFF"/>
             <corners android:radius="10dp"/>
-            <stroke android:color="@color/colorGrey" android:width="3dp"/>
         </shape>
     </item>
 </selector>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="start"
+    android:background="#F8F8F8">
+
+    <RelativeLayout
+        android:id="@+id/Details-header"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/colorPrimaryDarkPurple">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szczegóły lotu"
+            android:textColor="#FFF"
+            android:fontFamily="@font/robotobold"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="120dp"
+            android:layerType="software"
+            android:src="@drawable/dashed_line" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_airplane"
+            android:layout_marginTop="107dp"
+            android:layout_centerHorizontal="true"
+            android:rotation="90"
+            android:layerType="software" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_marginStart="40dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WAW"
+                android:fontFamily="@font/robotobold"
+                android:textSize="27sp"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8:30"
+                android:fontFamily="@font/robotoregular"
+                android:textSize="20sp"
+                android:textColor="#FFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JFK"
+                android:fontFamily="@font/robotobold"
+                android:textSize="27sp"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18:00"
+                android:fontFamily="@font/robotoregular"
+                android:textSize="20sp"
+                android:textColor="#FFF" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Details-header">
+
+        <RelativeLayout
+            android:id="@+id/Detailed_info"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/bg_white_box"
+            android:elevation="2.5dp"
+            android:visibility="visible">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/Detailed_info"
+            android:id="@+id/Reservation_options"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/bg_white_box"
+            android:elevation="2.5dp"
+            android:visibility="visible"
+            android:orientation="vertical"
+            >
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/select_class"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="50dp"
+                android:entries="@array/class_list"
+                android:spinnerMode="dropdown">
+            </Spinner>
+<!--            <Spinner-->
+<!--                android:id="@+id/amountOf_seats"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:entries="@array/how_much_seats"-->
+<!--                android:spinnerMode="dialog"-->
+<!--                android:textAlignment="center">-->
+<!--            </Spinner>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+            <Button
+                android:id="@+id/select_numberOf_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wybierz liczbę pasażerów"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_white_box"
+                android:padding="10dp"
+                android:fontFamily="@font/robotoregular"/>
+                <TextView
+                    android:id="@+id/numberOf_seats"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/robotobold"
+                    />
+<!--            <NumberPicker-->
+<!--                android:id="@+id/amountOf_seatsPICKER"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:elevation="2.5dp"-->
+<!--                android:layoutMode="opticalBounds"/>-->
+            </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/SeatsButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/robotobold"
+            android:text="@string/wybierz_siedzenie"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
