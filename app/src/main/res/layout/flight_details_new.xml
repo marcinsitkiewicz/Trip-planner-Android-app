@@ -11,7 +11,7 @@
         android:id="@+id/Details-header"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@color/colorPrimaryDarkPurple">
+        android:background="@drawable/bg_purple_rectangle">
 
         <TextView
             android:layout_width="wrap_content"
