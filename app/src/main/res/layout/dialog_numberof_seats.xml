@@ -24,12 +24,11 @@
             />
 
         <NumberPicker
-            android:layout_centerHorizontal="true"
             android:id="@+id/numberPickerAdults"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginStart="120dp" />
+            android:layout_marginTop="64dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -51,12 +50,11 @@
             />
 
         <NumberPicker
-            android:layout_centerHorizontal="true"
             android:id="@+id/numberPickerKids"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="120dp"/>
+            android:layout_marginTop="64dp" />
 
 
     </RelativeLayout>

@@ -44,16 +44,26 @@ class NewFlightDetails: AppCompatActivity() {
         val dialogView = inflater.inflate(R.layout.dialog_numberof_seats, null)
 
         val npA: NumberPicker = dialogView.findViewById(R.id.numberPickerAdults) as NumberPicker
+        val npK: NumberPicker = dialogView.findViewById(R.id.numberPickerKids) as NumberPicker
+
 
         npA.minValue = 0
         npA.maxValue = 10
         npA.value = 0
 
+        npK.minValue = 0
+        npK.maxValue = 10
+        npK.value = 0
+
         dialogBuilder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
+
             val pickedValueAdults: Int = npA.value
+            val pickedValueKids: Int = npK.value
             // set your TextView id instead of R.id.textView1
-            val tv: TextView = this.findViewById(R.id.numberOf_seats) as TextView
-            tv.text = Integer.toString(pickedValueAdults)
+            val tvA: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
+            val tvK: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
+            tvA.text = Integer.toString(pickedValueAdults)
+            tvK.text = Integer.toString(pickedValueKids)
             return@OnClickListener
         })
         dialogBuilder.setView(dialogView)

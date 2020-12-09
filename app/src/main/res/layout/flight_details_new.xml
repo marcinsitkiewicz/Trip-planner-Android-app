@@ -121,7 +121,7 @@
             android:layout_below="@+id/Detailed_info"
             android:id="@+id/Reservation_options"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/bg_white_box"
@@ -166,9 +166,20 @@
                 android:padding="10dp"
                 android:fontFamily="@font/robotoregular"/>
                 <TextView
-                    android:id="@+id/numberOf_seats"
+                    android:id="@+id/numberOf_seatsAdults"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="25sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/robotobold"
+                    />
+                <TextView
+                    android:id="@+id/numberOf_seatsKids"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -183,22 +194,26 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:elevation="2.5dp"-->
 <!--                android:layoutMode="opticalBounds"/>-->
+
+
             </LinearLayout>
+            <Button
+                android:id="@+id/SeatsButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/robotobold"
+                android:text="@string/wybierz_siedzenie"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:translationZ="90dp"
+                />
         </LinearLayout>
-        <Button
-            android:id="@+id/SeatsButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/bg_button"
-            android:fontFamily="@font/robotobold"
-            android:text="@string/wybierz_siedzenie"
-            android:textSize="18sp"
-            android:textAllCaps="false"
-            android:translationZ="90dp"
-            />
+
     </RelativeLayout>
 
 </RelativeLayout>
