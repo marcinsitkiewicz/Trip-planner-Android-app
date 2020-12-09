@@ -15,7 +15,8 @@ class SkyscannerResults {
         val Direct: Boolean,
         val QuoteDateTime: String,
         val OutboundLeg: Outbound,
-        val InboundLeg: Inbound
+        val InboundLeg: Inbound,
+        var FlightTime: String
     ) {
         data class Outbound(
             val CarrierIds: Array<Int>,

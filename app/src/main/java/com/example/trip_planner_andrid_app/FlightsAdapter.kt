@@ -42,14 +42,13 @@ class FlightsAdapter(
         private var isDirect: TextView = itemView.findViewById(R.id.przesiadki) as TextView
         private var carrier: TextView = itemView.findViewById(R.id.przewoznik) as TextView
         private var time: TextView = itemView.findViewById(R.id.godzina) as TextView
+        private lateinit var flightTime : String
 
         fun setOneWayFlight(searchFeed: SkyscannerResults.SearchFeed) {
             val flight = searchFeed.Quotes[adapterPosition]
 
             val hours = nextInt(0,23)
             val minutes = nextInt(0, 11) * 5
-
-            val flightTime : String
 
             flightTime = if (minutes < 10) {
                 if (hours < 10) "0$hours:0$minutes"
@@ -60,6 +59,7 @@ class FlightsAdapter(
 
             time.text = flightTime
 
+            flight.FlightTime = flightTime
 
             searchFeed.Places.forEach {
                 if (it.PlaceId == flight.OutboundLeg.OriginId) {

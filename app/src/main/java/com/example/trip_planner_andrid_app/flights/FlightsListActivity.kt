@@ -1,6 +1,7 @@
 package com.example.trip_planner_andrid_app.flights
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trip_planner_andrid_app.FlightsAdapter
 import com.example.trip_planner_andrid_app.R
+import com.example.trip_planner_andrid_app.flights.data.NewFlightDetails
 import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.flights_result_activity.*
@@ -38,12 +40,10 @@ class FlightsListActivity : AppCompatActivity() {
         val inboundDateString = intent.getStringExtra("inboundDateString")
 
         from_to.text = originPlace?.split("-")!![0].trim() + " - " + destinationPlace?.split("-")!![0].trim()
-        flight_date.text = outboundDateString
-
-        println(originPlace)
-        println(destinationPlace)
-        println(outboundDateString)
-        println(inboundDateString)
+        if (inboundDateString != "") {
+            flight_date.text = "$outboundDateString | $inboundDateString"
+        }
+        else flight_date.text = outboundDateString
 
         if (inboundDateString == null) {
             queryUrl =
@@ -108,7 +108,9 @@ class FlightsListActivity : AppCompatActivity() {
             found.text = "Znaleziono $count loty."
 
             recyclerView_main.adapter = FlightsAdapter(searchFeed, this){
-                val flightDetails = FlightDetails()
+
+                val intent = Intent(this, NewFlightDetails::class.java)
+
                 lateinit var originCity : String
                 lateinit var destinationCity : String
                 lateinit var originIata : String
@@ -135,10 +137,12 @@ class FlightsListActivity : AppCompatActivity() {
                 args.putString("destinationPlace", destinationCity)
                 args.putString("originIata", originIata)
                 args.putString("destinationIata", destinationIata)
+                args.putString("time", flight.FlightTime)
 
-                flightDetails.arguments = args
+                intent.putExtras(args)
 
-                flightDetails.show(supportFragmentManager, "FlightDetails")
+                setIntent(intent)
+                startActivity(intent)
             }
         }
     }
