@@ -24,6 +24,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+            android:id="@+id/godzina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:fontFamily="@font/robotomedium"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="TextView"
+            android:textColor="#4800D0"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/data_wylotu"
+            app:layout_constraintTop_toTopOf="@+id/view3"/>
+
     <!-- Lot -->
     <TextView
         android:id="@+id/wylot_z"

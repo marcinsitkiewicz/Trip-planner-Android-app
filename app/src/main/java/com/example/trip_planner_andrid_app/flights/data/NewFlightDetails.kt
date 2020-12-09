@@ -1,6 +1,7 @@
 package com.example.trip_planner_andrid_app.flights.data
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.widget.NumberPicker
 import android.widget.TextView
@@ -14,6 +15,22 @@ class NewFlightDetails: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.flight_details_new)
+
+        val bundle =  intent.extras
+
+        val originIata = bundle?.getString("originIata")
+        val destinationIata = bundle?.getString("destinationIata")
+        val time = bundle?.getString("time")
+
+        val originIataTextView: TextView = this.findViewById(R.id.origin_iata) as TextView
+        val destinationIataTextView: TextView = this.findViewById(R.id.destination_iata) as TextView
+        val outboundTime: TextView = this.findViewById(R.id.outbound_time) as TextView
+
+
+        originIataTextView.text = originIata
+        destinationIataTextView.text = destinationIata
+        outboundTime.text = time
+
 //        setupSimpleSpinner()
         setupCustomSpinner()
 
