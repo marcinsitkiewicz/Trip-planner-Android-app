@@ -20,6 +20,10 @@
     <string name="password">Hasło…</string>
     <string name="password_rpt">Powtórz hasło…</string>
 
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+
+
 
         <string name="mtrl_picker_range_header_title" description="Indicates that the user must take the action of picking dates within the calendar to form a range [CHAR_LIMIT=60]"
                 tools:override="true">Wybierz daty</string>
