@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.graphics.RectF
 import android.os.Bundle
 import android.text.TextUtils.substring
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.geojson.Feature
@@ -63,13 +64,30 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
         if (featureList.isNotEmpty()) {
             for (feature in featureList) {
                 var country = feature.properties()?.get("name_en").toString()
-                country = substring(country, 1, country.length-1)
+                country = substring(country, 1, country.length - 1)
                 Toast.makeText(this@MapActivity, "$country - $string", Toast.LENGTH_SHORT).show()
                 return true
             }
         }
         return false
     }
+
+    private fun hideSystemUI() {
+        this.window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
+
 
     override fun onStart() {
         super.onStart()
