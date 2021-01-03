@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_flight_takeoff"
+                android:title="Wyszukaj lot" />
+        <item
+                android:id="@+id/nav_gallery"
+                android:icon="@drawable/ic_favorite"
+                android:title="Moje rezerwacje" />
+        <item
+                android:id="@+id/ic_profile"
+                android:icon="@drawable/ic_person"
+                android:title="Konto" />
+        <item
+                android:id="@+id/nav_tools"
+                android:icon="@drawable/ic_info_outline"
+                android:title="Pomoc i wsparcie" />
+    </group>
+
+    <item android:title="Inne">
+        <menu>
+            <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_settings"
+                    android:title="Ustawienia" />
+            <item
+                    android:id="@+id/nav_send"
+                    android:icon="@drawable/ic_exit"
+                    android:title="Wyloguj" />
+        </menu>
+    </item>
+</menu>
