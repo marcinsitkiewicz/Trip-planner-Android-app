@@ -3,10 +3,10 @@ package com.example.trip_planner_andrid_app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.icu.util.TimeZone.getDefault
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
@@ -82,6 +82,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
 
         btn_datePicker.setOnClickListener {
+            closeKeyboard()
             val calendar = Calendar.getInstance(TimeZone.getDefault())
             val currentYear = calendar.get(Calendar.YEAR)
 
@@ -158,6 +159,14 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private fun getJsonDataFromAsset(context: Context, filename: String): String? {
         return context.assets.open(filename).bufferedReader().use { it.readText() }
 
+    }
+
+    private fun closeKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }
 
