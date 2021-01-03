@@ -58,6 +58,10 @@
 			android:windowSoftInputMode="adjustResize">
 		</activity>
 
+		<activity android:name=".SelectSeatActivity"
+			android:parentActivityName=".flights.data.NewFlightDetails">
+		</activity>
+
 
 	</application>
 
