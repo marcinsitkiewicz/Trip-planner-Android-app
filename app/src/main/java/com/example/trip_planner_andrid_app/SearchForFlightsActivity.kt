@@ -3,11 +3,11 @@ package com.example.trip_planner_andrid_app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.icu.util.TimeZone.getDefault
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -106,6 +106,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
 
         btn_datePicker.setOnClickListener {
+            closeKeyboard()
             val calendar = Calendar.getInstance(TimeZone.getDefault())
             val currentYear = calendar.get(Calendar.YEAR)
 
@@ -184,6 +185,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
     }
 
+
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
@@ -200,6 +202,13 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun closeKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 }

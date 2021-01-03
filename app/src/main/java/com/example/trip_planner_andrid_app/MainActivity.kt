@@ -47,5 +47,9 @@ class MainActivity : AppCompatActivity() {
         button2137.setOnClickListener(){
             startActivity(Intent(this, NewFlightDetails::class.java))
         }
+
+        mapButton.setOnClickListener {
+            startActivity(Intent(this, MapActivity::class.java))
+        }
     }
 }
