@@ -13,6 +13,7 @@ import com.example.trip_planner_andrid_app.SearchForFlightsActivity
 import com.example.trip_planner_andrid_app.SelectSeatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flight_details_new.*
+import android.widget.NumberPicker.OnValueChangeListener
 
 
 class NewFlightDetails: AppCompatActivity() {
@@ -30,6 +31,11 @@ class NewFlightDetails: AppCompatActivity() {
         val destinationIataTextView: TextView = this.findViewById(R.id.destination_iata) as TextView
         val outboundTime: TextView = this.findViewById(R.id.outbound_time) as TextView
 
+        val numberOfAdults: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
+        val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
+
+        val intent = Intent(this, SelectSeatActivity::class.java)
+
 
         originIataTextView.text = originIata
         destinationIataTextView.text = destinationIata
@@ -42,6 +48,15 @@ class NewFlightDetails: AppCompatActivity() {
         select_numberOf_Kids.setOnClickListener{showAlertDialogKids()}
         seatsButton.setOnClickListener() {
             startActivity(Intent(this, SelectSeatActivity::class.java))
+
+            val pickedValueAdults: Int = Integer.parseInt(numberOfAdults.text.toString())
+            val pickedValueKids: Int = Integer.parseInt(numberOfKids.text.toString())
+            System.out.println("\n\n\n" + pickedValueAdults + "\n\n" + pickedValueKids + "\n\n\n")
+
+            intent.putExtra("NumberOfAdults", pickedValueAdults)
+            intent.putExtra("NumberOfKids", pickedValueKids)
+            setIntent(intent)
+            startActivity(intent)
         }
     }
 
@@ -90,6 +105,8 @@ class NewFlightDetails: AppCompatActivity() {
 //            //dismiss dialog
 //            mAlertDialog.dismiss()
 //        }
+
+
     }
 
     private fun showAlertDialogKids() {
@@ -111,6 +128,7 @@ class NewFlightDetails: AppCompatActivity() {
             // set your TextView id instead of R.id.textView1
             val tvK: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
             tvK.text = pickedValueKids.toString()
+
             return@OnClickListener
         })
         dialogBuilder.setView(dialogView)
