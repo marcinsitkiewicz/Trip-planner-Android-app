@@ -20,6 +20,7 @@ class SelectSeatActivity: AppCompatActivity() {
     var seatsHashMap : HashMap<CheckBox, String>
             = HashMap<CheckBox, String> ()
 
+    val bottomSheetFragment = BottomSheetDialogConfirm()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,9 @@ class SelectSeatActivity: AppCompatActivity() {
                         numberOfCheckboxesChecked--
                         seatsChecked.remove(seat)
                     }
+                }
+                if(numberOfCheckboxesChecked == totalNumber.toInt()){
+                    bottomSheetFragment.show(supportFragmentManager, "botomSheetDialog")
                 }
             }
         }
