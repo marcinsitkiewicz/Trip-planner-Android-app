@@ -5,12 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.Pair
+import androidx.core.view.GravityCompat
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -18,6 +21,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.authentication_activity.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
+import kotlinx.android.synthetic.main.search_for_flights_activity.drawer
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,6 +40,26 @@ class SearchForFlightsActivity : AppCompatActivity() {
         setContentView(R.layout.search_for_flights_activity)
 
         setAutocomplete()
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        navigation_view.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_home -> {
+                    true
+                }
+            }
+            true
+        }
+
+
+        val drawerToggle = ActionBarDrawerToggle(this, findViewById(R.id.drawer), R.string.open, R.string.close)
+        drawer.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         button2.setOnClickListener{
             val originPlace = wylotZ.text.toString().split("-")[1].trim() + "-sky"
@@ -161,6 +185,25 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            android.R.id.home -> {
+                drawer.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     private fun closeKeyboard() {
         val view = this.currentFocus
         if (view != null) {

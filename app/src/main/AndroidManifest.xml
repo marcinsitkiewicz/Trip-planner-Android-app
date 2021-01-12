@@ -45,6 +45,10 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
+		<activity android:name=".HamburgerActivity"
+				  android:parentActivityName=".MainActivity">
+		</activity>
+
 		<activity android:name=".LoginActivity"
 			android:parentActivityName=".MainActivity"
 			android:windowSoftInputMode="adjustResize">
