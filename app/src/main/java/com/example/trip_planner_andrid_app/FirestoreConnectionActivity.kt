@@ -40,7 +40,6 @@ class FirestoreConnectionActivity : AppCompatActivity() {
 
         getButton.setOnClickListener {
             getUserFlights()
-            println("Lista lotow uzytkownika: $userFlights")
         }
     }
 
@@ -95,6 +94,7 @@ class FirestoreConnectionActivity : AppCompatActivity() {
                     val flightsDocRef = db.collection("flights")
                     flightsDocRef.get()
                         .addOnSuccessListener { documents ->
+                            userFlights.clear()
                             for (document in documents) {
                                 for (flight in flightsHashes) {
                                     if (document.id == flight) {
@@ -103,6 +103,7 @@ class FirestoreConnectionActivity : AppCompatActivity() {
                                     }
                                 }
                             }
+                            println("Lista lotow uzytkownika: $userFlights")
                         }
                         .addOnFailureListener { exception ->
                             Log.d(TAG, "get documents from flights collection failed with ", exception)
