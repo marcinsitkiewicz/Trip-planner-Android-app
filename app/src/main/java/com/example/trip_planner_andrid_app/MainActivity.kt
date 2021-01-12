@@ -29,9 +29,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AuthenticationActivity::class.java))
 
         }
+
         button4.setOnClickListener() {
             startActivity(Intent(this, SearchForFlightsActivity::class.java))
         }
+
         button6.setOnClickListener() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -50,6 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         mapButton.setOnClickListener {
             startActivity(Intent(this, MapActivity::class.java))
+        }
+
+        profileButton.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
     }
 }
