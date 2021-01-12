@@ -45,10 +45,6 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
-		<activity android:name=".HamburgerActivity"
-				  android:parentActivityName=".MainActivity">
-		</activity>
-
 		<activity android:name=".LoginActivity"
 			android:parentActivityName=".MainActivity"
 			android:windowSoftInputMode="adjustResize">
@@ -71,6 +67,9 @@
 			android:parentActivityName=".flights.data.NewFlightDetails">
 		</activity>
 
+		<activity android:name=".ProfileActivity"
+			android:parentActivityName=".MainActivity">
+		</activity>
 
 	</application>
 
