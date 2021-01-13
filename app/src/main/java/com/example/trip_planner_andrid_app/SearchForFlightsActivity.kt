@@ -3,6 +3,8 @@ package com.example.trip_planner_andrid_app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MenuItem
@@ -10,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.Pair
@@ -75,9 +78,13 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 przylotDo.error = "Wprowadź miejsce przylotu"
                 return@setOnClickListener
             }
-            
-            setIntent(intent)
-            startActivity(intent)
+
+
+            if (isNetworkAvailable(this)) {
+                setIntent(intent)
+                startActivity(intent)
+            }
+            else Toast.makeText(this, "Brak połączenia z internetem", Toast.LENGTH_SHORT).show()
         }
 
         var oneWay = true
@@ -210,6 +217,12 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private fun getJsonDataFromAsset(context: Context, filename: String): String? {
         return context.assets.open(filename).bufferedReader().use { it.readText() }
 
+    }
+
+    private fun isNetworkAvailable(context : Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
     }
 
 
