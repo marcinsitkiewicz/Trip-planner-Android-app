@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     addUserToDatabase()
                     finish()
-                    startActivity(Intent(this, HomeActivity()::class.java))
+                    startActivity(Intent(this, SearchForFlightsActivity()::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(baseContext, "Operacja się nie powiodła.",

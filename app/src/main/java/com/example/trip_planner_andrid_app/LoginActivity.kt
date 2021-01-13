@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -43,16 +44,33 @@ class LoginActivity : AppCompatActivity() {
             field_email.setText("")
             field_password.setText("")
         }
+        else {
+            finish()
+            startActivity(Intent(this, SearchForFlightsActivity()::class.java))
+        }
+    }
+
+    private fun showProgressBar(show: Boolean) {
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+        }
+        else {
+            progressBar.visibility = View.GONE
+        }
     }
 
     private fun signIn(email: String, password: String) {
+        showProgressBar(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    startActivity(Intent(this, HomeActivity()::class.java))
+                    finish()
+                    showProgressBar(false)
+                    startActivity(Intent(this, SearchForFlightsActivity()::class.java))
                 } else {
                     // If sign in fails, display a message to the user
+                    showProgressBar(false)
                     Toast.makeText(baseContext, "Operacja się nie powiodła.",
                         Toast.LENGTH_LONG).show()
                 }
