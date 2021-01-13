@@ -39,8 +39,7 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
 
 //        mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync { mapboxMap ->
-            val style = Style.Builder().fromUri(getString(R.string.mapbox_style_url))
-            mapboxMap.setStyle(style) {
+            mapboxMap.setStyle(Style.Builder().fromUri(getString(R.string.mapbox_style_url))) {
                 this.mapboxMap = mapboxMap
                 this.mapboxMap?.addOnMapClickListener(this)
             }
@@ -75,14 +74,14 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
                 var country = feature.properties()?.get("name_en").toString()
                 println(feature)
                 if (selectedSource != null) {
-                    style?.removeLayer(selectedArea!!)
-                    style?.removeSource(selectedSource!!)
+                    mapboxMap?.style?.removeLayer(selectedArea!!)
+                    mapboxMap?.style?.removeSource(selectedSource!!)
                 }
                 selectedSource = GeoJsonSource("selected", feature)
-                style?.addSource(selectedSource!!)
+                mapboxMap?.style?.addSource(selectedSource!!)
                 selectedArea = FillLayer("selected-fill", "selected")
                 selectedArea?.setProperties(fillColor(Color.parseColor("#ff0088")), fillOpacity(0.4f))
-                style?.addLayer(selectedArea!!)
+                mapboxMap?.style?.addLayer(selectedArea!!)
                 country = substring(country, 1, country.length - 1)
                 Toast.makeText(this@MapActivity, "$country - $string", Toast.LENGTH_SHORT).show()
                 return true

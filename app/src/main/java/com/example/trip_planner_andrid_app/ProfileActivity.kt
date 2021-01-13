@@ -4,17 +4,23 @@ import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_activity.*
+import kotlinx.android.synthetic.main.profile_activity.drawer
+import kotlinx.android.synthetic.main.profile_activity.navigation_view
+import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,6 +35,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
 
+        setupNavBar()
 
         findBtn.setOnClickListener() {
             startActivity(Intent(this, SearchForFlightsActivity::class.java))
@@ -43,8 +50,46 @@ class ProfileActivity : AppCompatActivity() {
 
         getUserFlights()
     }
-    fun createCurrentReservationList()
-    {
+
+    private fun setupNavBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        navigation_view.setCheckedItem(R.id.ic_profile);
+        navigation_view.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_home -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    finish()
+                    startActivity(Intent(this, SearchForFlightsActivity()::class.java))
+                }
+                R.id.ic_profile -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                }
+                R.id.nav_map -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    finish()
+                    startActivity(Intent(this, MapActivity()::class.java))
+                }
+                R.id.nav_send -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    auth.signOut()
+                    finish()
+                    startActivity(Intent(this, LoginActivity()::class.java))
+                }
+            }
+            true
+        }
+
+
+        val drawerToggle = ActionBarDrawerToggle(this, findViewById(R.id.drawer), R.string.open, R.string.close)
+        drawer.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun createCurrentReservationList() {
 
 
         val r1 = findViewById(R.id.reservation1) as RelativeLayout
@@ -255,6 +300,28 @@ class ProfileActivity : AppCompatActivity() {
 
         return documentArray
     }
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            android.R.id.home -> {
+                navigation_view.setCheckedItem(R.id.ic_profile);
+                drawer.openDrawer(GravityCompat.START)
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     companion object {
         const val TAG = "ProfileActivity"
     }

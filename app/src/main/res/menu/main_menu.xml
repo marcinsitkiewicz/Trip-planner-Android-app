@@ -8,9 +8,9 @@
                 android:icon="@drawable/ic_flight_takeoff"
                 android:title="Wyszukaj lot" />
         <item
-                android:id="@+id/nav_gallery"
+                android:id="@+id/nav_map"
                 android:icon="@drawable/ic_favorite"
-                android:title="Moje rezerwacje" />
+                android:title="Mapa COVID" />
         <item
                 android:id="@+id/ic_profile"
                 android:icon="@drawable/ic_person"

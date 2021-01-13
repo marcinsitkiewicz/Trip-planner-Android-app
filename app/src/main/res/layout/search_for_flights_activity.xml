@@ -9,22 +9,22 @@
         android:layout_height="match_parent"
         tools:context=".SearchForFlightsActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:background="#EFEFEF"
-        app:cnb_menuResource="@menu/bottom_navbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:translationZ="90dp" />
+        android:layout_height="match_parent">
 
 
-    <View
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:background="#EFEFEF"
+            android:translationZ="90dp"
+            app:cnb_menuResource="@menu/bottom_navbar"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="450dp"
@@ -33,56 +33,55 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
-            tools:ignore="MissingConstraints"/>
-    <RadioGroup
-            android:checkedButton="@+id/one_way"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
             android:id="@+id/fight_type"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/toggle_widget_outline"
+            android:checkedButton="@+id/one_way"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/view3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-    >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-        <RadioButton
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:layout_marginStart="1dp"
+            <RadioButton
                 android:id="@+id/one_way"
-                android:background="@drawable/toggle_widget_background_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:fontFamily="@font/robotomedium"
-                android:textColor="@drawable/toggle_widget_background_left"
-                android:text="W jedną stronę"/>
-
-        <RadioButton
-                android:layout_marginEnd="1dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background_left"
+                android:button="@null"
+                android:fontFamily="@font/robotomedium"
+                android:gravity="center"
+                android:text="W jedną stronę"
+                android:textColor="@drawable/toggle_widget_background_left" />
+
+            <RadioButton
                 android:id="@+id/two_way"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/toggle_widget_background_right"
                 android:button="@null"
+                android:fontFamily="@font/robotomedium"
                 android:gravity="center"
                 android:text="W obie strony"
-                android:fontFamily="@font/robotomedium"
-                android:textColor="@drawable/toggle_widget_background_right"
-                />
-    </RadioGroup>
+                android:textColor="@drawable/toggle_widget_background_right" />
+        </RadioGroup>
 
-    <View
+        <View
             android:id="@+id/view3"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -95,66 +94,81 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="26dp"
-        android:background="@drawable/bg_button"
-        android:text="Szukaj lotów"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginBottom="26dp"
+            android:background="@drawable/bg_button"
+            android:text="Szukaj lotów"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="2dp"
-        android:src="@drawable/cloud"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,MissingConstraints,UnknownId" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/cloud"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,MissingConstraints,UnknownId" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="1dp"
-        android:src="@drawable/cloud"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,MissingConstraints,UnknownId" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="1dp"
+            android:src="@drawable/cloud"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,MissingConstraints,UnknownId" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="92dp"
-        android:fontFamily="@font/robotoregular"
-        android:text="Witaj user,"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="92dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="Witaj"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints" />
 
-    <TextView
+        <TextView
+            android:id="@+id/textUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
+            android:text="username"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"
+            tools:ignore="HardcodedText,MissingConstraints"
+            app:layout_constraintTop_toTopOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="56dp" />
+
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -166,28 +180,26 @@
             app:layout_constraintBottom_toTopOf="@+id/wylotZ"
             app:layout_constraintStart_toStartOf="@+id/view3"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:ignore="HardcodedText,MissingConstraints"/>
+            tools:ignore="HardcodedText,MissingConstraints" />
 
-    <AutoCompleteTextView
-        android:id="@+id/wylotZ"
-        android:layout_width="0dp" 
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:textSize="18sp"
-        android:ems="14"
-        android:hint="Skąd?"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintEnd_toEndOf="@+id/view3"
-        tools:ignore="MissingConstraints" />
+        <AutoCompleteTextView
+            android:id="@+id/wylotZ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:ems="14"
+            android:hint="Skąd?"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toTopOf="@+id/view3"
+            tools:ignore="MissingConstraints" />
 
-    <Button
+        <Button
             android:id="@+id/btn_datePicker"
-            android:drawableStart="@drawable/ic_date_range"
-            android:paddingStart="10dp"
             android:layout_width="0dp"
             android:layout_height="46dp"
             android:layout_marginStart="31dp"
@@ -195,177 +207,182 @@
             android:layout_marginEnd="31dp"
             android:layout_marginBottom="35dp"
             android:background="@drawable/bg_date_picker"
+            android:drawableStart="@drawable/ic_date_range"
+            android:paddingStart="10dp"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3"/>
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/data"-->
-    <!--        android:layout_width="121dp"-->
-    <!--        android:layout_height="42dp"-->
-    <!--        android:ems="14"-->
-    <!--        android:hint="Data"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/view2"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/view2"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/view2"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/view2"-->
-    <!--        tools:ignore="MissingConstraints" />-->
+        <!--    <EditText-->
+        <!--        android:id="@+id/data"-->
+        <!--        android:layout_width="121dp"-->
+        <!--        android:layout_height="42dp"-->
+        <!--        android:ems="14"-->
+        <!--        android:hint="Data"-->
+        <!--        android:inputType="textPersonName"-->
+        <!--        app:layout_constraintBottom_toBottomOf="@+id/view2"-->
+        <!--        app:layout_constraintEnd_toEndOf="@+id/view2"-->
+        <!--        app:layout_constraintStart_toStartOf="@+id/view2"-->
+        <!--        app:layout_constraintTop_toTopOf="@+id/view2"-->
+        <!--        tools:ignore="MissingConstraints" />-->
 
 
-    <AutoCompleteTextView
-        android:id="@+id/przylotDo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="2dp"
-        android:ems="14"
-        android:textSize="18sp"
-        android:hint="Dokąd?"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/wylotZ"
-        app:layout_constraintTop_toBottomOf="@+id/wylotZ"
-        app:layout_constraintEnd_toEndOf="@+id/wylotZ"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        tools:ignore="MissingConstraints" />
+        <AutoCompleteTextView
+            android:id="@+id/przylotDo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="2dp"
+            android:ems="14"
+            android:hint="Dokąd?"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="@+id/wylotZ"
+            app:layout_constraintStart_toStartOf="@+id/wylotZ"
+            app:layout_constraintTop_toBottomOf="@+id/wylotZ"
+            tools:ignore="MissingConstraints" />
 
-    <TextView
+        <TextView
             android:id="@+id/data_wylotu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="2dp"
+            android:elevation="3dp"
             android:fontFamily="@font/robotoregular"
             android:text=""
-            android:elevation="3dp"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
             app:layout_constraintTop_toBottomOf="@+id/wylotText" />
 
-    <TextView
+        <TextView
             android:id="@+id/data_przylotu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="2dp"
+            android:elevation="3dp"
             android:fontFamily="@font/robotoregular"
             android:text=""
-            android:elevation="3dp"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/data_wylotu"
             app:layout_constraintTop_toBottomOf="@+id/wylotText" />
 
-    <TextView
-        android:id="@+id/wylotText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/robotoregular"
-        android:textColor = "@color/colorPrimaryDarkPurple"
-        android:text="Data wylotu"
-        android:elevation="3dp"
-        android:textSize="13sp"
+        <TextView
+            android:id="@+id/wylotText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:elevation="3dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="Data wylotu"
+            android:textColor="@color/colorPrimaryDarkPurple"
+            android:textSize="13sp"
 
-        app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
-        app:layout_constraintTop_toTopOf="@+id/btn_datePicker" />
+            app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
+            app:layout_constraintTop_toTopOf="@+id/btn_datePicker" />
 
-    <TextView
+        <TextView
             android:id="@+id/przylotText"
-            android:textColor = "@color/colorPrimaryDarkPurple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="4dp"
+            android:elevation="4dp"
             android:fontFamily="@font/robotoregular"
             android:text=" - data przylotu"
-            android:elevation="4dp"
+            android:textColor="@color/colorPrimaryDarkPurple"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/wylotText"
             app:layout_constraintTop_toTopOf="@+id/btn_datePicker" />
 
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:minHeight="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@android:color/white"
-                android:background="@android:color/transparent">
+                android:background="@android:color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                app:titleTextColor="@android:color/white">
 
-        </androidx.appcompat.widget.Toolbar>
-    </LinearLayout>
-    <androidx.cardview.widget.CardView
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/covidcard"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:layout_constraintTop_toBottomOf="@+id/view" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="28dp"
-            android:layout_marginEnd="28dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="28dp" app:cardElevation="1dp" android:id="@+id/covidcard">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            android:layout_marginEnd="28dp"
+            app:cardElevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
 
-            <TextView
-                    android:text="COVID-19"
-                    android:drawableStart="@drawable/ic_error_outline"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/covidTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robotobold"
-                    android:textColor="@color/colorPrimaryDarkPurple"
-                    android:drawableTint="@color/colorPrimaryDarkPurple"
-                    android:paddingStart="10dp"
+                    android:drawableStart="@drawable/ic_error_outline"
                     android:drawablePadding="10dp"
+                    android:drawableTint="@color/colorPrimaryDarkPurple"
+                    android:fontFamily="@font/robotobold"
+                    android:paddingStart="10dp"
                     android:paddingTop="10dp"
-                    android:textSize="22sp"
-                    android:id="@+id/covidTitle"
-            />
+                    android:text="COVID-19"
+                    android:textColor="@color/colorPrimaryDarkPurple"
+                    android:textSize="22sp" />
 
-            <TextView
-                    android:text="Sprawdź mapę z restrykcjami dotyczącymi wjazdu do innego kraju"
+                <TextView
+                    android:id="@+id/covidDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/robotoregular"
-                    android:textColor="@color/black"
                     android:paddingStart="10dp"
                     android:paddingTop="50dp"
+                    android:text="Sprawdź mapę z restrykcjami dotyczącymi wjazdu do innego kraju"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:id="@+id/covidDesc"
-                    app:layout_constraintTop_toBottomOf="@id/covidTitle"
                     app:layout_constraintStart_toStartOf="parent"
-            />
+                    app:layout_constraintTop_toBottomOf="@id/covidTitle" />
 
-            <TextView
-                    android:text="SPRAWDŹ"
+                <TextView
+                    android:id="@+id/covidGo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robotoregular"
-                    android:textColor="@color/colorPrimaryDarkPurple"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:paddingBottom="10dp"
+                    android:fontFamily="@font/robotoregular"
                     android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="SPRAWDŹ"
+                    android:textColor="@color/colorPrimaryDarkPurple"
                     android:textSize="14sp"
-                    android:id="@+id/covidGo"
-                    app:layout_constraintTop_toBottomOf="@id/covidDesc"
                     app:layout_constraintEnd_toEndOf="parent"
-            />
+                    app:layout_constraintTop_toBottomOf="@id/covidDesc" />
 
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"
             style="@style/Widget.Custom.NavigationView"
