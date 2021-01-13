@@ -42,6 +42,8 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
             mapboxMap.setStyle(Style.Builder().fromUri(getString(R.string.mapbox_style_url))) {
                 this.mapboxMap = mapboxMap
                 this.mapboxMap?.addOnMapClickListener(this)
+                mapboxMap.uiSettings.isCompassEnabled = true
+                mapboxMap.uiSettings.setCompassFadeFacingNorth(false)
             }
         }
     }
