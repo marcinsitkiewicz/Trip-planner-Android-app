@@ -13,7 +13,15 @@ import kotlinx.android.synthetic.main.flight_details.*
 import kotlinx.android.synthetic.main.flight_details.seat1
 import kotlinx.android.synthetic.main.plane_modal.*
 import android.content.Intent
+import android.widget.Button
 import com.example.trip_planner_andrid_app.flights.data.NewFlightDetails
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
+import java.util.*
+import java.util.concurrent.ThreadLocalRandom
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class SelectSeatActivity : AppCompatActivity() {
     val seatsChecked = ArrayList<CheckBox>()
@@ -24,7 +32,7 @@ class SelectSeatActivity : AppCompatActivity() {
 
     var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
 
-    val bottomSheetFragment = BottomSheetDialogConfirm()
+//    val bottomSheetFragment = BottomSheetDialogConfirm()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +43,12 @@ class SelectSeatActivity : AppCompatActivity() {
         val numberOfKids = intent.getIntExtra("NumberOfKids", 0)
         val totalNumber = numberOfAdults + numberOfKids
 
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottomsheet_fragment, null)
+        bottomSheetDialog.setContentView(view)
+        view.btn1.setOnClickListener{
+            startActivity(Intent(this, ConfirmFlight::class.java))
+        }
 
         System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
         System.out.println("Klasa siedzeń $seatClass")
@@ -64,10 +78,81 @@ class SelectSeatActivity : AppCompatActivity() {
                     }
                 }
                 if (numberOfCheckboxesChecked == totalNumber.toInt()) {
-                    bottomSheetFragment.show(supportFragmentManager, "botomSheetDialog")
+                    bottomSheetDialog.show()
                 }
             }
         }
+
+        fun generateRandomNumbers(): LinkedHashSet<Int> {
+            val ints = LinkedHashSet<Int>()
+            var numbersOfElements = ThreadLocalRandom.current().nextInt(20);
+
+            for(i in 0..numbersOfElements){
+                ints.add(ThreadLocalRandom.current().nextInt(1,41))
+            }
+            for(element in ints){
+                print("$element ")
+            }
+            return ints
+        }
+
+        fun disableSeats() {
+            if(seatClass.equals("Klasa Ekonomiczna")) {
+                for (seat in seatsPremiumArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+                for (seat in seatsBusinessArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+                val reservedEconomySeats = generateRandomNumbers()
+                var reservedSeat: CheckBox
+                for(num in reservedEconomySeats){
+                    reservedSeat = seatsEconomyArray.get(num)
+                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+                    reservedSeat.isEnabled = false
+                    reservedSeat.isClickable = false
+                }
+            }else if(seatClass.equals("Klasa Business")){
+                for (seat in seatsEconomyArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+                for (seat in seatsPremiumArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+            }else if(seatClass.equals("Klasa Premium")){
+                for (seat in seatsBusinessArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+                for (seat in seatsEconomyArray) {
+                    seat.isEnabled = false
+                    seat.isClickable = false
+                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+            }
+        }
+
+//        val ints: IntArray = Random().ints(1, 50).distinct().limit(6).toArray()
+
+        val ints = LinkedHashSet<Int>()
+        var numbersOfElements = ThreadLocalRandom.current().nextInt(20) + 10;
+
+        for(i in 0..numbersOfElements){
+            ints.add(ThreadLocalRandom.current().nextInt()*100)
+        }
+        for(element in ints){
+            println(element)
+        }
+
 
 
         seatListener(seatEconomy1)
@@ -478,6 +563,9 @@ class SelectSeatActivity : AppCompatActivity() {
         seatListener(seatsEconomic2_16)
         seatsHashMap.put(seatsEconomic2_16, "20D")
         seatsEconomyArray.add(seatsEconomic2_16)
+
+
+        disableSeats()
 
     }
 }

@@ -43,12 +43,10 @@ class NewFlightDetails: AppCompatActivity() {
 
         val intent = Intent(this, SelectSeatActivity::class.java)
 
-
         originIataTextView.text = originIata
         destinationIataTextView.text = destinationIata
         outboundTime.text = time
 
-//        setupSimpleSpinner()
         setupCustomSpinner(intent)
 
         select_numberOf_Adults.setOnClickListener { showAlertDialogAdults() }
@@ -63,7 +61,6 @@ class NewFlightDetails: AppCompatActivity() {
             setIntent(intent)
             startActivity(intent)
         }
-//        select_class.setOnItemSelectedListener(YourItemSelectedListener())
 
     }
 
@@ -175,12 +172,6 @@ class NewFlightDetails: AppCompatActivity() {
                 selectedItem = selectedItem.substring(selectedItem.indexOf("name=")+5, selectedItem.length -1);
                 intent.putExtra("SeatClass", selectedItem)
                 System.out.println(selectedItem)
-
-                Toast.makeText(
-                    this@NewFlightDetails,
-                    "Wybrano: $selectedItem",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

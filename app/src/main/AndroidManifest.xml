@@ -72,6 +72,10 @@
 			android:parentActivityName=".MainActivity">
 		</activity>
 
+		<activity android:name=".ConfirmFlight"
+			android:parentActivityName=".SelectSeatActivity">
+		</activity>
+
 	</application>
 
 </manifest>
