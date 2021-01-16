@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
+import java.util.stream.IntStream
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -83,15 +84,11 @@ class SelectSeatActivity : AppCompatActivity() {
             }
         }
 
-        fun generateRandomNumbers(): LinkedHashSet<Int> {
+        fun generateRandomNumberOfSeats(limit:Int, bound:Int): LinkedHashSet<Int> {
             val ints = LinkedHashSet<Int>()
-            var numbersOfElements = ThreadLocalRandom.current().nextInt(20);
-
+            val numbersOfElements = (0..limit).shuffled().first()
             for(i in 0..numbersOfElements){
-                ints.add(ThreadLocalRandom.current().nextInt(1,41))
-            }
-            for(element in ints){
-                print("$element ")
+                ints.add(ThreadLocalRandom.current().nextInt(1,bound)+1)
             }
             return ints
         }
@@ -108,7 +105,8 @@ class SelectSeatActivity : AppCompatActivity() {
                     seat.isClickable = false
                     seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
                 }
-                val reservedEconomySeats = generateRandomNumbers()
+
+                val reservedEconomySeats = generateRandomNumberOfSeats(20, 59)
                 var reservedSeat: CheckBox
                 for(num in reservedEconomySeats){
                     reservedSeat = seatsEconomyArray.get(num)
@@ -127,6 +125,15 @@ class SelectSeatActivity : AppCompatActivity() {
                     seat.isClickable = false
                     seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
                 }
+
+                val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
+                var reservedSeat: CheckBox
+                for(num in reservedBusinessSeats){
+                    reservedSeat = seatsBusinessArray.get(num)
+                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+                    reservedSeat.isEnabled = false
+                    reservedSeat.isClickable = false
+                }
             }else if(seatClass.equals("Klasa Premium")){
                 for (seat in seatsBusinessArray) {
                     seat.isEnabled = false
@@ -137,6 +144,14 @@ class SelectSeatActivity : AppCompatActivity() {
                     seat.isEnabled = false
                     seat.isClickable = false
                     seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+                }
+                val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
+                var reservedSeat: CheckBox
+                for(num in reservedPremiumSeats){
+                    reservedSeat = seatsBusinessArray.get(num)
+                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+                    reservedSeat.isEnabled = false
+                    reservedSeat.isClickable = false
                 }
             }
         }
@@ -497,73 +512,72 @@ class SelectSeatActivity : AppCompatActivity() {
         seatsPremiumArray.add(seatPremium24)
 
 
-        seatListener(seatsEconomic2_1)
-        seatsHashMap.put(seatsEconomic2_1, "17A")
-        seatsEconomyArray.add(seatsEconomic2_1)
+        seatListener(seatEconomy43)
+        seatsHashMap.put(seatEconomy43, "17A")
+        seatsEconomyArray.add(seatEconomy43)
 
-        seatListener(seatsEconomic2_2)
-        seatsHashMap.put(seatsEconomic2_2, "17B")
-        seatsEconomyArray.add(seatsEconomic2_2)
+        seatListener(seatEconomy44)
+        seatsHashMap.put(seatEconomy44, "17B")
+        seatsEconomyArray.add(seatEconomy44)
 
-        seatListener(seatsEconomic2_3)
-        seatsHashMap.put(seatsEconomic2_3, "17C")
-        seatsEconomyArray.add(seatsEconomic2_3)
+        seatListener(seatEconomy45)
+        seatsHashMap.put(seatEconomy45, "17C")
+        seatsEconomyArray.add(seatEconomy45)
 
-        seatListener(seatsEconomic2_4)
-        seatsHashMap.put(seatsEconomic2_4, "17D")
-        seatsEconomyArray.add(seatsEconomic2_4)
-
-
-        seatListener(seatsEconomic2_5)
-        seatsHashMap.put(seatsEconomic2_5, "18A")
-        seatsEconomyArray.add(seatsEconomic2_5)
-
-        seatListener(seatsEconomic2_6)
-        seatsHashMap.put(seatsEconomic2_6, "18B")
-        seatsEconomyArray.add(seatsEconomic2_6)
-
-        seatListener(seatsEconomic2_7)
-        seatsHashMap.put(seatsEconomic2_7, "18C")
-        seatsEconomyArray.add(seatsEconomic2_7)
-
-        seatListener(seatsEconomic2_8)
-        seatsHashMap.put(seatsEconomic2_8, "18D")
-        seatsEconomyArray.add(seatsEconomic2_8)
+        seatListener(seatEconomy46)
+        seatsHashMap.put(seatEconomy46, "17D")
+        seatsEconomyArray.add(seatEconomy46)
 
 
-        seatListener(seatsEconomic2_9)
-        seatsHashMap.put(seatsEconomic2_9, "19A")
-        seatsEconomyArray.add(seatsEconomic2_9)
+        seatListener(seatEconomy47)
+        seatsHashMap.put(seatEconomy47, "18A")
+        seatsEconomyArray.add(seatEconomy47)
 
-        seatListener(seatsEconomic2_10)
-        seatsHashMap.put(seatsEconomic2_10, "19B")
-        seatsEconomyArray.add(seatsEconomic2_10)
+        seatListener(seatEconomy48)
+        seatsHashMap.put(seatEconomy48, "18B")
+        seatsEconomyArray.add(seatEconomy48)
 
-        seatListener(seatsEconomic2_11)
-        seatsHashMap.put(seatsEconomic2_11, "19C")
-        seatsEconomyArray.add(seatsEconomic2_11)
+        seatListener(seatEconomy49)
+        seatsHashMap.put(seatEconomy49, "18C")
+        seatsEconomyArray.add(seatEconomy49)
 
-        seatListener(seatsEconomic2_12)
-        seatsHashMap.put(seatsEconomic2_12, "19D")
-        seatsEconomyArray.add(seatsEconomic2_12)
+        seatListener(seatEconomy50)
+        seatsHashMap.put(seatEconomy50, "18D")
+        seatsEconomyArray.add(seatEconomy50)
 
 
-        seatListener(seatsEconomic2_13)
-        seatsHashMap.put(seatsEconomic2_13, "20A")
-        seatsEconomyArray.add(seatsEconomic2_13)
+        seatListener(seatEconomy51)
+        seatsHashMap.put(seatEconomy51, "19A")
+        seatsEconomyArray.add(seatEconomy51)
 
-        seatListener(seatsEconomic2_14)
-        seatsHashMap.put(seatsEconomic2_14, "20B")
-        seatsEconomyArray.add(seatsEconomic2_14)
+        seatListener(seatEconomy52)
+        seatsHashMap.put(seatEconomy52, "19B")
+        seatsEconomyArray.add(seatEconomy52)
 
-        seatListener(seatsEconomic2_15)
-        seatsHashMap.put(seatsEconomic2_15, "20C")
-        seatsEconomyArray.add(seatsEconomic2_15)
+        seatListener(seatEconomy53)
+        seatsHashMap.put(seatEconomy53, "19C")
+        seatsEconomyArray.add(seatEconomy53)
 
-        seatListener(seatsEconomic2_16)
-        seatsHashMap.put(seatsEconomic2_16, "20D")
-        seatsEconomyArray.add(seatsEconomic2_16)
+        seatListener(seatEconomy54)
+        seatsHashMap.put(seatEconomy54, "19D")
+        seatsEconomyArray.add(seatEconomy54)
 
+
+        seatListener(seatEconomy55)
+        seatsHashMap.put(seatEconomy55, "20A")
+        seatsEconomyArray.add(seatEconomy55)
+
+        seatListener(seatEconomy56)
+        seatsHashMap.put(seatEconomy56, "20B")
+        seatsEconomyArray.add(seatEconomy56)
+
+        seatListener(seatEconomy57)
+        seatsHashMap.put(seatEconomy57, "20C")
+        seatsEconomyArray.add(seatEconomy57)
+
+        seatListener(seatEconomy58)
+        seatsHashMap.put(seatEconomy58, "20D")
+        seatsEconomyArray.add(seatEconomy58)
 
         disableSeats()
 
