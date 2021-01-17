@@ -21,6 +21,9 @@ import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.drawer
@@ -36,6 +39,9 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private var outboundDateString : String = ""
     private var inboundDateString : String = ""
 
+    private var auth: FirebaseAuth = Firebase.auth
+    private var user = auth.currentUser
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,25 +49,11 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
         setAutocomplete()
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        navigation_view.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> {
-                    true
-                }
-            }
-            true
+        if (user != null) {
+            textUsername.text = user!!.email + ", (" + user!!.uid + ")"
         }
 
-
-        val drawerToggle = ActionBarDrawerToggle(this, findViewById(R.id.drawer), R.string.open, R.string.close)
-        drawer.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        setupNavBar()
 
         button2.setOnClickListener{
             val originPlace = wylotZ.text.toString().split("-")[1].trim() + "-sky"
@@ -159,6 +151,42 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupNavBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        navigation_view.setCheckedItem(R.id.nav_home);
+        navigation_view.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_home -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                }
+                R.id.ic_profile -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    startActivity(Intent(this, ProfileActivity()::class.java))
+                }
+                R.id.nav_map -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    startActivity(Intent(this, MapActivity()::class.java))
+                }
+                R.id.nav_send -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    auth.signOut()
+                    finish()
+                    startActivity(Intent(this, LoginActivity()::class.java))
+                }
+            }
+            true
+        }
+
+
+        val drawerToggle = ActionBarDrawerToggle(this, findViewById(R.id.drawer), R.string.open, R.string.close)
+        drawer.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
     private fun setAutocomplete() {
         val jsonFileString = getJsonDataFromAsset(applicationContext, "data.json")
         val jsonFileString2 = getJsonDataFromAsset(applicationContext, "countries.json")
@@ -210,12 +238,15 @@ class SearchForFlightsActivity : AppCompatActivity() {
         super.onOptionsItemSelected(item)
         return when (item.itemId) {
             android.R.id.home -> {
+                navigation_view.setCheckedItem(R.id.nav_home);
                 drawer.openDrawer(GravityCompat.START)
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     private fun closeKeyboard() {
         val view = this.currentFocus
         if (view != null) {

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +16,9 @@ import com.example.trip_planner_andrid_app.SelectSeatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flight_details_new.*
 import android.widget.NumberPicker.OnValueChangeListener
+import android.widget.Toast
+import kotlinx.android.synthetic.main.spinner_item.*
+import kotlinx.android.synthetic.main.spinner_item.view.*
 
 
 class NewFlightDetails: AppCompatActivity() {
@@ -21,7 +26,7 @@ class NewFlightDetails: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.flight_details_new)
 
-        val bundle =  intent.extras
+        val bundle = intent.extras
 
         val originIata = bundle?.getString("originIata")
         val destinationIata = bundle?.getString("destinationIata")
@@ -34,30 +39,29 @@ class NewFlightDetails: AppCompatActivity() {
         val numberOfAdults: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
         val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
 
-        val intent = Intent(this, SelectSeatActivity::class.java)
+        val classSeat:String
 
+        val intent = Intent(this, SelectSeatActivity::class.java)
 
         originIataTextView.text = originIata
         destinationIataTextView.text = destinationIata
         outboundTime.text = time
 
-//        setupSimpleSpinner()
-        setupCustomSpinner()
+        setupCustomSpinner(intent)
 
-        select_numberOf_Adults.setOnClickListener{showAlertDialogAdults()}
-        select_numberOf_Kids.setOnClickListener{showAlertDialogKids()}
+        select_numberOf_Adults.setOnClickListener { showAlertDialogAdults() }
+        select_numberOf_Kids.setOnClickListener { showAlertDialogKids() }
         seatsButton.setOnClickListener() {
-            startActivity(Intent(this, SelectSeatActivity::class.java))
-
             val pickedValueAdults: Int = Integer.parseInt(numberOfAdults.text.toString())
             val pickedValueKids: Int = Integer.parseInt(numberOfKids.text.toString())
-            System.out.println("\n\n\n" + pickedValueAdults + "\n\n" + pickedValueKids + "\n\n\n")
+            println("\n\n\n" + pickedValueAdults + "\n\n" + pickedValueKids + "\n\n\n")
 
             intent.putExtra("NumberOfAdults", pickedValueAdults)
             intent.putExtra("NumberOfKids", pickedValueKids)
             setIntent(intent)
             startActivity(intent)
         }
+
     }
 
     private fun showAlertDialogAdults() {
@@ -88,7 +92,7 @@ class NewFlightDetails: AppCompatActivity() {
         dialogBuilder.setView(dialogView)
 
         //show dialog
-        val  mAlertDialog = dialogBuilder.show()
+        val mAlertDialog = dialogBuilder.show()
         //login button click of custom layout
 //        mDialogView.dialogLoginBtn.setOnClickListener {
 //            //dismiss dialog
@@ -134,7 +138,7 @@ class NewFlightDetails: AppCompatActivity() {
         dialogBuilder.setView(dialogView)
 
         //show dialog
-        val  mAlertDialog = dialogBuilder.show()
+        val mAlertDialog = dialogBuilder.show()
         //login button click of custom layout
 //        mDialogView.dialogLoginBtn.setOnClickListener {
 //            //dismiss dialog
@@ -153,11 +157,30 @@ class NewFlightDetails: AppCompatActivity() {
 //        }
     }
 
-    private fun setupCustomSpinner(){
+    private fun setupCustomSpinner(intent: Intent) {
+
         val adapter = SeatsArrayAdapter(this, Classes.list!!)
 
         select_class.adapter = adapter
+
+        select_class.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var selectedItem = parent!!.getItemAtPosition(position)
+
+                selectedItem = selectedItem.toString();
+
+                selectedItem = selectedItem.substring(selectedItem.indexOf("name=")+5, selectedItem.length -1);
+                intent.putExtra("SeatClass", selectedItem)
+                System.out.println(selectedItem)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
     }
+
+}
 
 //    private fun setupSimpleSpinner(){
 //        val adapter = ArrayAdapter.createFromResource(this,
@@ -181,4 +204,4 @@ class NewFlightDetails: AppCompatActivity() {
 //        }
 //
 //        }
-    }
+//    }

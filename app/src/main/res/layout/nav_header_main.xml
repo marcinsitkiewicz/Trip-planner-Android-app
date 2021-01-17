@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:text="Michał Gładysz"
+                android:text="Imię Nazwisko"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
@@ -29,7 +29,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="michal.gladysz@hotmail.com"
+                android:text="email@email.com"
                 android:textColor="?attr/colorPrimary"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 

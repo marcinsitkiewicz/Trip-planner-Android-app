@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.graphics.Color
 import android.graphics.RectF
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils.substring
 import android.view.View
 import android.widget.Toast
@@ -12,19 +13,22 @@ import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
 import com.google.gson.GsonBuilder
 import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.FillLayer
-import com.mapbox.mapboxsdk.style.layers.Layer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillColor
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillOpacity
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import okhttp3.*
 import java.io.IOException
+import kotlinx.android.synthetic.main.map_activity.*
 
-class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
+
+class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, MapView.OnDidFinishLoadingStyleListener {
 
     private var mapView: MapView? = null
     private var mapboxMap: MapboxMap? = null
@@ -46,8 +50,12 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
             mapboxMap.setStyle(Style.Builder().fromUri(getString(R.string.mapbox_style_url))) {
                 this.mapboxMap = mapboxMap
                 this.mapboxMap?.addOnMapClickListener(this)
+                mapboxMap.uiSettings.isCompassEnabled = true
+                mapboxMap.uiSettings.setCompassFadeFacingNorth(false)
             }
         }
+
+        mapView?.addOnDidFinishLoadingStyleListener(this)
     }
 
     override fun onMapClick(point: LatLng): Boolean {
@@ -125,6 +133,18 @@ private fun callRequest(request: Request, client: OkHttpClient) {
 
 
 @Suppress("DEPRECATION")
+
+    private fun showProgressBar(show: Boolean) {
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+        }
+        else {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    @Suppress("DEPRECATION")
+
     private fun hideSystemUI() {
         this.window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -139,8 +159,6 @@ private fun callRequest(request: Request, client: OkHttpClient) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
-
-
 
     override fun onStart() {
         super.onStart()
@@ -175,5 +193,17 @@ private fun callRequest(request: Request, client: OkHttpClient) {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mapView?.onSaveInstanceState(outState)
+    }
+
+    override fun onDidFinishLoadingStyle() {
+        val position = CameraPosition.Builder()
+            .target(LatLng(52.00000, 19.00000))
+            .zoom(2.0)
+            .tilt(0.0)
+            .build()
+        mapboxMap?.animateCamera(CameraUpdateFactory.newCameraPosition(position), 2000)
+        Handler().postDelayed({
+            showProgressBar(false)
+        }, 1000)
     }
 }
