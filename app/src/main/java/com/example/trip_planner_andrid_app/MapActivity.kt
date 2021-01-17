@@ -7,6 +7,9 @@ import android.text.TextUtils.substring
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.trip_planner_andrid_app.flights.data.CovidApiResults
+import com.example.trip_planner_andrid_app.flights.data.SkyscannerResults
+import com.google.gson.GsonBuilder
 import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -18,13 +21,14 @@ import com.mapbox.mapboxsdk.style.layers.Layer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillColor
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillOpacity
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import okhttp3.*
+import java.io.IOException
 
 class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
 
     private var mapView: MapView? = null
     private var mapboxMap: MapboxMap? = null
     private val layerId = "country-boundaries"
-    private var style: Style? = null
     private var selectedSource: GeoJsonSource? = null;
     private var selectedArea: FillLayer? = null
 
@@ -39,8 +43,7 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
 
 //        mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync { mapboxMap ->
-            val style = Style.Builder().fromUri(getString(R.string.mapbox_style_url))
-            mapboxMap.setStyle(style) {
+            mapboxMap.setStyle(Style.Builder().fromUri(getString(R.string.mapbox_style_url))) {
                 this.mapboxMap = mapboxMap
                 this.mapboxMap?.addOnMapClickListener(this)
             }
@@ -75,15 +78,16 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
                 var country = feature.properties()?.get("name_en").toString()
                 println(feature)
                 if (selectedSource != null) {
-                    style?.removeLayer(selectedArea!!)
-                    style?.removeSource(selectedSource!!)
+                    mapboxMap?.style?.removeLayer(selectedArea!!)
+                    mapboxMap?.style?.removeSource(selectedSource!!)
                 }
                 selectedSource = GeoJsonSource("selected", feature)
-                style?.addSource(selectedSource!!)
+                mapboxMap?.style?.addSource(selectedSource!!)
                 selectedArea = FillLayer("selected-fill", "selected")
                 selectedArea?.setProperties(fillColor(Color.parseColor("#ff0088")), fillOpacity(0.4f))
-                style?.addLayer(selectedArea!!)
+                mapboxMap?.style?.addLayer(selectedArea!!)
                 country = substring(country, 1, country.length - 1)
+                callRequest(buildRequest(country), createClient())
                 Toast.makeText(this@MapActivity, "$country - $string", Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -91,7 +95,36 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener {
         return false
     }
 
-    @Suppress("DEPRECATION")
+private fun createClient(): OkHttpClient {
+    return OkHttpClient()
+}
+
+private fun buildRequest(country : String): Request {
+    return Request.Builder()
+        .url("https://disease.sh/v3/covid-19/countries/$country?strict=true")
+        .get()
+        .build();
+}
+
+private fun callRequest(request: Request, client: OkHttpClient) {
+    client.newCall(request).enqueue(
+        object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                println("Failed")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.string()?.let { fetchJsonToDataClass(it) }
+            }
+        })
+}
+
+    private fun fetchJsonToDataClass(body: String) {
+        val countryData = GsonBuilder().create().fromJson(body, CovidApiResults.CountryData::class.java)
+    }
+
+
+@Suppress("DEPRECATION")
     private fun hideSystemUI() {
         this.window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
