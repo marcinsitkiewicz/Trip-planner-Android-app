@@ -19,6 +19,14 @@
         <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
     </style>
 
+    <!-- Splash Screen -->
+    <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <!-- Dark Buttons -->
     <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
         <item name="colorButtonNormal">@color/grey_500</item>

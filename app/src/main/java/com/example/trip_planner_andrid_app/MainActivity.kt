@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.net.Uri
 import com.example.trip_planner_andrid_app.flights.FlightDetails
 import com.example.trip_planner_andrid_app.flights.FlightsListActivity
 import com.example.trip_planner_andrid_app.flights.data.NewFlightDetails
@@ -55,7 +56,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         profileButton.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+//            startActivity(Intent(this, ProfileActivity::class.java))
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse("https://www.google.pl/travel/hotels/Warszawa")
+            startActivity(openURL)
         }
     }
 }
