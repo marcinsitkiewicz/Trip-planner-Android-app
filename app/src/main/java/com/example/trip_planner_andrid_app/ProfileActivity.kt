@@ -1,16 +1,19 @@
 package com.example.trip_planner_andrid_app
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -47,6 +50,9 @@ class ProfileActivity : AppCompatActivity() {
         logout.setOnClickListener() {
             Toast.makeText(this, "Wyloguj", Toast.LENGTH_SHORT).show()
         }
+
+        buttonMoreCurrent.setOnClickListener { showAlertDialogFlights(0) }
+        buttonMoreHistory.setOnClickListener { showAlertDialogFlights(1) }
 
         getUserFlights()
     }
@@ -89,6 +95,52 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    private fun showAlertDialogFlights(x: Int) {
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_flights_list, null)
+
+        println("history of flights:$userHistoryFlights")
+
+        val insertPoint = dialogView.findViewById(R.id.main_view) as ViewGroup
+        val title = insertPoint.findViewById(R.id.dialog_title) as TextView
+        if (x == 0)
+            title.text = "Twoje aktualne loty"
+        else
+            title.text = "Twoja historia lotów"
+
+        for (flight in if (x == 0) userCurrentFlights else userHistoryFlights) {
+            val rowView: View = inflater.inflate(R.layout.flight_row, null)
+
+            val wylot_z = rowView.findViewById(R.id.wylot_z) as TextView
+            val przesiadki = rowView.findViewById(R.id.przesiadki) as TextView
+            val przylot_do = rowView.findViewById(R.id.przylot_do) as TextView
+            val godzina = rowView.findViewById(R.id.godzina) as TextView
+            val data_wylotu = rowView.findViewById(R.id.data_wylotu) as TextView
+            val cena = rowView.findViewById(R.id.cena) as TextView
+            val przewoznik = rowView.findViewById(R.id.przewoznik) as TextView
+
+            wylot_z.text = flight[2]
+            przesiadki.text = ""
+            przylot_do.text = flight[4]
+            godzina.text = "21:37"
+            data_wylotu.text = flight[0]
+            cena.text = flight[6]
+            przewoznik.text = ""
+
+
+            insertPoint.addView(rowView, insertPoint.childCount)
+        }
+
+//        dialogBuilder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
+//            return@OnClickListener
+//        })
+        dialogBuilder.setView(dialogView)
+
+        val mAlertDialog = dialogBuilder.show()
+    }
+
     fun createCurrentReservationList() {
 
 
@@ -105,8 +157,7 @@ class ProfileActivity : AppCompatActivity() {
         val txt6 = r2.findViewById(R.id.reservation2_txt2) as TextView
         val txt7 = r2.findViewById(R.id.reservation2_txt3) as TextView
 
-        if(userCurrentFlights.size==0)
-        {
+        if (userCurrentFlights.size == 0) {
             println("no current reservations")
 
             r1.visibility = View.GONE;
@@ -124,12 +175,9 @@ class ProfileActivity : AppCompatActivity() {
 
 
             findBtn.visibility = View.VISIBLE;
-        }
-        else
-        {
+        } else {
             findBtn.visibility = View.GONE;
-            if(userCurrentFlights.size==1)
-            {
+            if (userCurrentFlights.size == 1) {
                 println("only one")
                 r2.visibility = View.GONE;
                 btn.visibility = View.GONE;
@@ -140,10 +188,8 @@ class ProfileActivity : AppCompatActivity() {
                 txt3.text = userCurrentFlights[0][0]//"15.01.2021"
 
                 r1.visibility = View.VISIBLE;
-            }
-            else if(userCurrentFlights.size>=2)
-            {
-                if(userCurrentFlights.size>2)
+            } else if (userCurrentFlights.size >= 2) {
+                if (userCurrentFlights.size > 2)
                     btn.visibility = View.VISIBLE;
 
                 txt1.text = userCurrentFlights[0][4] //"Polska"
@@ -162,8 +208,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun createHistoryReservationList()
-    {
+    fun createHistoryReservationList() {
 
 
         val r1 = findViewById(R.id.history1) as RelativeLayout
@@ -178,8 +223,7 @@ class ProfileActivity : AppCompatActivity() {
         val txt6 = r2.findViewById(R.id.history2_txt2) as TextView
         val txt7 = r2.findViewById(R.id.history2_txt3) as TextView
 
-        if(userHistoryFlights.size==0)
-        {
+        if (userHistoryFlights.size == 0) {
             println("no history reservations")
 
             r1.visibility = View.GONE;
@@ -193,11 +237,8 @@ class ProfileActivity : AppCompatActivity() {
 
             val txtEmpty1 = findViewById(R.id.emptyInfoHistory) as TextView
             txtEmpty1.visibility = View.VISIBLE;
-        }
-        else
-        {
-            if(userHistoryFlights.size==1)
-            {
+        } else {
+            if (userHistoryFlights.size == 1) {
                 println("only one")
                 r2.visibility = View.GONE;
                 btn.visibility = View.GONE;
@@ -208,10 +249,8 @@ class ProfileActivity : AppCompatActivity() {
                 txt3.text = userHistoryFlights[0][0]//"15.01.2021"
 
                 r1.visibility = View.VISIBLE;
-            }
-            else if(userHistoryFlights.size>=2)
-            {
-                if(userHistoryFlights.size>2)
+            } else if (userHistoryFlights.size >= 2) {
+                if (userHistoryFlights.size > 2)
                     btn.visibility = View.VISIBLE;
 
                 txt1.text = userHistoryFlights[0][4] //"Polska"
@@ -240,51 +279,50 @@ class ProfileActivity : AppCompatActivity() {
 
         val userDocRef = db.collection("users").document(uid)
         userDocRef.get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val flightsHashes = task.result?.get("flights") as ArrayList<*>
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val flightsHashes = task.result?.get("flights") as ArrayList<*>
 
-                        val flightsDocRef = db.collection("flights")
-                        flightsDocRef.get()
-                                .addOnSuccessListener { documents ->
-                                    userCurrentFlights.clear()
-                                    userHistoryFlights.clear()
-                                    for (document in documents) {
-                                        for (flight in flightsHashes) {
-                                            if (document.id == flight) {
-                                                val documentArray = addFlightDataToArray(document)
+                    val flightsDocRef = db.collection("flights")
+                    flightsDocRef.get()
+                        .addOnSuccessListener { documents ->
+                            userCurrentFlights.clear()
+                            userHistoryFlights.clear()
+                            for (document in documents) {
+                                for (flight in flightsHashes) {
+                                    if (document.id == flight) {
+                                        val documentArray = addFlightDataToArray(document)
 
-                                                val sdf = SimpleDateFormat("dd/MM/yyyy")
-                                                val strDate: Date = sdf.parse(documentArray[0])
-                                                if (Date().after(strDate))
-                                                    userHistoryFlights.add(documentArray)
-                                                else
-                                                    userCurrentFlights.add(documentArray)
-                                            }
-                                        }
+                                        val sdf = SimpleDateFormat("dd/MM/yyyy")
+                                        val strDate: Date = sdf.parse(documentArray[0])
+                                        if (Date().after(strDate))
+                                            userHistoryFlights.add(documentArray)
+                                        else
+                                            userCurrentFlights.add(documentArray)
                                     }
-                                    println("Current: "+userCurrentFlights);
-                                    println("history: "+userHistoryFlights);
-
-                                    println("current size: "+userCurrentFlights.size)
-                                    println("history size: "+userHistoryFlights.size)
-
-                                    createCurrentReservationList()
-                                    createHistoryReservationList()
-
                                 }
-                                .addOnFailureListener { exception ->
-                                    Log.d(ProfileActivity.TAG, "get documents from flights collection failed with ", exception)
-                                }
-                    }
-                    else {
-                        println("no flights");
-                        Log.d(ProfileActivity.TAG, "No such document")
-                    }
+                            }
+                            println("Current: " + userCurrentFlights);
+                            println("history: " + userHistoryFlights);
+
+                            println("current size: " + userCurrentFlights.size)
+                            println("history size: " + userHistoryFlights.size)
+
+                            createCurrentReservationList()
+                            createHistoryReservationList()
+
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.d(ProfileActivity.TAG, "get documents from flights collection failed with ", exception)
+                        }
+                } else {
+                    println("no flights");
+                    Log.d(ProfileActivity.TAG, "No such document")
                 }
-                .addOnFailureListener { exception ->
-                    Log.d(ProfileActivity.TAG, "get documents from user collection failed with ", exception)
-                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ProfileActivity.TAG, "get documents from user collection failed with ", exception)
+            }
     }
 
     fun addFlightDataToArray(document: QueryDocumentSnapshot): ArrayList<String> {
