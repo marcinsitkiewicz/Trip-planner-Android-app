@@ -13,5 +13,7 @@ class ConfirmFlight: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.modal_confirm_seats)
+        val seatValues = intent.getSerializableExtra("ids") as? SeatValue
+        println(seatValues?.value)
     }
 }
