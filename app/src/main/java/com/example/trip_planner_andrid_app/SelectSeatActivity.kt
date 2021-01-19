@@ -88,7 +88,7 @@ class SelectSeatActivity : AppCompatActivity() {
             val ints = LinkedHashSet<Int>()
             val numbersOfElements = (0..limit).shuffled().first()
             for(i in 0..numbersOfElements){
-                ints.add(ThreadLocalRandom.current().nextInt(1,bound)+1)
+                ints.add(ThreadLocalRandom.current().nextInt(1,bound))
             }
             return ints
         }
@@ -148,26 +148,13 @@ class SelectSeatActivity : AppCompatActivity() {
                 val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
                 var reservedSeat: CheckBox
                 for(num in reservedPremiumSeats){
-                    reservedSeat = seatsBusinessArray.get(num)
+                    reservedSeat = seatsPremiumArray.get(num)
                     reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
                     reservedSeat.isEnabled = false
                     reservedSeat.isClickable = false
                 }
             }
         }
-
-//        val ints: IntArray = Random().ints(1, 50).distinct().limit(6).toArray()
-
-        val ints = LinkedHashSet<Int>()
-        var numbersOfElements = ThreadLocalRandom.current().nextInt(20) + 10;
-
-        for(i in 0..numbersOfElements){
-            ints.add(ThreadLocalRandom.current().nextInt()*100)
-        }
-        for(element in ints){
-            println(element)
-        }
-
 
 
         seatListener(seatEconomy1)
@@ -580,6 +567,5 @@ class SelectSeatActivity : AppCompatActivity() {
         seatsEconomyArray.add(seatEconomy58)
 
         disableSeats()
-
     }
 }

@@ -98,12 +98,15 @@
         </LinearLayout>
 
     </RelativeLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Details-header">
 
     <RelativeLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/Details-header">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/Detailed_info"
@@ -128,6 +131,7 @@
             android:elevation="2.5dp"
             android:visibility="visible"
             android:orientation="vertical"
+            android:layout_marginBottom="30dp"
             >
             <Spinner
                 android:layout_marginTop="20dp"
@@ -237,4 +241,6 @@
 
     </RelativeLayout>
 
+</ScrollView>
 </RelativeLayout>
+
