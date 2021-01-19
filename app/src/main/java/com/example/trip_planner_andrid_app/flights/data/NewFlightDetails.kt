@@ -1,6 +1,5 @@
 package com.example.trip_planner_andrid_app.flights.data
 
-import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -11,15 +10,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trip_planner_andrid_app.R
-import com.example.trip_planner_andrid_app.SearchForFlightsActivity
 import com.example.trip_planner_andrid_app.SelectSeatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flight_details_new.*
-import android.widget.NumberPicker.OnValueChangeListener
-import android.widget.Toast
 import kotlinx.android.synthetic.main.spinner_item.*
 import kotlinx.android.synthetic.main.spinner_item.view.*
-
+import java.io.Serializable
+import java.util.*
+import java.util.concurrent.ThreadLocalRandom
 
 class NewFlightDetails: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +60,27 @@ class NewFlightDetails: AppCompatActivity() {
             startActivity(intent)
         }
 
+        val reservedEconomySeats = generateRandomNumberOfSeats(20, 59)
+        val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
+        val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
+
+        val economyClass = Class(reservedEconomySeats)
+        val businessClass = Class(reservedBusinessSeats)
+        val premiumClass = Class(reservedPremiumSeats)
+
+        intent.putExtra("reservedEconomySeats", economyClass)
+        intent.putExtra("reservedBusinessSeats", businessClass)
+        intent.putExtra("reservedPremiumSeats", premiumClass)
+
+    }
+
+    fun generateRandomNumberOfSeats(limit: Int, bound: Int): LinkedHashSet<Int> {
+        val ints = LinkedHashSet<Int>()
+        val numbersOfElements = (0..limit).shuffled().first()
+        for (i in 0..numbersOfElements) {
+            ints.add(ThreadLocalRandom.current().nextInt(1, bound))
+        }
+        return ints
     }
 
     private fun showAlertDialogAdults() {
@@ -181,6 +200,8 @@ class NewFlightDetails: AppCompatActivity() {
     }
 
 }
+
+class Class(var seats: LinkedHashSet<Int>) : Serializable
 
 //    private fun setupSimpleSpinner(){
 //        val adapter = ArrayAdapter.createFromResource(this,

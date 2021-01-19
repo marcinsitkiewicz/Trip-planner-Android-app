@@ -1,26 +1,14 @@
 package com.example.trip_planner_andrid_app
 
-import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.flight_details.*
-import kotlinx.android.synthetic.main.flight_details.seat1
-import kotlinx.android.synthetic.main.plane_modal.*
 import android.content.Intent
-import android.widget.Button
-import com.example.trip_planner_andrid_app.flights.data.NewFlightDetails
+import android.os.Bundle
+import android.widget.CheckBox
+import androidx.appcompat.app.AppCompatActivity
+import com.example.trip_planner_andrid_app.flights.data.Class
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
+import kotlinx.android.synthetic.main.plane_modal.*
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
-import java.util.stream.IntStream
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -33,13 +21,15 @@ class SelectSeatActivity : AppCompatActivity() {
 
     var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
 
+    var seatClass: String? = null
+
 //    val bottomSheetFragment = BottomSheetDialogConfirm()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.plane_modal)
 
-        val seatClass = intent.getStringExtra("SeatClass")
+        seatClass = intent.getStringExtra("SeatClass")
         val numberOfAdults = intent.getIntExtra("NumberOfAdults", 0)
         val numberOfKids = intent.getIntExtra("NumberOfKids", 0)
         val totalNumber = numberOfAdults + numberOfKids
@@ -83,79 +73,6 @@ class SelectSeatActivity : AppCompatActivity() {
                 }
             }
         }
-
-        fun generateRandomNumberOfSeats(limit:Int, bound:Int): LinkedHashSet<Int> {
-            val ints = LinkedHashSet<Int>()
-            val numbersOfElements = (0..limit).shuffled().first()
-            for(i in 0..numbersOfElements){
-                ints.add(ThreadLocalRandom.current().nextInt(1,bound))
-            }
-            return ints
-        }
-
-        fun disableSeats() {
-            if(seatClass.equals("Klasa Ekonomiczna")) {
-                for (seat in seatsPremiumArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-                for (seat in seatsBusinessArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-
-                val reservedEconomySeats = generateRandomNumberOfSeats(20, 59)
-                var reservedSeat: CheckBox
-                for(num in reservedEconomySeats){
-                    reservedSeat = seatsEconomyArray.get(num)
-                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
-                    reservedSeat.isEnabled = false
-                    reservedSeat.isClickable = false
-                }
-            }else if(seatClass.equals("Klasa Business")){
-                for (seat in seatsEconomyArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-                for (seat in seatsPremiumArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-
-                val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
-                var reservedSeat: CheckBox
-                for(num in reservedBusinessSeats){
-                    reservedSeat = seatsBusinessArray.get(num)
-                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
-                    reservedSeat.isEnabled = false
-                    reservedSeat.isClickable = false
-                }
-            }else if(seatClass.equals("Klasa Premium")){
-                for (seat in seatsBusinessArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-                for (seat in seatsEconomyArray) {
-                    seat.isEnabled = false
-                    seat.isClickable = false
-                    seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
-                }
-                val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
-                var reservedSeat: CheckBox
-                for(num in reservedPremiumSeats){
-                    reservedSeat = seatsPremiumArray.get(num)
-                    reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
-                    reservedSeat.isEnabled = false
-                    reservedSeat.isClickable = false
-                }
-            }
-        }
-
 
         seatListener(seatEconomy1)
         seatsHashMap.put(seatEconomy1, "1A")
@@ -566,6 +483,73 @@ class SelectSeatActivity : AppCompatActivity() {
         seatsHashMap.put(seatEconomy58, "20D")
         seatsEconomyArray.add(seatEconomy58)
 
+        val reservedEconomySeats = intent.getSerializableExtra("reservedEconomySeats") as Class
+        val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as Class
+        val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as Class
+
+        prepareRandomSeats(reservedEconomySeats.seats, reservedPremiumSeats.seats, reservedBusinessSeats.seats)
         disableSeats()
+    }
+
+    fun prepareRandomSeats(reservedEconomySeats: LinkedHashSet<Int>, reservedPremiumSeats: LinkedHashSet<Int>, reservedBusinessSeats: LinkedHashSet<Int>) {
+        for (num in reservedEconomySeats) {
+            val reservedSeat: CheckBox = seatsEconomyArray.get(num)
+            reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+            reservedSeat.isEnabled = false
+            reservedSeat.isClickable = false
+        }
+
+        for (num in reservedBusinessSeats) {
+            val reservedSeat: CheckBox = seatsBusinessArray.get(num)
+            reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+            reservedSeat.isEnabled = false
+            reservedSeat.isClickable = false
+        }
+
+        for (num in reservedPremiumSeats) {
+            val reservedSeat: CheckBox = seatsPremiumArray.get(num)
+            reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
+            reservedSeat.isEnabled = false
+            reservedSeat.isClickable = false
+        }
+    }
+
+    private fun disableSeats() {
+        if (seatClass.equals("Klasa Ekonomiczna")) {
+            for (seat in seatsPremiumArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+            for (seat in seatsBusinessArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+
+        } else if (seatClass.equals("Klasa Business")) {
+            for (seat in seatsEconomyArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+            for (seat in seatsPremiumArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+
+        } else if (seatClass.equals("Klasa Premium")) {
+            for (seat in seatsBusinessArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+            for (seat in seatsEconomyArray) {
+                seat.isEnabled = false
+                seat.isClickable = false
+                seat.setBackgroundResource(R.drawable.bg_seat_plane_disabled)
+            }
+        }
     }
 }
