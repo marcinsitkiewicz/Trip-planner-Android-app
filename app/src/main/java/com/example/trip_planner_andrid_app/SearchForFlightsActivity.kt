@@ -60,9 +60,17 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
         
         button2.setOnClickListener{
-            if (wylotZ.text.isEmpty()  || przylotDo.text.isEmpty() || inboundDateString.isEmpty() || outboundDateString.isEmpty() ) {
-                Toast.makeText(this, "Uzupełnij wszystkie pola", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            if (two_way.isChecked) {
+                if (wylotZ.text.isEmpty()  || przylotDo.text.isEmpty() || inboundDateString.isEmpty() || outboundDateString.isEmpty() ) {
+                    Toast.makeText(this, "Uzupełnij wszystkie pola", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+            else {
+                if (wylotZ.text.isEmpty()  || przylotDo.text.isEmpty() || outboundDateString.isEmpty() ) {
+                    Toast.makeText(this, "Uzupełnij wszystkie pola", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
             }
             val originPlace = wylotZ.text.toString().split("-")[1].trim() + "-sky"
             val destinationPlace = przylotDo.text.toString().split("-")[1].trim() + "-sky"

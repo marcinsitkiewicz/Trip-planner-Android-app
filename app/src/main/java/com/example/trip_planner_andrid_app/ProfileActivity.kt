@@ -30,7 +30,7 @@ import kotlin.collections.ArrayList
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    private var auth: FirebaseAuth = Firebase.auth
 
     val userCurrentFlights = ArrayList<ArrayList<String>>()
     val userHistoryFlights = ArrayList<ArrayList<String>>()
