@@ -47,8 +47,11 @@ class ProfileActivity : AppCompatActivity() {
         profile_settings.setOnClickListener() {
             Toast.makeText(this, "Ustawienia profilu", Toast.LENGTH_SHORT).show()
         }
+        
         logout.setOnClickListener() {
-            Toast.makeText(this, "Wyloguj", Toast.LENGTH_SHORT).show()
+            auth.signOut()
+            finish()
+            startActivity(Intent(this, LoginActivity()::class.java))
         }
 
         buttonMoreCurrent.setOnClickListener { showAlertDialogFlights(0) }

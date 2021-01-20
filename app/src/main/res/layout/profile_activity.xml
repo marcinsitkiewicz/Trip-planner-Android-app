@@ -33,7 +33,7 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_airplane"
+                android:src="@drawable/ic_person"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
                 android:layerType="software" />
@@ -97,11 +97,7 @@
                     android:layout_alignParentLeft="true"
                     android:visibility="visible"
                     android:orientation="horizontal">
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_airplane"
-                        android:layerType="software" />
+
                 <TextView
 
                         android:layout_marginTop="7dp"
@@ -111,7 +107,9 @@
                         android:textSize="18sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/robotoregular"
-                />
+                        app:drawableStartCompat="@drawable/ic_settings"
+                        android:drawablePadding="5dp"
+                        app:drawableTint="@color/white"/>
             </LinearLayout>
             <LinearLayout
                     android:id="@+id/logout"
@@ -120,11 +118,7 @@
                     android:layout_alignParentRight="true"
                     android:visibility="visible"
                     android:orientation="horizontal">
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_airplane"
-                        android:layerType="software" />
+
                 <TextView
                         android:layout_marginTop="7dp"
                         android:layout_width="wrap_content"
@@ -133,7 +127,9 @@
                         android:textSize="18sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/robotoregular"
-                />
+                        app:drawableStartCompat="@drawable/ic_exit"
+                        android:drawablePadding="5dp"
+                        app:drawableTint="@color/white"/>
             </LinearLayout>
 
         </RelativeLayout>
