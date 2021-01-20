@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -123,11 +124,11 @@ class ProfileActivity : AppCompatActivity() {
 
             wylot_z.text = flight[2]
             przesiadki.text = ""
-            przylot_do.text = flight[4]
-            godzina.text = "21:37"
+            przylot_do.text = flight[1]
+            godzina.text = flight[5]
             data_wylotu.text = flight[0]
-            cena.text = flight[6]
-            przewoznik.text = ""
+            cena.text = flight[3]
+            przewoznik.text = flight[4]
 
 
             insertPoint.addView(rowView, insertPoint.childCount)
@@ -182,9 +183,19 @@ class ProfileActivity : AppCompatActivity() {
                 r2.visibility = View.GONE;
                 btn.visibility = View.GONE;
 
+//                val documentArray = ArrayList<String>()
+//                documentArray.add(document.data["date"] as String)
+//                documentArray.add(document.data["dest_place"] as String)
+//                documentArray.add(document.data["origin_place"] as String)
+//                documentArray.add(document.data["price"] as String)
+//                documentArray.add(document.data["carrier"] as String)
+//                documentArray.add(document.data["hour"] as String)
+//                documentArray.add(document.data["seatClass"] as String)
+//                documentArray.add((document.data["seatArray"] as ArrayList<*>).toString())
 
-                txt1.text = userCurrentFlights[0][4] //"Polska"
-                txt2.text = userCurrentFlights[0][2]//"Kanada"
+
+                txt1.text = userCurrentFlights[0][2] //"Polska"
+                txt2.text = userCurrentFlights[0][1]//"Kanada"
                 txt3.text = userCurrentFlights[0][0]//"15.01.2021"
 
                 r1.visibility = View.VISIBLE;
@@ -192,13 +203,13 @@ class ProfileActivity : AppCompatActivity() {
                 if (userCurrentFlights.size > 2)
                     btn.visibility = View.VISIBLE;
 
-                txt1.text = userCurrentFlights[0][4] //"Polska"
-                txt2.text = userCurrentFlights[0][2]//"Kanada"
+                txt1.text = userCurrentFlights[0][2] //"Polska"
+                txt2.text = userCurrentFlights[0][1]//"Kanada"
                 txt3.text = userCurrentFlights[0][0]//"15.01.2021"
 
 
-                txt5.text = userCurrentFlights[1][4] //"Polska"
-                txt6.text = userCurrentFlights[1][2]//"Kanada"
+                txt5.text = userCurrentFlights[1][2] //"Polska"
+                txt6.text = userCurrentFlights[1][1]//"Kanada"
                 txt7.text = userCurrentFlights[1][0]//"15.01.2021"
 
 
@@ -244,8 +255,8 @@ class ProfileActivity : AppCompatActivity() {
                 btn.visibility = View.GONE;
 
 
-                txt1.text = userHistoryFlights[0][4] //"Polska"
-                txt2.text = userHistoryFlights[0][2]//"Kanada"
+                txt1.text = userHistoryFlights[0][2] //"Polska"
+                txt2.text = userHistoryFlights[0][1]//"Kanada"
                 txt3.text = userHistoryFlights[0][0]//"15.01.2021"
 
                 r1.visibility = View.VISIBLE;
@@ -253,13 +264,13 @@ class ProfileActivity : AppCompatActivity() {
                 if (userHistoryFlights.size > 2)
                     btn.visibility = View.VISIBLE;
 
-                txt1.text = userHistoryFlights[0][4] //"Polska"
-                txt2.text = userHistoryFlights[0][2]//"Kanada"
+                txt1.text = userHistoryFlights[0][2] //"Polska"
+                txt2.text = userHistoryFlights[0][1]//"Kanada"
                 txt3.text = userHistoryFlights[0][0]//"15.01.2021"
 
 
-                txt5.text = userHistoryFlights[1][4] //"Polska"
-                txt6.text = userHistoryFlights[1][2]//"Kanada"
+                txt5.text = userHistoryFlights[1][2] //"Polska"
+                txt6.text = userHistoryFlights[1][1]//"Kanada"
                 txt7.text = userHistoryFlights[1][0]//"15.01.2021"
 
 
@@ -272,8 +283,8 @@ class ProfileActivity : AppCompatActivity() {
 
 
     private fun getUserFlights() {
-//        val uid = Firebase.auth.uid
-        val uid = "jyim5xqJsrQxB54Xr3w0IRHiA5r2"
+        val uid = Firebase.auth.currentUser?.uid.toString()
+//        val uid = "jyim5xqJsrQxB54Xr3w0IRHiA5r2"
         val db = Firebase.firestore
 
 
@@ -293,7 +304,7 @@ class ProfileActivity : AppCompatActivity() {
                                     if (document.id == flight) {
                                         val documentArray = addFlightDataToArray(document)
 
-                                        val sdf = SimpleDateFormat("dd/MM/yyyy")
+                                        val sdf = SimpleDateFormat("dd.MM.yyyy")
                                         val strDate: Date = sdf.parse(documentArray[0])
                                         if (Date().after(strDate))
                                             userHistoryFlights.add(documentArray)
@@ -327,14 +338,14 @@ class ProfileActivity : AppCompatActivity() {
 
     fun addFlightDataToArray(document: QueryDocumentSnapshot): ArrayList<String> {
         val documentArray = ArrayList<String>()
-        //documentArray.add(document.data["date"] as String)
-        documentArray.add("15/01/2021")
-        documentArray.add(document.data["date2"] as String)
+        documentArray.add(document.data["date"] as String)
         documentArray.add(document.data["dest_place"] as String)
-        documentArray.add(document.data["dest_place2"] as String)
         documentArray.add(document.data["origin_place"] as String)
-        documentArray.add(document.data["origin_place2"] as String)
         documentArray.add(document.data["price"] as String)
+        documentArray.add(document.data["carrier"] as String)
+        documentArray.add(document.data["hour"] as String)
+        documentArray.add(document.data["seatClass"] as String)
+        documentArray.add((document.data["seatArray"] as ArrayList<*>).toString())
 
         return documentArray
     }

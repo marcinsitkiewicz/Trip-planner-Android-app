@@ -50,7 +50,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
         setAutocomplete()
 
         if (user != null) {
-            textUsername.text = user!!.email + ", (" + user!!.uid + ")"
+//            textUsername.text = user!!.email + ", (" + user!!.uid + ")"
         }
 
         setupNavBar()
@@ -168,6 +168,10 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 R.id.nav_map -> {
                     drawer.closeDrawer(GravityCompat.START)
                     startActivity(Intent(this, MapActivity()::class.java))
+                }
+                R.id.nav_tools -> {
+                    drawer.closeDrawer(GravityCompat.START)
+                    startActivity(Intent(this, MainActivity()::class.java))
                 }
                 R.id.nav_send -> {
                     drawer.closeDrawer(GravityCompat.START)
