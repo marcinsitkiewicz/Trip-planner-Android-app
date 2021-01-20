@@ -46,8 +46,10 @@ class SelectSeatActivity : AppCompatActivity() {
                 listSeatIds.add(seatsHashMap.getValue(seat))
             }
             val seatValue = SeatValue(listSeatIds)
-            intentConfirm.putExtra("ids",listSeatIds)
-            startActivity(Intent(this, ConfirmFlight::class.java))
+            intentConfirm.putExtra("ids",seatValue)
+            intentConfirm.putExtra("class", seatClass)
+            setIntent(intentConfirm)
+            startActivity(intentConfirm)
         }
 
         System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
