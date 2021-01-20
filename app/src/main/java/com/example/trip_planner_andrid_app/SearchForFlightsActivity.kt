@@ -55,7 +55,15 @@ class SearchForFlightsActivity : AppCompatActivity() {
 
         setupNavBar()
 
+        covidGo.setOnClickListener {
+            startActivity(Intent(this, MapActivity()::class.java))
+        }
+        
         button2.setOnClickListener{
+            if (wylotZ.text.isEmpty()  || przylotDo.text.isEmpty() || inboundDateString.isEmpty() || outboundDateString.isEmpty() ) {
+                Toast.makeText(this, "Uzupełnij wszystkie pola", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val originPlace = wylotZ.text.toString().split("-")[1].trim() + "-sky"
             val destinationPlace = przylotDo.text.toString().split("-")[1].trim() + "-sky"
             val intent = Intent(this, FlightsListActivity::class.java)
@@ -69,16 +77,6 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 intent.putExtra("inboundDateString", "")
             }
             intent.putExtra("outboundDateString", outboundDateString)
-
-            if (TextUtils.isEmpty(originPlace)) {
-                wylotZ.error = "Wprowadź miejsce wylotu"
-                return@setOnClickListener
-            }
-            if (TextUtils.isEmpty(destinationPlace)) {
-                przylotDo.error = "Wprowadź miejsce przylotu"
-                return@setOnClickListener
-            }
-
 
             if (isNetworkAvailable(this)) {
                 setIntent(intent)
