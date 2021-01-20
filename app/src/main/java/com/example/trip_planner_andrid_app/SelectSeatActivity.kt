@@ -8,13 +8,14 @@ import com.example.trip_planner_andrid_app.flights.data.Class
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import kotlinx.android.synthetic.main.plane_modal.*
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class SelectSeatActivity : AppCompatActivity() {
     val seatsChecked = ArrayList<CheckBox>()
-
+    val listSeatIds = ArrayList<String>()
     val seatsEconomyArray = ArrayList<CheckBox>()
     val seatsPremiumArray = ArrayList<CheckBox>()
     val seatsBusinessArray = ArrayList<CheckBox>()
@@ -37,15 +38,22 @@ class SelectSeatActivity : AppCompatActivity() {
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_fragment, null)
         bottomSheetDialog.setContentView(view)
+
+        val intentConfirm = Intent(this, ConfirmFlight::class.java)
+
         view.btn1.setOnClickListener{
-            startActivity(Intent(this, ConfirmFlight::class.java))
+            for(seat in seatsChecked){
+                listSeatIds.add(seatsHashMap.getValue(seat))
+            }
+            val seatValue = SeatValue(listSeatIds)
+            intentConfirm.putExtra("ids",seatValue)
+            intentConfirm.putExtra("class", seatClass)
+            setIntent(intentConfirm)
+            startActivity(intentConfirm)
         }
 
         System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
         System.out.println("Klasa siedzeń $seatClass")
-
-        val seatsChecked = ArrayList<CheckBox>()
-
 
         var numberOfCheckboxesChecked = 0
         fun seatListener(seat: CheckBox) {
@@ -553,3 +561,5 @@ class SelectSeatActivity : AppCompatActivity() {
         }
     }
 }
+
+class SeatValue(var value: ArrayList<String>) : Serializable
