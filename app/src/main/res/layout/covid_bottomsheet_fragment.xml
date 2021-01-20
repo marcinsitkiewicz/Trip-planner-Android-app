@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:baselineAligned="false"
+              android:layout_marginTop="30dp">
+    <LinearLayout
+            android:id="@+id/name"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+        <TextView
+                android:id="@+id/countryName"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Nazwa"
+                android:fontFamily="@font/robotobold"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+        <TextView
+                android:id="@+id/strefa"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Strefa Żółta"
+                android:fontFamily="@font/robotomedium"
+                android:textSize="16sp"
+                android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/box"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_dark_rectangle_rounded">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/yellow"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Zakażenia"
+                    android:textSize="14sp"
+                    android:layout_weight="1"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Zgony"
+                    android:fontFamily="@font/robotobold"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:layout_weight="1"/>
+
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Wyzdrowienia"
+                    android:textSize="14sp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+            <TextView
+                    android:id="@+id/casesToday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/robotobold"
+                    android:text="4500"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+            <TextView
+                    android:id="@+id/deathsToday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="900"
+                    android:fontFamily="@font/robotobold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+
+
+            <TextView
+                    android:id="@+id/recoveredToday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/robotobold"
+                    android:text="2000"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/disclaimer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_below="@+id/box">
+        <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="Dane z ostatniej doby"
+                android:fontFamily="@font/robotoregular"
+                android:textSize="12sp"
+                android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:layout_below="@+id/disclaimer">
+        <TextView
+                android:id="@+id/info"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="Nazwa"
+                android:fontFamily="@font/robotoregular"
+                android:textSize="16sp"
+                android:layout_weight="1"/>
+
+    </LinearLayout>
+</RelativeLayout>
+
+
+
