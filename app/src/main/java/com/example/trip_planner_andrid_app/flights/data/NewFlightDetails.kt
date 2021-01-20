@@ -93,9 +93,9 @@ class NewFlightDetails: AppCompatActivity() {
 //        val npK: NumberPicker = dialogView.findViewById(R.id.numberPickerKids) as NumberPicker
 
 
-        npA.minValue = 0
-        npA.maxValue = 10
-        npA.value = 0
+        npA.minValue = 1
+        npA.maxValue = 5
+        npA.value = 1
 
         dialogBuilder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
 
@@ -142,7 +142,7 @@ class NewFlightDetails: AppCompatActivity() {
 
 
         npK.minValue = 0
-        npK.maxValue = 10
+        npK.maxValue = 5
         npK.value = 0
 
         dialogBuilder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
