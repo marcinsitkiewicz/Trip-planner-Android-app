@@ -9,7 +9,7 @@ card_view:contentPadding="8dp"
 card_view:cardCornerRadius="8dp"
 card_view:cardElevation="8dp"
 card_view:cardBackgroundColor="#FFFFFF"
-android:layout_margin="8dp"
+android:layout_margin="12dp"
     >
 
 <!--Text View over Card View-->
