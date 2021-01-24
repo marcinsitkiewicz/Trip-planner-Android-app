@@ -307,7 +307,7 @@ class ProfileActivity : AppCompatActivity() {
                                     if (document.id == flight) {
                                         val documentArray = addFlightDataToArray(document)
 
-                                        val sdf = SimpleDateFormat("dd.MM.yyyy")
+                                        val sdf = SimpleDateFormat("yyyy-MM-dd")
                                         val strDate: Date = sdf.parse(documentArray[0])
                                         if (Date().after(strDate))
                                             userHistoryFlights.add(documentArray)

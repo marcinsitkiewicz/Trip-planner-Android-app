@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
-import com.example.trip_planner_andrid_app.flights.data.Class
+import com.example.trip_planner_andrid_app.flights.data.ClassSeatList
+import com.example.trip_planner_andrid_app.flights.data.FlightData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import kotlinx.android.synthetic.main.plane_modal.*
@@ -48,6 +49,10 @@ class SelectSeatActivity : AppCompatActivity() {
             val seatValue = SeatValue(listSeatIds)
             intentConfirm.putExtra("ids",seatValue)
             intentConfirm.putExtra("class", seatClass)
+
+            val flightData = intent.getSerializableExtra("flightData") as FlightData
+            intentConfirm.putExtra("flightData", flightData)
+
             setIntent(intentConfirm)
             startActivity(intentConfirm)
         }
@@ -491,9 +496,9 @@ class SelectSeatActivity : AppCompatActivity() {
         seatsHashMap.put(seatEconomy58, "20D")
         seatsEconomyArray.add(seatEconomy58)
 
-        val reservedEconomySeats = intent.getSerializableExtra("reservedEconomySeats") as Class
-        val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as Class
-        val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as Class
+        val reservedEconomySeats = intent.getSerializableExtra("reservedEconomySeats") as ClassSeatList
+        val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as ClassSeatList
+        val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as ClassSeatList
 
         prepareRandomSeats(reservedEconomySeats.seats, reservedPremiumSeats.seats, reservedBusinessSeats.seats)
         disableSeats()

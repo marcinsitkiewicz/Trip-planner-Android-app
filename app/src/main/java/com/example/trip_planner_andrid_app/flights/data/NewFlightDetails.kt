@@ -37,8 +37,6 @@ class NewFlightDetails: AppCompatActivity() {
         val numberOfAdults: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
         val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
 
-        val classSeat:String
-
         val intent = Intent(this, SelectSeatActivity::class.java)
 
         originIataTextView.text = originIata
@@ -64,14 +62,23 @@ class NewFlightDetails: AppCompatActivity() {
         val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
         val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
 
-        val economyClass = Class(reservedEconomySeats)
-        val businessClass = Class(reservedBusinessSeats)
-        val premiumClass = Class(reservedPremiumSeats)
+        val economyClass = ClassSeatList(reservedEconomySeats)
+        val businessClass = ClassSeatList(reservedBusinessSeats)
+        val premiumClass = ClassSeatList(reservedPremiumSeats)
 
         intent.putExtra("reservedEconomySeats", economyClass)
         intent.putExtra("reservedBusinessSeats", businessClass)
         intent.putExtra("reservedPremiumSeats", premiumClass)
 
+        val departureDate = bundle?.getString("departureDate").toString()
+        val price = bundle?.getString("price").toString()
+        val originPlace = bundle?.getString("originPlace").toString()
+        val destinationPlace = bundle?.getString("destinationPlace").toString()
+        val carrier = bundle?.getString("carrier").toString()
+
+        val flightData = FlightData(departureDate, price, originPlace, destinationPlace, originIata.toString(), destinationIata.toString(), time.toString(), carrier)
+
+        intent.putExtra("flightData", flightData)
     }
 
     fun generateRandomNumberOfSeats(limit: Int, bound: Int): LinkedHashSet<Int> {
@@ -201,7 +208,8 @@ class NewFlightDetails: AppCompatActivity() {
 
 }
 
-class Class(var seats: LinkedHashSet<Int>) : Serializable
+class ClassSeatList(var seats: LinkedHashSet<Int>) : Serializable
+class FlightData(var date: String, var price: String, var originPlace: String, var destinationPlace: String, var originIata: String, var destinationIata: String, var time: String, var carrier: String) : Serializable
 
 //    private fun setupSimpleSpinner(){
 //        val adapter = ArrayAdapter.createFromResource(this,
