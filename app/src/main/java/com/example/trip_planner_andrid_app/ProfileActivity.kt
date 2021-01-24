@@ -16,17 +16,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.example.trip_planner_andrid_app.ProfileFlightsDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import kotlinx.android.synthetic.main.profile_activity.*
 import kotlinx.android.synthetic.main.profile_activity.drawer
 import kotlinx.android.synthetic.main.profile_activity.navigation_view
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -48,7 +50,7 @@ class ProfileActivity : AppCompatActivity() {
         profile_settings.setOnClickListener() {
             Toast.makeText(this, "Ustawienia profilu", Toast.LENGTH_SHORT).show()
         }
-        
+
         logout.setOnClickListener() {
             auth.signOut()
             finish()
@@ -110,10 +112,11 @@ class ProfileActivity : AppCompatActivity() {
         val insertPoint = dialogView.findViewById(R.id.main_view) as ViewGroup
         val title = insertPoint.findViewById(R.id.dialog_title) as TextView
         if (x == 0)
-            title.text = "Twoje aktualne loty"
+            title.text = "Twoje nadchodzące loty"
         else
             title.text = "Twoja historia lotów"
 
+        var i = 0;
         for (flight in if (x == 0) userCurrentFlights else userHistoryFlights) {
             val rowView: View = inflater.inflate(R.layout.flight_row, null)
 
@@ -135,6 +138,20 @@ class ProfileActivity : AppCompatActivity() {
 
 
             insertPoint.addView(rowView, insertPoint.childCount)
+
+            rowView.setOnClickListener {
+                val intent = Intent(this, ProfileFlightsDetails::class.java)
+                val seatValue = SeatValue(stringToArrayList(flight[7]))
+                intent.putExtra("ids", seatValue)
+                intent.putExtra("class", flight[6])
+                intent.putExtra("wylot_z", flight[2])
+                intent.putExtra("przylot_do", flight[1])
+                intent.putExtra("data_wylotu", flight[0])
+                intent.putExtra("cena", flight[3])
+                setIntent(intent)
+                startActivity(intent)
+            }
+            i++;
         }
 
 //        dialogBuilder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which ->
@@ -148,10 +165,10 @@ class ProfileActivity : AppCompatActivity() {
     fun createCurrentReservationList() {
 
 
-        val r1 = findViewById(R.id.reservation1) as RelativeLayout
-        val r2 = findViewById(R.id.reservation2) as RelativeLayout
-        val btn = findViewById(R.id.buttonMoreCurrent) as Button
-        val findBtn = findViewById(R.id.findBtn) as Button
+        val r1 = findViewById<RelativeLayout>(R.id.reservation1)
+        val r2 = findViewById<RelativeLayout>(R.id.reservation2)
+        val btn = findViewById<Button>(R.id.buttonMoreCurrent)
+        val findBtn = findViewById<Button>(R.id.findBtn)
 
         val txt1 = r1.findViewById(R.id.reservation1_txt1) as TextView
         val txt2 = r1.findViewById(R.id.reservation1_txt2) as TextView
@@ -220,6 +237,17 @@ class ProfileActivity : AppCompatActivity() {
                 r2.visibility = View.VISIBLE;
             }
         }
+        if (userCurrentFlights.size > 0) {
+            r1.setOnClickListener {
+                showFlightDetails(0, userCurrentFlights)
+            }
+            if (userCurrentFlights.size >= 2) {
+                r2.setOnClickListener {
+                    showFlightDetails(1, userCurrentFlights)
+                }
+            }
+        }
+
     }
 
     fun createHistoryReservationList() {
@@ -240,22 +268,22 @@ class ProfileActivity : AppCompatActivity() {
         if (userHistoryFlights.size == 0) {
             println("no history reservations")
 
-            r1.visibility = View.GONE;
-            r2.visibility = View.GONE;
+            r1.visibility = View.GONE
+            r2.visibility = View.GONE
             //r1.removeAllViews()
             //r2.removeAllViews()
 
 
             //(btn.getParent() as ViewManager).removeView(btn)
-            btn.visibility = View.GONE;
+            btn.visibility = View.GONE
 
             val txtEmpty1 = findViewById(R.id.emptyInfoHistory) as TextView
             txtEmpty1.visibility = View.VISIBLE;
         } else {
             if (userHistoryFlights.size == 1) {
                 println("only one")
-                r2.visibility = View.GONE;
-                btn.visibility = View.GONE;
+                r2.visibility = View.GONE
+                btn.visibility = View.GONE
 
 
                 txt1.text = userHistoryFlights[0][2] //"Polska"
@@ -265,7 +293,7 @@ class ProfileActivity : AppCompatActivity() {
                 r1.visibility = View.VISIBLE;
             } else if (userHistoryFlights.size >= 2) {
                 if (userHistoryFlights.size > 2)
-                    btn.visibility = View.VISIBLE;
+                    btn.visibility = View.VISIBLE
 
                 txt1.text = userHistoryFlights[0][2] //"Polska"
                 txt2.text = userHistoryFlights[0][1]//"Kanada"
@@ -277,13 +305,38 @@ class ProfileActivity : AppCompatActivity() {
                 txt7.text = userHistoryFlights[1][0]//"15.01.2021"
 
 
-                r1.visibility = View.VISIBLE;
-                r2.visibility = View.VISIBLE;
+                r1.visibility = View.VISIBLE
+                r2.visibility = View.VISIBLE
+
             }
         }
 
+        if (userCurrentFlights.size > 0) {
+            r1.setOnClickListener {
+                showFlightDetails(0, userHistoryFlights)
+            }
+
+            if (userCurrentFlights.size >= 2) {
+                r2.setOnClickListener {
+                    showFlightDetails(1, userHistoryFlights)
+                }
+            }
+        }
     }
 
+
+    private fun showFlightDetails(flightId: Int, flight: ArrayList<ArrayList<String>>) {
+        val intent = Intent(this, ProfileFlightsDetails::class.java)
+        val seatValue = SeatValue(stringToArrayList(flight[flightId][7]))
+        intent.putExtra("ids", seatValue)
+        intent.putExtra("class", flight[flightId][6])
+        intent.putExtra("wylot_z", flight[flightId][2])
+        intent.putExtra("przylot_do", flight[flightId][1])
+        intent.putExtra("data_wylotu", flight[flightId][0])
+        intent.putExtra("cena", flight[flightId][3])
+        setIntent(intent)
+        startActivity(intent)
+    }
 
     private fun getUserFlights() {
         val uid = Firebase.auth.currentUser?.uid.toString()
@@ -302,12 +355,11 @@ class ProfileActivity : AppCompatActivity() {
                         .addOnSuccessListener { documents ->
                             userCurrentFlights.clear()
                             userHistoryFlights.clear()
-                            for (document in documents) {
-                                for (flight in flightsHashes) {
+                            for (flight in flightsHashes) {
+                                for (document in documents) {
                                     if (document.id == flight) {
                                         val documentArray = addFlightDataToArray(document)
-
-                                        val sdf = SimpleDateFormat("dd.MM.yyyy")
+                                        val sdf = SimpleDateFormat("yyyy-MM-dd")
                                         val strDate: Date = sdf.parse(documentArray[0])
                                         if (Date().after(strDate))
                                             userHistoryFlights.add(documentArray)
@@ -339,7 +391,7 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
-    fun addFlightDataToArray(document: QueryDocumentSnapshot): ArrayList<String> {
+    private fun addFlightDataToArray(document: QueryDocumentSnapshot): ArrayList<String> {
         val documentArray = ArrayList<String>()
         documentArray.add(document.data["date"] as String)
         documentArray.add(document.data["dest_place"] as String)
@@ -348,9 +400,10 @@ class ProfileActivity : AppCompatActivity() {
         documentArray.add(document.data["carrier"] as String)
         documentArray.add(document.data["hour"] as String)
         documentArray.add(document.data["seatClass"] as String)
-        documentArray.add((document.data["seatArray"] as ArrayList<*>).toString())
+        documentArray.add(((document.data["seatArray"] as ArrayList<*>).toString()))
 
         return documentArray
+
     }
 
     override fun onBackPressed() {
@@ -373,6 +426,24 @@ class ProfileActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    fun stringToArrayList(text: String): ArrayList<String> {
+        val seatsArrayString = text.substring(1, text.length - 1)
+        println("lista siedzen: $seatsArrayString")
+        val seatsArray: ArrayList<String>
+        val newSeatsArray = ArrayList<String>()
+        if (seatsArrayString.length > 3) {
+            seatsArray = seatsArrayString.split(",") as ArrayList<String>
+            for (seat in seatsArray) {
+                newSeatsArray.add(seat.replace(" ", ""))
+            }
+        } else {
+            newSeatsArray.add(seatsArrayString)
+        }
+
+        return newSeatsArray
+    }
+
 
     companion object {
         const val TAG = "ProfileActivity"
