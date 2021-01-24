@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="Monday"
                 android:fontFamily="@font/robotoregular"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textColor="#919191" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="March, 15"
                 android:fontFamily="@font/robotoregular"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textColor="#000" />
         </LinearLayout>
 
