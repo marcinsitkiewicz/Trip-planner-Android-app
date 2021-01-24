@@ -115,6 +115,7 @@ class FlightsListActivity : AppCompatActivity() {
                 lateinit var destinationCity : String
                 lateinit var originIata : String
                 lateinit var destinationIata : String
+                lateinit var carrier: String
                 val args = Bundle()
                 val flight = searchFeed.Quotes[it]
 
@@ -131,6 +132,12 @@ class FlightsListActivity : AppCompatActivity() {
                     }
                 }
 
+                for (carrierName in searchFeed.Carriers) {
+                    if (carrierName.CarrierId == flight.OutboundLeg.CarrierIds[0]) {
+                        carrier = carrierName.Name
+                    }
+                }
+
                 args.putString("departureDate", flight.OutboundLeg.DepartureDate)
                 args.putString("price", flight.MinPrice.toString())
                 args.putString("originPlace", originCity)
@@ -138,6 +145,7 @@ class FlightsListActivity : AppCompatActivity() {
                 args.putString("originIata", originIata)
                 args.putString("destinationIata", destinationIata)
                 args.putString("time", flight.FlightTime)
+                args.putString("carrier", carrier)
 
                 intent.putExtras(args)
 

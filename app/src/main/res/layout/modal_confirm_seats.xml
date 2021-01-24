@@ -237,6 +237,7 @@
 
 
             <Button
+                android:id="@+id/payButton"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
                 android:background="@drawable/ic_google_pay"
