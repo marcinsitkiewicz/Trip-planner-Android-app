@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trip_planner_andrid_app.flights.data.ClassSeatList
 import com.example.trip_planner_andrid_app.flights.data.FlightData
@@ -15,13 +16,13 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class SelectSeatActivity : AppCompatActivity() {
-    val seatsChecked = ArrayList<CheckBox>()
-    val listSeatIds = ArrayList<String>()
-    val seatsEconomyArray = ArrayList<CheckBox>()
-    val seatsPremiumArray = ArrayList<CheckBox>()
-    val seatsBusinessArray = ArrayList<CheckBox>()
+    private val seatsChecked = ArrayList<CheckBox>()
+    private val listSeatIds = ArrayList<String>()
+    private val seatsEconomyArray = ArrayList<CheckBox>()
+    private val seatsPremiumArray = ArrayList<CheckBox>()
+    private val seatsBusinessArray = ArrayList<CheckBox>()
 
-    var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
+    private var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
 
     var seatClass: String? = null
 
@@ -35,6 +36,8 @@ class SelectSeatActivity : AppCompatActivity() {
         val numberOfAdults = intent.getIntExtra("NumberOfAdults", 0)
         val numberOfKids = intent.getIntExtra("NumberOfKids", 0)
         val totalNumber = numberOfAdults + numberOfKids
+        val selectedClass: TextView = this.findViewById(R.id.selected_flight_class) as TextView
+        selectedClass.text = seatClass
 
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_fragment, null)
@@ -57,13 +60,13 @@ class SelectSeatActivity : AppCompatActivity() {
             startActivity(intentConfirm)
         }
 
-        System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
-        System.out.println("Klasa siedzeń $seatClass")
+        println("numery $numberOfAdults $numberOfKids $totalNumber")
+        println("Klasa siedzeń $seatClass")
 
         var numberOfCheckboxesChecked = 0
         fun seatListener(seat: CheckBox) {
             seat.setOnClickListener { isChecked ->
-                if (numberOfCheckboxesChecked >= totalNumber.toInt()) {
+                if (numberOfCheckboxesChecked >= totalNumber) {
                     if (seat.isChecked) {
                         seatsChecked.add(seat)
                         seatsChecked[0].isChecked = false

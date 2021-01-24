@@ -1,6 +1,4 @@
 package com.example.trip_planner_andrid_app
-
-//import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import SeatIdAdapter
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -27,7 +25,7 @@ class ConfirmFlight: AppCompatActivity() {
 
     private var mRecyclerView: RecyclerView? = null
     private var mAdapter: RecyclerView.Adapter<*>? = null
-    var listOfSeats: ArrayList<Seat> = ArrayList()
+    private var listOfSeats: ArrayList<Seat> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +45,7 @@ class ConfirmFlight: AppCompatActivity() {
             println(seat.seatClass)
         }
         mRecyclerView = findViewById(R.id.recyclerview)
-        var mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         mRecyclerView!!.layoutManager = mLayoutManager
         mAdapter = SeatIdAdapter(listOfSeats)
         mRecyclerView!!.adapter = mAdapter
