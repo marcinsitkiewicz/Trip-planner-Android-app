@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app.flights
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
@@ -19,9 +20,8 @@ import java.io.IOException
 
 @SuppressLint("Registered")
 class FlightsListActivity : AppCompatActivity() {
-
+    var inboundDateString: String = ""
     private lateinit var queryUrl: String
-
     override fun onPause() {
         super.onPause()
         intent.putExtra("inboundDateString", "")
@@ -37,7 +37,7 @@ class FlightsListActivity : AppCompatActivity() {
         val originPlace = intent.getStringExtra("originPlace")
         val destinationPlace = intent.getStringExtra("destinationPlace")
         val outboundDateString = intent.getStringExtra("outboundDateString")
-        val inboundDateString = intent.getStringExtra("inboundDateString")
+        inboundDateString = intent.getStringExtra("inboundDateString").toString()
 
         from_to.text = originPlace?.split("-")!![0].trim() + " - " + destinationPlace?.split("-")!![0].trim()
         if (inboundDateString != "") {
@@ -103,9 +103,21 @@ class FlightsListActivity : AppCompatActivity() {
 
             if (searchFeed.Quotes.isEmpty()) {
                 emptyInfo.visibility = VISIBLE
+            } else {
+                val count = searchFeed.Quotes.count()
+                when {
+                    count == 1 -> {
+                        found.text = "Znaleziono $count lot."
+                    }
+                    count < 5 -> {
+                        found.text = "Znaleziono $count loty."
+                    }
+                    count >= 5 -> {
+                        found.text = "Znaleziono $count lotów."
+                    }
+                }
             }
-            val count = searchFeed.Quotes.count()
-            found.text = "Znaleziono $count loty."
+            progressBar.visibility = View.GONE
 
             recyclerView_main.adapter = FlightsAdapter(searchFeed, this){
 
@@ -115,6 +127,7 @@ class FlightsListActivity : AppCompatActivity() {
                 lateinit var destinationCity : String
                 lateinit var originIata : String
                 lateinit var destinationIata : String
+                lateinit var carrier: String
                 val args = Bundle()
                 val flight = searchFeed.Quotes[it]
 
@@ -131,6 +144,15 @@ class FlightsListActivity : AppCompatActivity() {
                     }
                 }
 
+                for (carrierName in searchFeed.Carriers) {
+                    if (carrierName.CarrierId == flight.OutboundLeg.CarrierIds[0]) {
+                        carrier = carrierName.Name
+                    }
+                }
+
+                if(inboundDateString != ""){
+                    args.putString("inboundDateString", inboundDateString)
+                }
                 args.putString("departureDate", flight.OutboundLeg.DepartureDate)
                 args.putString("price", flight.MinPrice.toString())
                 args.putString("originPlace", originCity)
@@ -138,6 +160,7 @@ class FlightsListActivity : AppCompatActivity() {
                 args.putString("originIata", originIata)
                 args.putString("destinationIata", destinationIata)
                 args.putString("time", flight.FlightTime)
+                args.putString("carrier", carrier)
 
                 intent.putExtras(args)
 

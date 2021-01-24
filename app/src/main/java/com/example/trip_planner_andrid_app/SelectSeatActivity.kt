@@ -3,8 +3,10 @@ package com.example.trip_planner_andrid_app
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.trip_planner_andrid_app.flights.data.Class
+import com.example.trip_planner_andrid_app.flights.data.ClassSeatList
+import com.example.trip_planner_andrid_app.flights.data.FlightData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottomsheet_fragment.view.*
 import kotlinx.android.synthetic.main.plane_modal.*
@@ -14,13 +16,13 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class SelectSeatActivity : AppCompatActivity() {
-    val seatsChecked = ArrayList<CheckBox>()
-    val listSeatIds = ArrayList<String>()
-    val seatsEconomyArray = ArrayList<CheckBox>()
-    val seatsPremiumArray = ArrayList<CheckBox>()
-    val seatsBusinessArray = ArrayList<CheckBox>()
+    private val seatsChecked = ArrayList<CheckBox>()
+    private val listSeatIds = ArrayList<String>()
+    private val seatsEconomyArray = ArrayList<CheckBox>()
+    private val seatsPremiumArray = ArrayList<CheckBox>()
+    private val seatsBusinessArray = ArrayList<CheckBox>()
 
-    var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
+    private var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
 
     var seatClass: String? = null
 
@@ -34,6 +36,8 @@ class SelectSeatActivity : AppCompatActivity() {
         val numberOfAdults = intent.getIntExtra("NumberOfAdults", 0)
         val numberOfKids = intent.getIntExtra("NumberOfKids", 0)
         val totalNumber = numberOfAdults + numberOfKids
+        val selectedClass: TextView = this.findViewById(R.id.selected_flight_class) as TextView
+        selectedClass.text = seatClass
 
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_fragment, null)
@@ -48,17 +52,21 @@ class SelectSeatActivity : AppCompatActivity() {
             val seatValue = SeatValue(listSeatIds)
             intentConfirm.putExtra("ids",seatValue)
             intentConfirm.putExtra("class", seatClass)
+
+            val flightData = intent.getSerializableExtra("flightData") as FlightData
+            intentConfirm.putExtra("flightData", flightData)
+
             setIntent(intentConfirm)
             startActivity(intentConfirm)
         }
 
-        System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
-        System.out.println("Klasa siedzeń $seatClass")
+        println("numery $numberOfAdults $numberOfKids $totalNumber")
+        println("Klasa siedzeń $seatClass")
 
         var numberOfCheckboxesChecked = 0
         fun seatListener(seat: CheckBox) {
             seat.setOnClickListener { isChecked ->
-                if (numberOfCheckboxesChecked >= totalNumber.toInt()) {
+                if (numberOfCheckboxesChecked >= totalNumber) {
                     if (seat.isChecked) {
                         seatsChecked.add(seat)
                         seatsChecked[0].isChecked = false
@@ -491,9 +499,9 @@ class SelectSeatActivity : AppCompatActivity() {
         seatsHashMap.put(seatEconomy58, "20D")
         seatsEconomyArray.add(seatEconomy58)
 
-        val reservedEconomySeats = intent.getSerializableExtra("reservedEconomySeats") as Class
-        val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as Class
-        val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as Class
+        val reservedEconomySeats = intent.getSerializableExtra("reservedEconomySeats") as ClassSeatList
+        val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as ClassSeatList
+        val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as ClassSeatList
 
         prepareRandomSeats(reservedEconomySeats.seats, reservedPremiumSeats.seats, reservedBusinessSeats.seats)
         disableSeats()

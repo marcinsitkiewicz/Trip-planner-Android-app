@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.NumberPicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trip_planner_andrid_app.R
@@ -22,9 +23,14 @@ import java.util.concurrent.ThreadLocalRandom
 class NewFlightDetails: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.flight_details_new)
-
         val bundle = intent.extras
+        val inboundDateString = bundle?.getString("inboundDateString")
+        println("inboundDateString ->details --> $inboundDateString")
+        if(inboundDateString.equals(null)) {
+            setContentView(R.layout.flight_details_new)
+        }else{
+            setContentView(R.layout.flight_details_two_ways)
+        }
 
         val originIata = bundle?.getString("originIata")
         val destinationIata = bundle?.getString("destinationIata")
@@ -37,8 +43,6 @@ class NewFlightDetails: AppCompatActivity() {
         val numberOfAdults: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
         val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
 
-        val classSeat:String
-
         val intent = Intent(this, SelectSeatActivity::class.java)
 
         originIataTextView.text = originIata
@@ -49,32 +53,47 @@ class NewFlightDetails: AppCompatActivity() {
 
         select_numberOf_Adults.setOnClickListener { showAlertDialogAdults() }
         select_numberOf_Kids.setOnClickListener { showAlertDialogKids() }
-        seatsButton.setOnClickListener() {
+        seatsButton.setOnClickListener {
             val pickedValueAdults: Int = Integer.parseInt(numberOfAdults.text.toString())
             val pickedValueKids: Int = Integer.parseInt(numberOfKids.text.toString())
             println("\n\n\n" + pickedValueAdults + "\n\n" + pickedValueKids + "\n\n\n")
+            if((pickedValueAdults + pickedValueKids) == 0){
+                Toast.makeText(this@NewFlightDetails,
+                        "Musisz wybrać co najmniej 1 siedzenie",
+                            Toast.LENGTH_SHORT).show()
 
-            intent.putExtra("NumberOfAdults", pickedValueAdults)
-            intent.putExtra("NumberOfKids", pickedValueKids)
-            setIntent(intent)
-            startActivity(intent)
+            }else {
+                intent.putExtra("NumberOfAdults", pickedValueAdults)
+                intent.putExtra("NumberOfKids", pickedValueKids)
+                setIntent(intent)
+                startActivity(intent)
+            }
         }
 
         val reservedEconomySeats = generateRandomNumberOfSeats(20, 59)
         val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
         val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
 
-        val economyClass = Class(reservedEconomySeats)
-        val businessClass = Class(reservedBusinessSeats)
-        val premiumClass = Class(reservedPremiumSeats)
+        val economyClass = ClassSeatList(reservedEconomySeats)
+        val businessClass = ClassSeatList(reservedBusinessSeats)
+        val premiumClass = ClassSeatList(reservedPremiumSeats)
 
         intent.putExtra("reservedEconomySeats", economyClass)
         intent.putExtra("reservedBusinessSeats", businessClass)
         intent.putExtra("reservedPremiumSeats", premiumClass)
 
+        val departureDate = bundle?.getString("departureDate").toString()
+        val price = bundle?.getString("price").toString()
+        val originPlace = bundle?.getString("originPlace").toString()
+        val destinationPlace = bundle?.getString("destinationPlace").toString()
+        val carrier = bundle?.getString("carrier").toString()
+
+        val flightData = FlightData(departureDate, price, originPlace, destinationPlace, originIata.toString(), destinationIata.toString(), time.toString(), carrier)
+
+        intent.putExtra("flightData", flightData)
     }
 
-    fun generateRandomNumberOfSeats(limit: Int, bound: Int): LinkedHashSet<Int> {
+    private fun generateRandomNumberOfSeats(limit: Int, bound: Int): LinkedHashSet<Int> {
         val ints = LinkedHashSet<Int>()
         val numbersOfElements = (0..limit).shuffled().first()
         for (i in 0..numbersOfElements) {
@@ -93,7 +112,7 @@ class NewFlightDetails: AppCompatActivity() {
 //        val npK: NumberPicker = dialogView.findViewById(R.id.numberPickerKids) as NumberPicker
 
 
-        npA.minValue = 1
+        npA.minValue = 0
         npA.maxValue = 5
         npA.value = 1
 
@@ -186,11 +205,11 @@ class NewFlightDetails: AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 var selectedItem = parent!!.getItemAtPosition(position)
 
-                selectedItem = selectedItem.toString();
+                selectedItem = selectedItem.toString()
 
-                selectedItem = selectedItem.substring(selectedItem.indexOf("name=")+5, selectedItem.length -1);
+                selectedItem = selectedItem.substring(selectedItem.indexOf("name=")+5, selectedItem.length -1)
                 intent.putExtra("SeatClass", selectedItem)
-                System.out.println(selectedItem)
+                println(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -201,7 +220,8 @@ class NewFlightDetails: AppCompatActivity() {
 
 }
 
-class Class(var seats: LinkedHashSet<Int>) : Serializable
+class ClassSeatList(var seats: LinkedHashSet<Int>) : Serializable
+class FlightData(var date: String, var price: String, var originPlace: String, var destinationPlace: String, var originIata: String, var destinationIata: String, var time: String, var carrier: String) : Serializable
 
 //    private fun setupSimpleSpinner(){
 //        val adapter = ArrayAdapter.createFromResource(this,

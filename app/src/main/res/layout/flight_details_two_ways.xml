@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="start"
+    android:background="#F8F8F8">
+
+    <RelativeLayout
+        android:id="@+id/Details-header"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bg_purple_rectangle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szczegóły lotu"
+            android:textColor="#FFF"
+            android:fontFamily="@font/robotobold"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" />
+
+        <RelativeLayout
+            android:id="@+id/oneway"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginEnd="120dp"
+                android:layerType="software"
+                android:src="@drawable/dashed_line" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_airplane"
+                android:layout_marginTop="57dp"
+                android:layout_centerHorizontal="true"
+                android:rotation="90"
+                android:layerType="software" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="25dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_alignParentLeft="true">
+
+                <TextView
+                    android:id="@+id/origin_iata_two_ways"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WAW"
+                    android:fontFamily="@font/robotobold"
+                    android:textSize="23sp"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/outbound_time_two_ways"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8:30"
+                    android:fontFamily="@font/robotoregular"
+                    android:textSize="16sp"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/destination_iata_two_ways"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JFK"
+                    android:fontFamily="@font/robotobold"
+                    android:textSize="23sp"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18:00"
+                    android:fontFamily="@font/robotoregular"
+                    android:textSize="16sp"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@id/oneway"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="120dp"
+                android:layerType="software"
+                android:src="@drawable/dashed_line" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_airplane"
+                android:layout_marginTop="24dp"
+                android:layout_centerHorizontal="true"
+                android:rotation="270"
+                android:layerType="software" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="45dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_alignParentLeft="true">
+
+                <TextView
+                    android:id="@+id/origin_iatatwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WAW"
+                    android:fontFamily="@font/robotobold"
+                    android:textSize="18sp"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/inbound_time_two_ways"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8:30"
+                    android:fontFamily="@font/robotoregular"
+                    android:textSize="11sp"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="45dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/destination_iatatwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:fontFamily="@font/robotobold"
+                    android:text="JFK"
+                    android:textColor="#FFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotoregular"
+                    android:text="18:00"
+                    android:textColor="#FFF"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Details-header">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/Detailed_info"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_white_box"
+                android:elevation="2.5dp"
+                android:visibility="visible">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/Detailed_info"
+                android:id="@+id/Reservation_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_white_box"
+                android:elevation="2.5dp"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <Spinner
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/select_class"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_height="50dp"
+                    android:entries="@array/class_list"
+                    android:spinnerMode="dropdown"></Spinner>
+                <!--            <Spinner-->
+                <!--                android:id="@+id/amountOf_seats"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_marginHorizontal="20dp"-->
+                <!--                android:layout_height="50dp"-->
+                <!--                android:entries="@array/how_much_seats"-->
+                <!--                android:spinnerMode="dialog"-->
+                <!--                android:textAlignment="center">-->
+                <!--            </Spinner>-->
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/select_numberOf_Adults"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wybierz liczbę dorosłych"
+                        android:textAllCaps="false"
+                        android:textSize="15sp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_white_box"
+                        android:padding="10dp"
+                        android:fontFamily="@font/robotoregular" />
+
+                    <TextView
+                        android:id="@+id/numberOf_seatsAdults"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="25sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/robotobold" />
+                    <!--            <NumberPicker-->
+                    <!--                android:id="@+id/amountOf_seatsPICKER"-->
+                    <!--                android:layout_margin="10dp"-->
+                    <!--                android:layout_width="wrap_content"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:elevation="2.5dp"-->
+                    <!--                android:layoutMode="opticalBounds"/>-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/select_numberOf_Kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wybierz liczbę dzieci"
+                        android:textAllCaps="false"
+                        android:textSize="15sp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_white_box"
+                        android:padding="10dp"
+                        android:fontFamily="@font/robotoregular" />
+
+                    <TextView
+                        android:id="@+id/numberOf_seatsKids"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="25sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/robotobold" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/seatsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_button"
+                    android:fontFamily="@font/robotobold"
+                    android:text="@string/wybierz_siedzenie"
+                    android:textSize="18sp"
+                    android:textAllCaps="false"
+                    android:translationZ="90dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>
+
