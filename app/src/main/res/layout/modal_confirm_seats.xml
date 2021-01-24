@@ -25,6 +25,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:id="@+id/weekDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monday"
@@ -33,6 +34,7 @@
                 android:textColor="#919191" />
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="March, 15"
@@ -52,7 +54,7 @@
             android:layout_alignParentLeft="true">
 
             <TextView
-
+                android:id="@+id/originIata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WAW"
@@ -61,7 +63,7 @@
                 android:textColor="#000" />
 
             <TextView
-
+                android:id="@+id/originPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Warszawa"
@@ -81,7 +83,7 @@
             android:layout_alignParentRight="true">
 
             <TextView
-
+                android:id="@+id/destinationIata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JFK"
@@ -90,6 +92,7 @@
                 android:textColor="#000" />
 
             <TextView
+                android:id="@+id/destinationPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nowy Jork"
@@ -105,6 +108,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/timeDifference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -125,7 +129,7 @@
             android:layout_alignParentLeft="true">
 
             <TextView
-
+                android:id="@+id/timeOutbound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9:50"
@@ -154,7 +158,7 @@
             android:layout_alignParentRight="true">
 
             <TextView
-
+                android:id="@+id/timeInbound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12:50"
@@ -209,7 +213,7 @@
             android:layout_alignParentLeft="true">
 
             <TextView
-
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="656 PLN"

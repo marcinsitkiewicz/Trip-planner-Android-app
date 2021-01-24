@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app.flights
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
@@ -103,9 +104,21 @@ class FlightsListActivity : AppCompatActivity() {
 
             if (searchFeed.Quotes.isEmpty()) {
                 emptyInfo.visibility = VISIBLE
+            } else {
+                val count = searchFeed.Quotes.count()
+                when {
+                    count == 1 -> {
+                        found.text = "Znaleziono $count lot."
+                    }
+                    count < 5 -> {
+                        found.text = "Znaleziono $count loty."
+                    }
+                    count >= 5 -> {
+                        found.text = "Znaleziono $count lotów."
+                    }
+                }
             }
-            val count = searchFeed.Quotes.count()
-            found.text = "Znaleziono $count loty."
+            progressBar.visibility = View.GONE
 
             recyclerView_main.adapter = FlightsAdapter(searchFeed, this){
 
