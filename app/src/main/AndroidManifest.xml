@@ -35,6 +35,9 @@
 			android:launchMode="singleTask">
 		</activity>
 
+		<activity android:name=".ProfileFlightsDetails"
+				  android:parentActivityName=".ProfileActivity">
+		</activity>
 
 		<activity android:name=".FirestoreConnectionActivity"
 			android:parentActivityName=".MainActivity">

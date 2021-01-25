@@ -20,9 +20,8 @@ import java.io.IOException
 
 @SuppressLint("Registered")
 class FlightsListActivity : AppCompatActivity() {
-
+    var inboundDateString: String = ""
     private lateinit var queryUrl: String
-
     override fun onPause() {
         super.onPause()
         intent.putExtra("inboundDateString", "")
@@ -38,7 +37,7 @@ class FlightsListActivity : AppCompatActivity() {
         val originPlace = intent.getStringExtra("originPlace")
         val destinationPlace = intent.getStringExtra("destinationPlace")
         val outboundDateString = intent.getStringExtra("outboundDateString")
-        val inboundDateString = intent.getStringExtra("inboundDateString")
+        inboundDateString = intent.getStringExtra("inboundDateString").toString()
 
         from_to.text = originPlace?.split("-")!![0].trim() + " - " + destinationPlace?.split("-")!![0].trim()
         if (inboundDateString != "") {
@@ -151,6 +150,9 @@ class FlightsListActivity : AppCompatActivity() {
                     }
                 }
 
+                if(inboundDateString != ""){
+                    args.putString("inboundDateString", inboundDateString)
+                }
                 args.putString("departureDate", flight.OutboundLeg.DepartureDate)
                 args.putString("price", flight.MinPrice.toString())
                 args.putString("originPlace", originCity)

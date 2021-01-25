@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trip_planner_andrid_app.flights.data.ClassSeatList
 import com.example.trip_planner_andrid_app.flights.data.FlightData
@@ -15,13 +16,13 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class SelectSeatActivity : AppCompatActivity() {
-    val seatsChecked = ArrayList<CheckBox>()
-    val listSeatIds = ArrayList<String>()
-    val seatsEconomyArray = ArrayList<CheckBox>()
-    val seatsPremiumArray = ArrayList<CheckBox>()
-    val seatsBusinessArray = ArrayList<CheckBox>()
+    private val seatsChecked = ArrayList<CheckBox>()
+    private val listSeatIds = ArrayList<String>()
+    private val seatsEconomyArray = ArrayList<CheckBox>()
+    private val seatsPremiumArray = ArrayList<CheckBox>()
+    private val seatsBusinessArray = ArrayList<CheckBox>()
 
-    var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
+    private var seatsHashMap: HashMap<CheckBox, String> = HashMap<CheckBox, String>()
 
     var seatClass: String? = null
 
@@ -36,18 +37,29 @@ class SelectSeatActivity : AppCompatActivity() {
         val numberOfKids = intent.getIntExtra("NumberOfKids", 0)
         val totalNumber = numberOfAdults + numberOfKids
 
+        val inboundDateString = intent.getStringExtra("inboundDateString")
+
+        val selectedClass: TextView = this.findViewById(R.id.selected_flight_class) as TextView
+        selectedClass.text = seatClass
+
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_fragment, null)
         bottomSheetDialog.setContentView(view)
+        val bottomSheetInfo = view.findViewById(R.id.seat_info_popup) as TextView
+        println("inboundDateString->modal check ----> $inboundDateString")
+        if (!inboundDateString.equals(null)) {
+            bottomSheetInfo.text = "Zaznaczono wszystkie siedzenia dla pierwszego lotu," +
+                    " przejdź do lotu powrotnego"
+        }
 
         val intentConfirm = Intent(this, ConfirmFlight::class.java)
 
-        view.btn1.setOnClickListener{
-            for(seat in seatsChecked){
+        view.btn1.setOnClickListener {
+            for (seat in seatsChecked) {
                 listSeatIds.add(seatsHashMap.getValue(seat))
             }
             val seatValue = SeatValue(listSeatIds)
-            intentConfirm.putExtra("ids",seatValue)
+            intentConfirm.putExtra("ids", seatValue)
             intentConfirm.putExtra("class", seatClass)
 
             val flightData = intent.getSerializableExtra("flightData") as FlightData
@@ -57,13 +69,13 @@ class SelectSeatActivity : AppCompatActivity() {
             startActivity(intentConfirm)
         }
 
-        System.out.println("numery $numberOfAdults $numberOfKids $totalNumber")
-        System.out.println("Klasa siedzeń $seatClass")
+        println("numery $numberOfAdults $numberOfKids $totalNumber")
+        println("Klasa siedzeń $seatClass")
 
         var numberOfCheckboxesChecked = 0
         fun seatListener(seat: CheckBox) {
             seat.setOnClickListener { isChecked ->
-                if (numberOfCheckboxesChecked >= totalNumber.toInt()) {
+                if (numberOfCheckboxesChecked >= totalNumber) {
                     if (seat.isChecked) {
                         seatsChecked.add(seat)
                         seatsChecked[0].isChecked = false
@@ -500,11 +512,33 @@ class SelectSeatActivity : AppCompatActivity() {
         val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as ClassSeatList
         val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as ClassSeatList
 
+        if (inboundDateString.equals(null)) {
+            val reservedEconomySeatsTwoWays = intent.getSerializableExtra("reservedEconomySeatsTwoWay") as ClassSeatList
+            val reservedPremiumSeatsTwoWays = intent.getSerializableExtra("reservedPremiumSeatsTwoWay") as ClassSeatList
+            val reservedBusinessSeatsTwoWays =
+                intent.getSerializableExtra("reservedBusinessSeatsTwoWay") as ClassSeatList
+
+            if (!reservedEconomySeatsTwoWays.equals(null) &&
+                !reservedPremiumSeatsTwoWays.equals(null) &&
+                !reservedBusinessSeatsTwoWays.equals(null)
+            ) {
+
+                prepareRandomSeats(
+                    reservedEconomySeatsTwoWays.seats,
+                    reservedPremiumSeatsTwoWays.seats,
+                    reservedBusinessSeatsTwoWays.seats
+                )
+            }
+        }
         prepareRandomSeats(reservedEconomySeats.seats, reservedPremiumSeats.seats, reservedBusinessSeats.seats)
         disableSeats()
     }
 
-    fun prepareRandomSeats(reservedEconomySeats: LinkedHashSet<Int>, reservedPremiumSeats: LinkedHashSet<Int>, reservedBusinessSeats: LinkedHashSet<Int>) {
+    fun prepareRandomSeats(
+        reservedEconomySeats: LinkedHashSet<Int>,
+        reservedPremiumSeats: LinkedHashSet<Int>,
+        reservedBusinessSeats: LinkedHashSet<Int>
+    ) {
         for (num in reservedEconomySeats) {
             val reservedSeat: CheckBox = seatsEconomyArray.get(num)
             reservedSeat.setBackgroundColor(R.drawable.bg_seat_plane_reserved)
