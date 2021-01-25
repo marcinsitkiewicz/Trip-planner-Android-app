@@ -6,6 +6,8 @@
     <string name="desc_firebase_lockup">Firebase logo and name</string>
     <string name="emailpassword_title_text">Email and Password</string>
     <string name="signed_out">Signed Out</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_lastname">Lastname</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="sign_in">Sign In</string>
@@ -19,6 +21,9 @@
     <string name="email_address">Email…</string>
     <string name="password">Hasło…</string>
     <string name="password_rpt">Powtórz hasło…</string>
+    <string name="name">Imię…</string>
+    <string name="lastname">Nazwisko…</string>
+
 
     <string name="close">Close</string>
     <string name="open">Open</string>
