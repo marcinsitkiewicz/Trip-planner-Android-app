@@ -23,6 +23,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -42,8 +43,8 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private var outboundDateString : String = ""
     private var inboundDateString : String = ""
 
-    private var auth: FirebaseAuth = Firebase.auth
-    private var user = auth.currentUser
+    private var auth: FirebaseAuth? = null
+    private var user: FirebaseUser? = null
 
     private var userName: String? = null
     private var userLastname: String? = null
@@ -52,6 +53,9 @@ class SearchForFlightsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_for_flights_activity)
+
+        auth = Firebase.auth
+        user = auth?.currentUser
 
         setupNavBar()
         if (user != null) {
@@ -161,6 +165,16 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        auth = Firebase.auth
+        user = auth?.currentUser
+
+        if (user != null) {
+            getUserName()
+        }
+    }
+
     private fun getUserName() {
         val uid = user?.uid.toString()
         val db = Firebase.firestore
@@ -204,7 +218,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 }
                 R.id.nav_send -> {
                     drawer.closeDrawer(GravityCompat.START)
-                    auth.signOut()
+                    auth?.signOut()
                     finish()
                     startActivity(Intent(this, LoginActivity()::class.java))
                 }

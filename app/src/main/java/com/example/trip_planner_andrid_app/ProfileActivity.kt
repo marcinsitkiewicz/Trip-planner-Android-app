@@ -1,6 +1,5 @@
 package com.example.trip_planner_andrid_app
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -21,10 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.profile_activity.*
-import kotlinx.android.synthetic.main.profile_activity.drawer
-import kotlinx.android.synthetic.main.profile_activity.navigation_view
 import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.profile_activity.*
 import java.util.*
 import kotlin.collections.ArrayList
 
