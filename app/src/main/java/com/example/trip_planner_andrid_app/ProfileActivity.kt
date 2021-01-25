@@ -24,7 +24,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_activity.*
 import kotlinx.android.synthetic.main.profile_activity.drawer
 import kotlinx.android.synthetic.main.profile_activity.navigation_view
-import kotlinx.android.synthetic.main.search_for_flights_activity.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -40,6 +40,7 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.profile_activity)
 
         setupNavBar()
+        getUserName()
 
         findBtn.setOnClickListener() {
             startActivity(Intent(this, SearchForFlightsActivity::class.java))
@@ -59,6 +60,27 @@ class ProfileActivity : AppCompatActivity() {
         buttonMoreHistory.setOnClickListener { showAlertDialogFlights(1) }
 
         getUserFlights()
+    }
+
+    private fun getUserName() {
+        val auth: FirebaseAuth = Firebase.auth
+        val user = auth.currentUser
+        val uid = user?.uid.toString()
+        val db = Firebase.firestore
+
+        val docRef = db.collection("users").document(uid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val userName = document["name"] as String?
+                    val userLastname = document["lastname"] as String?
+                    findViewById<TextView>(R.id.navFullName).text = "$userName $userLastname"
+                    findViewById<TextView>(R.id.navMail).text = user?.email
+                    findViewById<TextView>(R.id.profileName).text = "$userName $userLastname"
+                } else {
+                    println("brak dokumentu obecnego usera")
+                }
+            }
     }
 
     private fun setupNavBar() {

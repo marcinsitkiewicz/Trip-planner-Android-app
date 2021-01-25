@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +24,11 @@ import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.drawer
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,18 +45,19 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private var auth: FirebaseAuth = Firebase.auth
     private var user = auth.currentUser
 
+    private var userName: String? = null
+    private var userLastname: String? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_for_flights_activity)
 
-        setAutocomplete()
-
-        if (user != null) {
-//            textUsername.text = user!!.email + ", (" + user!!.uid + ")"
-        }
-
         setupNavBar()
+        if (user != null) {
+            getUserName()
+        }
+        setAutocomplete()
 
         covidGo.setOnClickListener {
             startActivity(Intent(this, MapActivity()::class.java))
@@ -155,6 +159,25 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 picker.show(supportFragmentManager, picker.toString())
             }
         }
+    }
+
+    private fun getUserName() {
+        val uid = user?.uid.toString()
+        val db = Firebase.firestore
+
+        val docRef = db.collection("users").document(uid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    userName = document["name"] as String?
+                    userLastname = document["lastname"] as String?
+                    textUsername.text = userName
+                    findViewById<TextView>(R.id.navFullName).text = "$userName $userLastname"
+                    findViewById<TextView>(R.id.navMail).text = user?.email
+                } else {
+                    println("brak dokumentu obecnego usera")
+                }
+            }
     }
 
     private fun setupNavBar() {
