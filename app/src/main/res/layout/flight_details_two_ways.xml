@@ -136,7 +136,7 @@
                 android:layout_alignParentLeft="true">
 
                 <TextView
-                    android:id="@+id/origin_iatatwo"
+                    android:id="@+id/destination_iatatwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WAW"
@@ -148,7 +148,7 @@
                     android:id="@+id/inbound_time_two_ways"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8:30"
+                    android:text="14:45"
                     android:fontFamily="@font/robotoregular"
                     android:textSize="11sp"
                     android:textColor="#FFF" />
@@ -164,7 +164,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/destination_iatatwo"
+                    android:id="@+id/origin_iatatwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"

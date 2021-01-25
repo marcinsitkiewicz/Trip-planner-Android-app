@@ -26,36 +26,63 @@ class NewFlightDetails: AppCompatActivity() {
         val bundle = intent.extras
         val inboundDateString = bundle?.getString("inboundDateString")
         println("inboundDateString ->details --> $inboundDateString")
+
+        var originIataTextView: TextView? = null
+        var destinationIataTextView: TextView? = null
+        var outboundTime: TextView? = null
+
+        var destinationIataTextViewTwoWays: TextView? = null
+        var originIataTextViewTwoWays: TextView? = null
+
         if(inboundDateString.equals(null)) {
             setContentView(R.layout.flight_details_new)
+
+            originIataTextView = this.findViewById(R.id.origin_iata) as TextView
+            destinationIataTextView = this.findViewById(R.id.destination_iata) as TextView
+            outboundTime = this.findViewById(R.id.outbound_time) as TextView
+
         }else{
             setContentView(R.layout.flight_details_two_ways)
+
+            originIataTextView = this.findViewById(R.id.origin_iata_two_ways) as TextView
+            destinationIataTextView = this.findViewById(R.id.destination_iata_two_ways) as TextView
+            outboundTime = this.findViewById(R.id.outbound_time_two_ways) as TextView
+
+            destinationIataTextViewTwoWays = this.findViewById(R.id.destination_iatatwo) as TextView
+            originIataTextViewTwoWays = this.findViewById(R.id.origin_iatatwo) as TextView
+
         }
 
         val originIata = bundle?.getString("originIata")
         val destinationIata = bundle?.getString("destinationIata")
         val time = bundle?.getString("time")
 
-        val originIataTextView: TextView = this.findViewById(R.id.origin_iata) as TextView
-        val destinationIataTextView: TextView = this.findViewById(R.id.destination_iata) as TextView
-        val outboundTime: TextView = this.findViewById(R.id.outbound_time) as TextView
-
+//        val originIataTextView: TextView = this.findViewById(R.id.origin_iata) as TextView
+//        val destinationIataTextView: TextView = this.findViewById(R.id.destination_iata) as TextView
+//        val outboundTime: TextView = this.findViewById(R.id.outbound_time) as TextView
+//
         val numberOfAdults: TextView = this.findViewById(R.id.numberOf_seatsAdults) as TextView
         val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
 
         val intent = Intent(this, SelectSeatActivity::class.java)
+        if(!inboundDateString.equals(null)) {
+            intent.putExtra("inboundDateString", inboundDateString)
+        }
+        originIataTextView?.text = originIata
+        destinationIataTextView?.text = destinationIata
+        outboundTime?.text = time
+        println("time----->$time")
+        destinationIataTextViewTwoWays?.text = originIata
+        originIataTextViewTwoWays?.text = destinationIata
 
-        originIataTextView.text = originIata
-        destinationIataTextView.text = destinationIata
-        outboundTime.text = time
 
         setupCustomSpinner(intent)
 
         select_numberOf_Adults.setOnClickListener { showAlertDialogAdults() }
         select_numberOf_Kids.setOnClickListener { showAlertDialogKids() }
         seatsButton.setOnClickListener {
-            val pickedValueAdults: Int = Integer.parseInt(numberOfAdults.text.toString())
-            val pickedValueKids: Int = Integer.parseInt(numberOfKids.text.toString())
+            val pickedValueAdults: Int = Integer.parseInt(numberOfAdults?.text.toString())
+            val pickedValueKids: Int = Integer.parseInt(numberOfKids?.text.toString())
             println("\n\n\n" + pickedValueAdults + "\n\n" + pickedValueKids + "\n\n\n")
             if((pickedValueAdults + pickedValueKids) == 0){
                 Toast.makeText(this@NewFlightDetails,
@@ -81,6 +108,21 @@ class NewFlightDetails: AppCompatActivity() {
         intent.putExtra("reservedEconomySeats", economyClass)
         intent.putExtra("reservedBusinessSeats", businessClass)
         intent.putExtra("reservedPremiumSeats", premiumClass)
+
+        if(!inboundDateString.equals(null)){
+            println("inboundDateString intent -->$inboundDateString")
+            val reservedEconomySeatsTwoWay = generateRandomNumberOfSeats(20, 59)
+            val reservedBusinessSeatsTwoWay = generateRandomNumberOfSeats(12, 16)
+            val reservedPremiumSeatsTwoWay= generateRandomNumberOfSeats(20, 24)
+
+            val economyClassTwoWay = ClassSeatList(reservedEconomySeatsTwoWay)
+            val businessClassTwoWay = ClassSeatList(reservedBusinessSeatsTwoWay)
+            val premiumClassTwoWay = ClassSeatList(reservedPremiumSeatsTwoWay)
+
+            intent.putExtra("reservedEconomySeatsTwoWay", economyClassTwoWay)
+            intent.putExtra("reservedBusinessSeatsTwoWay", businessClassTwoWay)
+            intent.putExtra("reservedPremiumSeatsTwoWay", premiumClassTwoWay)
+        }
 
         val departureDate = bundle?.getString("departureDate").toString()
         val price = bundle?.getString("price").toString()
