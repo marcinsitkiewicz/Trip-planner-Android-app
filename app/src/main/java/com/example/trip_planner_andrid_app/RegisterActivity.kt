@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -31,10 +32,15 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         register_button.setOnClickListener {
+            closeKeyBoard()
+            showProgressBar(true)
+
             val email = register_field_email.text.toString()
             val password = register_field_password.text.toString()
+            val name = register_field_name.text.toString()
+            val lastname = register_field_lastname.text.toString()
 
-            createAccount(email, password)
+            createAccount(email, password, name, lastname)
         }
     }
 
@@ -42,27 +48,31 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
         val user = auth.currentUser
         if (user == null) {
+            register_field_name.setText("")
+            register_field_lastname.setText("")
             register_field_email.setText("")
             register_field_password.setText("")
             field_password_rpt.setText("")
         }
     }
 
-    private fun addUserToDatabase() {
+    private fun addUserToDatabase(name: String, lastname: String) {
         val user = auth.currentUser
         val uid = user?.uid.toString()
         val db = Firebase.firestore
 
         val newUser = hashMapOf(
             "flights" to arrayListOf<String>(),
-            "hotels" to arrayListOf(),
+            "name" to name,
+            "lastname" to lastname
         )
 
         db.collection("users").document(uid).set(newUser)
     }
 
-    private fun createAccount(email: String, password: String) {
+    private fun createAccount(email: String, password: String, name: String, lastname: String) {
         if (!validateForm()) {
+            showProgressBar(false)
             return
         }
 
@@ -70,20 +80,42 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    addUserToDatabase()
+                    addUserToDatabase(name, lastname)
+                    showProgressBar(false)
                     finish()
                     startActivity(Intent(this, SearchForFlightsActivity()::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(baseContext, "Operacja się nie powiodła.",
                         Toast.LENGTH_LONG).show()
+                    showProgressBar(false)
                 }
             }
-        closeKeyBoard()
+            .addOnFailureListener(this) {
+                showProgressBar(false)
+            }
     }
 
     private fun validateForm(): Boolean {
         var valid = true
+
+        val name = register_field_name.text.toString()
+        if (TextUtils.isEmpty(name)) {
+            register_field_name.error = "To pole jest wymagane."
+            valid = false
+        }
+        else {
+            register_field_name.error = null
+        }
+
+        val lastname = register_field_lastname.text.toString()
+        if (TextUtils.isEmpty(lastname)) {
+            register_field_lastname.error = "To pole jest wymagane."
+            valid = false
+        }
+        else {
+            register_field_lastname.error = null
+        }
 
         val email = register_field_email.text.toString()
         if (TextUtils.isEmpty(email)) {
@@ -144,6 +176,15 @@ class RegisterActivity : AppCompatActivity() {
         if (view != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    private fun showProgressBar(show: Boolean) {
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+        }
+        else {
+            progressBar.visibility = View.GONE
         }
     }
 }

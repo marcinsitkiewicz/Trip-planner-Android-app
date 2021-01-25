@@ -25,6 +25,9 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         login_button.setOnClickListener {
+            closeKeyBoard()
+            showProgressBar(true)
+
             val email = field_email.text.toString()
             val password = field_password.text.toString()
 
@@ -60,7 +63,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String) {
-        showProgressBar(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -71,11 +73,14 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user
                     showProgressBar(false)
-                    Toast.makeText(baseContext, "Operacja się nie powiodła.",
+                    field_password.setText("")
+                    Toast.makeText(baseContext, "Niepoprawne dane logowania.",
                         Toast.LENGTH_LONG).show()
                 }
             }
-        closeKeyBoard()
+            .addOnFailureListener(this) {
+                showProgressBar(false)
+            }
     }
 
     private fun closeKeyBoard() {
