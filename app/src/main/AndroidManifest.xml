@@ -52,8 +52,7 @@
 		</activity>
 
 		<activity android:name=".LoginActivity"
-			android:parentActivityName=".MainActivity"
-			android:windowSoftInputMode="adjustResize">
+			android:parentActivityName=".MainActivity">
 		</activity>
 
 		<activity android:name=".HomeActivity"
@@ -61,8 +60,7 @@
 			tools:ignore="Instantiatable">
 		</activity>
 		<activity android:name=".RegisterActivity"
-			android:parentActivityName=".LoginActivity"
-			android:windowSoftInputMode="adjustResize">
+			android:parentActivityName=".LoginActivity">
 		</activity>
 
 		<activity android:name=".MapActivity"

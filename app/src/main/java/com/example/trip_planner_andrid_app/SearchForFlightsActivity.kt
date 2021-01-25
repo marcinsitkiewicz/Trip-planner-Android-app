@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -22,10 +23,13 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.drawer
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,21 +43,25 @@ class SearchForFlightsActivity : AppCompatActivity() {
     private var outboundDateString : String = ""
     private var inboundDateString : String = ""
 
-    private var auth: FirebaseAuth = Firebase.auth
-    private var user = auth.currentUser
+    private var auth: FirebaseAuth? = null
+    private var user: FirebaseUser? = null
+
+    private var userName: String? = null
+    private var userLastname: String? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_for_flights_activity)
 
-        setAutocomplete()
-
-        if (user != null) {
-//            textUsername.text = user!!.email + ", (" + user!!.uid + ")"
-        }
+        auth = Firebase.auth
+        user = auth?.currentUser
 
         setupNavBar()
+        if (user != null) {
+            getUserName()
+        }
+        setAutocomplete()
 
         covidGo.setOnClickListener {
             startActivity(Intent(this, MapActivity()::class.java))
@@ -157,6 +165,35 @@ class SearchForFlightsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        auth = Firebase.auth
+        user = auth?.currentUser
+
+        if (user != null) {
+            getUserName()
+        }
+    }
+
+    private fun getUserName() {
+        val uid = user?.uid.toString()
+        val db = Firebase.firestore
+
+        val docRef = db.collection("users").document(uid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    userName = document["name"] as String?
+                    userLastname = document["lastname"] as String?
+                    textUsername.text = userName
+                    findViewById<TextView>(R.id.navFullName).text = "$userName $userLastname"
+                    findViewById<TextView>(R.id.navMail).text = user?.email
+                } else {
+                    println("brak dokumentu obecnego usera")
+                }
+            }
+    }
+
     private fun setupNavBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -181,7 +218,7 @@ class SearchForFlightsActivity : AppCompatActivity() {
                 }
                 R.id.nav_send -> {
                     drawer.closeDrawer(GravityCompat.START)
-                    auth.signOut()
+                    auth?.signOut()
                     finish()
                     startActivity(Intent(this, LoginActivity()::class.java))
                 }
