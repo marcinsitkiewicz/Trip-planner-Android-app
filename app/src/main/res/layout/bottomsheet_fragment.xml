@@ -7,7 +7,7 @@
 <!--    android:paddingBottom="30dp">-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:baselineAligned="false"
@@ -23,30 +23,25 @@
             android:id="@+id/seat_info_popup"
             android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
             android:layout_width="200dp"
+            android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Zaznaczono wszystkie siedzenia"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:textSize="15sp" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp">
         <Button
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Potwierdź"
             android:textAllCaps="false"
-            android:paddingHorizontal="20dp"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:background="@drawable/bg_button2"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
+            android:paddingHorizontal="20dp"
+            android:layout_margin="10dp"
             android:layout_marginBottom="20dp" />
     </RelativeLayout>
 </LinearLayout>

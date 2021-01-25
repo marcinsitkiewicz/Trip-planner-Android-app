@@ -97,9 +97,9 @@ class NewFlightDetails: AppCompatActivity() {
             }
         }
 
-        val reservedEconomySeats = generateRandomNumberOfSeats(20, 59)
-        val reservedBusinessSeats = generateRandomNumberOfSeats(12, 16)
-        val reservedPremiumSeats = generateRandomNumberOfSeats(20, 24)
+        val reservedEconomySeats = generateRandomNumberOfSeats(20, 58)
+        val reservedBusinessSeats = generateRandomNumberOfSeats(6, 16)
+        val reservedPremiumSeats = generateRandomNumberOfSeats(14, 24)
 
         val economyClass = ClassSeatList(reservedEconomySeats)
         val businessClass = ClassSeatList(reservedBusinessSeats)
@@ -111,9 +111,9 @@ class NewFlightDetails: AppCompatActivity() {
 
         if(!inboundDateString.equals(null)){
             println("inboundDateString intent -->$inboundDateString")
-            val reservedEconomySeatsTwoWay = generateRandomNumberOfSeats(20, 59)
-            val reservedBusinessSeatsTwoWay = generateRandomNumberOfSeats(12, 16)
-            val reservedPremiumSeatsTwoWay= generateRandomNumberOfSeats(20, 24)
+            val reservedEconomySeatsTwoWay = generateRandomNumberOfSeats(20, 58)
+            val reservedBusinessSeatsTwoWay = generateRandomNumberOfSeats(6, 16)
+            val reservedPremiumSeatsTwoWay= generateRandomNumberOfSeats(14, 24)
 
             val economyClassTwoWay = ClassSeatList(reservedEconomySeatsTwoWay)
             val businessClassTwoWay = ClassSeatList(reservedBusinessSeatsTwoWay)

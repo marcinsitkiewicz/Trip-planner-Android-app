@@ -31,10 +31,10 @@ class ConfirmFlight: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.modal_confirm_seats)
         val seatClass = intent.getStringExtra("class")
-        val seatValues = intent.getSerializableExtra("ids") as? SeatValue
+        val seatValues = intent.getSerializableExtra("idsFirstPlane") as? SeatValue
+
+        val inboundDateString = intent.getStringExtra("inboundDateString")
         for(seat in seatValues?.value!!){
-//            println(seat)
-//            println(seatClass)
             val seatInfo = Seat()
             seatInfo.id = seat
             seatInfo.seatClass = seatClass
@@ -74,7 +74,13 @@ class ConfirmFlight: AppCompatActivity() {
         findViewById<TextView>(R.id.destinationIata).text = flightData.destinationIata
         findViewById<TextView>(R.id.originPlace).text = flightData.originPlace
         findViewById<TextView>(R.id.destinationPlace).text = flightData.destinationPlace
-        findViewById<TextView>(R.id.timeOutbound).text = flightData.time
+        println("timeeeee ->>>>> ${flightData.time}")
+        if(flightData.time == ""){
+            findViewById<TextView>(R.id.timeOutbound).text = "9:50"
+        }
+        else{
+            findViewById<TextView>(R.id.timeOutbound).text = flightData.time
+        }
 
         val weekDayFormat = SimpleDateFormat("EEEE")
         val sdf = SimpleDateFormat("yyyy-MM-dd")
