@@ -313,7 +313,9 @@
                     <Button
                             android:id="@+id/buttonMoreCurrent"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@drawable/bg_button"
                             android:text="Więcej"
                             android:layout_below="@+id/reservation2"
@@ -483,9 +485,11 @@
                     <Button
                             android:id="@+id/buttonMoreHistory"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="35dp"
                             android:background="@drawable/bg_button"
                             android:text="Więcej"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_below="@+id/history2"
                             android:layout_centerHorizontal="true"
                             android:textAllCaps="false"

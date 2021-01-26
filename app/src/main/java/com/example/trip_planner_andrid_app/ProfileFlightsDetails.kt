@@ -2,6 +2,9 @@ package com.example.trip_planner_andrid_app
 import SeatIdAdapter
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +27,12 @@ class ProfileFlightsDetails: AppCompatActivity() {
         val priceIntent = intent.getStringExtra("cena")
         val departureDateIntent = intent.getStringExtra("data_wylotu")
         val seatValues = intent.getSerializableExtra("ids") as? SeatValue
+
+        var payButton: Button = findViewById(R.id.payButton)
+        val payButtonBackground : FrameLayout = findViewById(R.id.payButtonBackground)
+        payButton.visibility = View.INVISIBLE
+        payButton.isEnabled = false
+        payButtonBackground.visibility = View.INVISIBLE
 
         for(seat in seatValues?.value!!){
 //            println(seat)

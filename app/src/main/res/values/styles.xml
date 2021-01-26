@@ -82,7 +82,10 @@
         <item name="cornerSize">49%</item>
     </style>
 
-
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 <style name="TransparentView">
 <item name="background">@android:color/transparent</item>

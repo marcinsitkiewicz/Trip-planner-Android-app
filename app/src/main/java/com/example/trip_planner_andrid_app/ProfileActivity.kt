@@ -120,7 +120,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun showAlertDialogFlights(x: Int) {
 
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogBuilder = AlertDialog.Builder(this, R.style.CustomDialog)
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flights_list, null)
 
@@ -128,11 +128,12 @@ class ProfileActivity : AppCompatActivity() {
 
         val insertPoint = dialogView.findViewById(R.id.main_view) as ViewGroup
         val title = insertPoint.findViewById(R.id.dialog_title) as TextView
-        if (x == 0)
-            title.text = "Twoje nadchodzące loty"
-        else
-            title.text = "Twoja historia lotów"
+//        if (x == 0)
+//            title.text = "Twoje nadchodzące loty"
+//        else
+//            title.text = "Twoja historia lotów"
 
+        title.text = ""
         var i = 0;
         for (flight in if (x == 0) userCurrentFlights else userHistoryFlights) {
             val rowView: View = inflater.inflate(R.layout.flight_row, null)
