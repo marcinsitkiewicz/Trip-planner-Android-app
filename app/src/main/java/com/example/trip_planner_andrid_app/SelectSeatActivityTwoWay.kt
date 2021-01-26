@@ -50,6 +50,7 @@ class SelectSeatActivityTwoWay : AppCompatActivity() {
 
 
         view.btn1.setOnClickListener {
+            listSeatIds.clear()
             for (seat in seatsChecked) {
                 listSeatIds.add(seatsHashMap.getValue(seat))
             }
@@ -513,6 +514,7 @@ class SelectSeatActivityTwoWay : AppCompatActivity() {
         prepareRandomSeats(reservedEconomySeats.seats, reservedPremiumSeats.seats, reservedBusinessSeats.seats)
         disableSeats()
     }
+
 
     fun prepareRandomSeats(
         reservedEconomySeats: LinkedHashSet<Int>,

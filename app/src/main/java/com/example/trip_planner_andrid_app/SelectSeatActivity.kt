@@ -66,6 +66,7 @@ class SelectSeatActivity : AppCompatActivity() {
         }
 
         view.btn1.setOnClickListener {
+            listSeatIds.clear()
             for (seat in seatsChecked) {
                 listSeatIds.add(seatsHashMap.getValue(seat))
             }

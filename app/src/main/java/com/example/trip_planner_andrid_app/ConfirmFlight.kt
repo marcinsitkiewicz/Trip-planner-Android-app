@@ -1,7 +1,9 @@
 package com.example.trip_planner_andrid_app
 import SeatIdAdapter
+import SeatIdAdapterTwoWay
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.mapbox.mapboxsdk.style.expressions.Expression.number
 import kotlinx.android.synthetic.main.modal_confirm_seats.*
 import java.security.MessageDigest
 import java.text.NumberFormat
@@ -24,39 +25,55 @@ import kotlin.collections.HashMap
 class ConfirmFlight: AppCompatActivity() {
 
     private var mRecyclerView: RecyclerView? = null
+    private var mRecyclerViewTwoWay: RecyclerView? = null
     private var mAdapter: RecyclerView.Adapter<*>? = null
-    private var listOfSeats: ArrayList<Seat> = ArrayList()
+    private var mAdapterTwoWay: RecyclerView.Adapter<*>? = null
+    private var listOfSeatsOneWay: ArrayList<Seat> = ArrayList()
+    private var listOfSeatsTwoWay: ArrayList<Seat> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.modal_confirm_seats)
         val seatClass = intent.getStringExtra("class")
-        val seatValues = intent.getSerializableExtra("idsFirstPlane") as? SeatValue
+        val seatValuesOneWay = intent.getSerializableExtra("idsFirstPlane") as? SeatValue
 
+        val seatValuesTwoWay = intent.getSerializableExtra("ids") as? SeatValue
         val inboundDateString = intent.getStringExtra("inboundDateString")
-        for(seat in seatValues?.value!!){
+
+        for(seat in seatValuesOneWay?.value!!){
             val seatInfo = Seat()
             seatInfo.id = seat
             seatInfo.seatClass = seatClass
-            listOfSeats.add(seatInfo)
+            listOfSeatsOneWay.add(seatInfo)
         }
-        for(seat in listOfSeats){
+        for(seat in listOfSeatsOneWay){
             println(seat.id)
             println(seat.seatClass)
+        }
+
+        if(!inboundDateString.equals(null)){
+            for(seat in seatValuesTwoWay?.value!!){
+                val seatInfo = Seat()
+                seatInfo.id = seat
+                seatInfo.seatClass = seatClass
+                listOfSeatsTwoWay.add(seatInfo)
+            }
         }
         mRecyclerView = findViewById(R.id.recyclerview)
         val mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         mRecyclerView!!.layoutManager = mLayoutManager
-        mAdapter = SeatIdAdapter(listOfSeats)
+        mAdapter = SeatIdAdapter(listOfSeatsOneWay)
         mRecyclerView!!.adapter = mAdapter
 
+        if(!inboundDateString.equals(null)){
+            mRecyclerViewTwoWay = findViewById(R.id.recyclerview_twoway)
+            val mLayoutManagerTwoWay = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            mRecyclerViewTwoWay!!.layoutManager = mLayoutManagerTwoWay
+            mAdapterTwoWay = SeatIdAdapter(listOfSeatsTwoWay)
+            mRecyclerViewTwoWay!!.adapter = mAdapterTwoWay
+        }
+
         val flightData = intent.getSerializableExtra("flightData") as FlightData
-        println(
-            flightData.date.substring(
-                0,
-                10
-            ) + ", " + flightData.price + ", " + flightData.time + ", " + seatValues.value
-        )
 
         var price: Double = flightData.price.toDouble()
         if ((seatClass.toString()) == "Klasa Business") {
@@ -64,7 +81,7 @@ class ConfirmFlight: AppCompatActivity() {
         } else if ((seatClass.toString()) == "Klasa Premium") {
             price *= 1.70
         }
-        price *= seatValues.value.size
+        price *= seatValuesOneWay.value.size
         val format: NumberFormat = NumberFormat.getCurrencyInstance()
         var currency: String = format.format(price)
         currency = currency.substring(0, currency.length - 3)
@@ -74,6 +91,15 @@ class ConfirmFlight: AppCompatActivity() {
         findViewById<TextView>(R.id.destinationIata).text = flightData.destinationIata
         findViewById<TextView>(R.id.originPlace).text = flightData.originPlace
         findViewById<TextView>(R.id.destinationPlace).text = flightData.destinationPlace
+        if(!inboundDateString.equals(null)){
+            findViewById<LinearLayout>(R.id.twoway_data).visibility = LinearLayout.VISIBLE
+            findViewById<TextView>(R.id.originIata_twoway).text = flightData.destinationIata
+            findViewById<TextView>(R.id.destinationIata_twoway).text = flightData.originIata
+            findViewById<TextView>(R.id.originPlace_twoway).text = flightData.destinationPlace
+            findViewById<TextView>(R.id.destinationPlace_twoway).text = flightData.originPlace
+        }else{
+        findViewById<LinearLayout>(R.id.twoway_data).visibility = LinearLayout.GONE
+        }
         println("timeeeee ->>>>> ${flightData.time}")
         if(flightData.time == ""){
             findViewById<TextView>(R.id.timeOutbound).text = "9:50"
@@ -84,10 +110,17 @@ class ConfirmFlight: AppCompatActivity() {
 
         val weekDayFormat = SimpleDateFormat("EEEE")
         val sdf = SimpleDateFormat("yyyy-MM-dd")
-        val d: Date = sdf.parse(flightData.date.substring(0, 10))
-        val dayOfTheWeek: String = weekDayFormat.format(d)
+        var d: Date = sdf.parse(flightData.date.substring(0, 10))
+        var dayOfTheWeek: String = weekDayFormat.format(d)
         findViewById<TextView>(R.id.weekDay).text = dayOfTheWeek
         findViewById<TextView>(R.id.date).text = flightData.date.substring(0, 10)
+
+        if(!inboundDateString.equals(null)){
+            d = sdf.parse(inboundDateString?.substring(0, 10))
+            dayOfTheWeek = weekDayFormat.format(d)
+            findViewById<TextView>(R.id.weekDay_twoway).text = dayOfTheWeek
+            findViewById<TextView>(R.id.date_twoway).text = inboundDateString?.substring(0, 10)
+        }
 
 
         payButton.setOnClickListener {
@@ -100,7 +133,7 @@ class ConfirmFlight: AppCompatActivity() {
                 flightData.carrier,
                 flightData.time,
                 seatClass.toString(),
-                seatValues.value
+                seatValuesOneWay.value
             )
         }
     }
