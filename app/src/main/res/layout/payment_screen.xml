@@ -13,7 +13,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginBottom="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sfinalizuj płatność"
+            android:text="Finalizacja płatności"
             android:fontFamily="@font/robotobold"
             android:textSize="28sp"
             android:id="@+id/titleText"
@@ -27,7 +27,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hej name, cieszymy się, że znalazłeś interesujący Cię lot. Ostatni krok dzieli Cię od zarezerwowania wymarzonej podróży. Prosimy sfinalizuj transakcję."
+            android:text="Cieszymy się, że znalazłeś interesujący Cię lot. Ostatni krok dzieli Cię od zarezerwowania wymarzonej podróży."
             android:fontFamily="@font/robotoregular"
             android:textSize="16sp"
             android:id="@+id/niceText"
@@ -40,10 +40,9 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="30dp"
             android:textColor="@color/colorPrimary"
-
             android:text="Rezerwacja nr #2354"
-            android:fontFamily="@font/robotoregular"
-            android:textSize="18sp"
+            android:fontFamily="@font/robotobold"
+            android:textSize="16sp"
             android:id="@+id/reservation_no"
             android:layout_gravity="end"/>
 
@@ -59,7 +58,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="40dp"
                 android:text="Kwota do zapłaty"
-                android:fontFamily="@font/robotobold"
+                android:fontFamily="@font/robotomedium"
 
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="24sp"
@@ -73,7 +72,7 @@
                 android:layout_marginBottom="40dp"
                 android:text="1990,00 PLN"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:fontFamily="@font/robotoregular"
+                android:fontFamily="@font/robotobold"
                 android:textSize="24sp"
                 android:id="@+id/price"
                 android:layout_gravity="center_horizontal"
@@ -91,7 +90,8 @@
             android:background="@drawable/bg_button2"
             android:text="Zapłać"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"/>
 
     <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/payment"

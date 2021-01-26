@@ -1,9 +1,15 @@
 package com.example.trip_planner_andrid_app
 
 import android.animation.Animator
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.payment_screen.*
+import kotlinx.android.synthetic.main.payment_screen.congratulation
+import kotlinx.android.synthetic.main.payment_success_screen.*
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -12,12 +18,16 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_screen)
 
+        val price = intent.getStringExtra("price")
+        var priceTextView: TextView = findViewById(R.id.price)
+
+
+        priceTextView.text = price
+
         btn_pay.setOnClickListener {
             payment.playAnimation()
 
         }
-
-
 
         payment.addAnimatorUpdateListener { valueAnimator ->
             // Set animation progress
@@ -26,8 +36,24 @@ class PaymentActivity : AppCompatActivity() {
             if (progress == 59) {
                 setContentView(R.layout.payment_success_screen)
                 congratulation.setMinAndMaxProgress(0.0f, 0.5f)
+
+                val city = intent.getStringExtra("city")
+                var hotelsDesc: TextView = findViewById(R.id.niceText)
+                hotelsDesc.text = "Powinieneś rozejrzeć się za hotelem w mieście $city. Czy chcesz poszukać hoteli teraz?"
+
+                btn_later.setOnClickListener {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                }
+
+                btn_search.setOnClickListener {
+                    val openURL = Intent(Intent.ACTION_VIEW)
+                    openURL.data = Uri.parse("https://www.google.pl/travel/hotels/Warszawa")
+                    startActivity(openURL)
+                }
             }
         }
+
+
     }
 
     override fun onBackPressed() {
