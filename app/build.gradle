@@ -61,4 +61,8 @@ dependencies {
 
     // MapBox
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.0'
+
+    // lottie for animations
+    implementation "com.airbnb.android:lottie:3.4.0"
+
 }
