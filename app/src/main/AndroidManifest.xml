@@ -79,6 +79,10 @@
 			android:parentActivityName=".SelectSeatActivity">
 		</activity>
 
+		<activity android:name=".SelectSeatActivityTwoWay"
+			android:parentActivityName=".SelectSeatActivity">
+		</activity>
+
 	</application>
 
 </manifest>
