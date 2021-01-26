@@ -128,6 +128,7 @@ class FlightsListActivity : AppCompatActivity() {
                 lateinit var originIata : String
                 lateinit var destinationIata : String
                 lateinit var carrier: String
+                lateinit var carrierTwoWay: String
                 val args = Bundle()
                 val flight = searchFeed.Quotes[it]
 
@@ -148,6 +149,11 @@ class FlightsListActivity : AppCompatActivity() {
                     if (carrierName.CarrierId == flight.OutboundLeg.CarrierIds[0]) {
                         carrier = carrierName.Name
                     }
+                    if(inboundDateString != ""){
+                        if (carrierName.CarrierId == flight.InboundLeg.CarrierIds[0]) {
+                            carrierTwoWay = carrierName.Name
+                        }
+                    }
                 }
 
                 if(inboundDateString != ""){
@@ -161,6 +167,7 @@ class FlightsListActivity : AppCompatActivity() {
                 args.putString("destinationIata", destinationIata)
                 args.putString("time", flight.FlightTime)
                 args.putString("carrier", carrier)
+                args.putString("carrierTwoWay", carrierTwoWay)
 
                 intent.putExtras(args)
 
