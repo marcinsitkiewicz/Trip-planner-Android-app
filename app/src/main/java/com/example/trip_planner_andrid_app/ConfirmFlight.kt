@@ -82,10 +82,13 @@ class ConfirmFlight: AppCompatActivity() {
             price *= 1.70
         }
         price *= seatValuesOneWay.value.size
-        val format: NumberFormat = NumberFormat.getCurrencyInstance()
-        var currency: String = format.format(price)
-        currency = currency.substring(0, currency.length - 3)
-        findViewById<TextView>(R.id.price).text = "$currency PLN"
+        val currency: String
+        findViewById<TextView>(R.id.price).text = convertPriceToString(price)
+        if(!inboundDateString.equals(null)){
+            currency = convertPriceToString(price / 2)
+        } else {
+            currency = convertPriceToString(price)
+        }
 
         findViewById<TextView>(R.id.originIata).text = flightData.originIata
         findViewById<TextView>(R.id.destinationIata).text = flightData.destinationIata
@@ -135,7 +138,26 @@ class ConfirmFlight: AppCompatActivity() {
                 seatClass.toString(),
                 seatValuesOneWay.value
             )
+            if(!inboundDateString.equals(null)){
+                saveUserFlight(
+                    flightData.destinationPlace,
+                    flightData.originPlace,
+                    inboundDateString?.substring(0, 10).toString(),
+                    currency,
+                    flightData.carrierTwoWay,
+                    flightData.time,
+                    seatClass.toString(),
+                    seatValuesTwoWay?.value!!
+                )
+            }
         }
+    }
+
+    private fun convertPriceToString(price: Double) : String {
+        val format: NumberFormat = NumberFormat.getCurrencyInstance()
+        var currency: String = format.format(price)
+        currency = currency.substring(0, currency.length - 3)
+        return "$currency PLN"
     }
 
     private fun saveUserFlight(
