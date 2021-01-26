@@ -1,0 +1,63 @@
+<!-- Vertical Orientation is set -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@drawable/bg_white_box"
+              android:orientation="vertical">
+
+    <!-- Text Displayed At Top -->
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/congratulation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/congratulation"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Lot zarezerwowany!"
+            android:fontFamily="@font/robotobold"
+            android:textSize="28sp"
+            android:id="@+id/gzText"
+            android:layout_gravity="center_horizontal"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textAlignment="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="80dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Powinieneś rozejrzeć się za hotelem w mieście Name. Czy chcesz poszukać hoteli teraz?"
+            android:fontFamily="@font/robotoregular"
+            android:textSize="20sp"
+            android:id="@+id/niceText"
+            android:layout_gravity="center_horizontal"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button2"
+            android:text="Szukaj hoteli"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="20dp"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button3"
+            android:text="Może później"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+
+
+
+</LinearLayout>
+

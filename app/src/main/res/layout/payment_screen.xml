@@ -1,0 +1,115 @@
+<!-- Vertical Orientation is set -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@drawable/bg_white_box"
+              android:orientation="vertical">
+
+    <!-- Text Displayed At Top -->
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="30dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Sfinalizuj płatność"
+            android:fontFamily="@font/robotobold"
+            android:textSize="28sp"
+            android:id="@+id/titleText"
+            android:layout_gravity="center_horizontal"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textAlignment="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hej name, cieszymy się, że znalazłeś interesujący Cię lot. Ostatni krok dzieli Cię od zarezerwowania wymarzonej podróży. Prosimy sfinalizuj transakcję."
+            android:fontFamily="@font/robotoregular"
+            android:textSize="16sp"
+            android:id="@+id/niceText"
+            android:layout_gravity="center_horizontal"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorPrimary"
+
+            android:text="Rezerwacja nr #2354"
+            android:fontFamily="@font/robotoregular"
+            android:textSize="18sp"
+            android:id="@+id/reservation_no"
+            android:layout_gravity="end"/>
+
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="Kwota do zapłaty"
+                android:fontFamily="@font/robotobold"
+
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp"
+                android:id="@+id/label"
+                android:layout_gravity="center_horizontal"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="1990,00 PLN"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:fontFamily="@font/robotoregular"
+                android:textSize="24sp"
+                android:id="@+id/price"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentEnd="true"
+        />
+
+    </RelativeLayout>
+
+    <!-- Button Used -->
+
+    <Button
+            android:id="@+id/btn_pay"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button2"
+            android:text="Zapłać"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/payment"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/congratulation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_scale="2"
+            app:lottie_rawRes="@raw/congratulation"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"/>
+
+
+</LinearLayout>
+

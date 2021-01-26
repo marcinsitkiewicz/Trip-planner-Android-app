@@ -28,6 +28,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.search_for_flights_activity.drawer
