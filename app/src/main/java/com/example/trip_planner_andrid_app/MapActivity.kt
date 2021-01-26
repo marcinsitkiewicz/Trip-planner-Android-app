@@ -3,6 +3,7 @@ package com.example.trip_planner_andrid_app
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.RectF
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils.substring
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.covid_bottomsheet_fragment.*
 import okhttp3.*
 import java.io.IOException
 import kotlinx.android.synthetic.main.map_activity.*
+import java.util.*
 
 
 class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, MapView.OnDidFinishLoadingStyleListener {
@@ -48,6 +50,7 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, MapView.O
     private var recoveredToday: TextView? = null
     private var strefa: TextView? = null
     private var info: TextView? = null
+    private var smallInfoText: TextView? = null
     private var countryData: CovidApiResults.CountryData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +63,7 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, MapView.O
         recoveredToday = bottomSheetView.findViewById(R.id.recoveredToday) as? TextView
         casesToday = bottomSheetView.findViewById(R.id.casesToday) as? TextView
         strefa = bottomSheetView.findViewById(R.id.strefa) as? TextView
+        smallInfoText = bottomSheetView.findViewById(R.id.smallInfoText) as? TextView
         info = bottomSheetView.findViewById(R.id.info) as? TextView
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
 
@@ -166,9 +170,17 @@ class MapActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, MapView.O
 
     private fun fetchJsonToDataClass(body: String) {
         countryData = GsonBuilder().create().fromJson(body, CovidApiResults.CountryData::class.java)
-        casesToday?.text = countryData?.todayCases.toString()
-        deathsToday?.text = countryData?.todayDeaths.toString()
-        recoveredToday?.text = countryData?.todayRecovered.toString()
+
+        if (countryData?.todayCases == 0 && countryData?.todayDeaths == 0 && countryData?.todayRecovered == 0) {
+            smallInfoText?.text = "Nie zaktualizowano informacji z ostatniej doby"
+            casesToday?.text = "-"
+            deathsToday?.text = "-"
+            recoveredToday?.text = "-"
+        } else {
+            casesToday?.text = countryData?.todayCases.toString()
+            deathsToday?.text = countryData?.todayDeaths.toString()
+            recoveredToday?.text = countryData?.todayRecovered.toString()
+        }
     }
 
 

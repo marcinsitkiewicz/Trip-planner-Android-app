@@ -66,7 +66,24 @@ class SearchForFlightsActivity : AppCompatActivity() {
         covidGo.setOnClickListener {
             startActivity(Intent(this, MapActivity()::class.java))
         }
-        
+
+        barcelonacard.setOnClickListener {
+            val intent = Intent(this, FlightsListActivity::class.java)
+            val originPlace = "PL-sky"
+            val destinationPlace = "BCN-sky"
+            val date = "2021-02"
+            intent.putExtra("originPlace", originPlace)
+            intent.putExtra("destinationPlace", destinationPlace)
+            intent.putExtra("outboundDateString", date)
+            intent.putExtra("inboundDateString", "")
+
+            if (isNetworkAvailable(this)) {
+                setIntent(intent)
+                startActivity(intent)
+            }
+            else Toast.makeText(this, "Brak połączenia z internetem", Toast.LENGTH_SHORT).show()
+        }
+
         button2.setOnClickListener{
             if (two_way.isChecked) {
                 if (wylotZ.text.isEmpty()  || przylotDo.text.isEmpty() || inboundDateString.isEmpty() || outboundDateString.isEmpty() ) {

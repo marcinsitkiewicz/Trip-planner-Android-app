@@ -512,7 +512,7 @@ class SelectSeatActivity : AppCompatActivity() {
         val reservedPremiumSeats = intent.getSerializableExtra("reservedPremiumSeats") as ClassSeatList
         val reservedBusinessSeats = intent.getSerializableExtra("reservedBusinessSeats") as ClassSeatList
 
-        if (inboundDateString.equals(null)) {
+        if (!inboundDateString.equals(null)) {
             val reservedEconomySeatsTwoWays = intent.getSerializableExtra("reservedEconomySeatsTwoWay") as ClassSeatList
             val reservedPremiumSeatsTwoWays = intent.getSerializableExtra("reservedPremiumSeatsTwoWay") as ClassSeatList
             val reservedBusinessSeatsTwoWays =
