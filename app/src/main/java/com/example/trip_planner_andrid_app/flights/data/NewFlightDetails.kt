@@ -129,8 +129,9 @@ class NewFlightDetails: AppCompatActivity() {
         val originPlace = bundle?.getString("originPlace").toString()
         val destinationPlace = bundle?.getString("destinationPlace").toString()
         val carrier = bundle?.getString("carrier").toString()
+        val carrierTwoWay = bundle?.getString("carrierTwoWay").toString()
 
-        val flightData = FlightData(departureDate, price, originPlace, destinationPlace, originIata.toString(), destinationIata.toString(), time.toString(), carrier)
+        val flightData = FlightData(departureDate, price, originPlace, destinationPlace, originIata.toString(), destinationIata.toString(), time.toString(), carrier, carrierTwoWay)
 
         intent.putExtra("flightData", flightData)
     }
@@ -263,7 +264,7 @@ class NewFlightDetails: AppCompatActivity() {
 }
 
 class ClassSeatList(var seats: LinkedHashSet<Int>) : Serializable
-class FlightData(var date: String, var price: String, var originPlace: String, var destinationPlace: String, var originIata: String, var destinationIata: String, var time: String, var carrier: String) : Serializable
+class FlightData(var date: String, var price: String, var originPlace: String, var destinationPlace: String, var originIata: String, var destinationIata: String, var time: String, var carrier: String, var carrierTwoWay: String) : Serializable
 
 //    private fun setupSimpleSpinner(){
 //        val adapter = ArrayAdapter.createFromResource(this,
