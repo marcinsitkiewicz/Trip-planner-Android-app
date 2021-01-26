@@ -157,7 +157,7 @@ class ConfirmFlight: AppCompatActivity() {
         val format: NumberFormat = NumberFormat.getCurrencyInstance()
         var currency: String = format.format(price)
         currency = currency.substring(0, currency.length - 3)
-        return "$currency PLN"
+        return currency
     }
 
     private fun saveUserFlight(
