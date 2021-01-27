@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_purple_gradient">
-<ScrollView android:layout_height="wrap_content"
+<ScrollView
+    android:id="@+id/scollview_flights_info"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:ignore="NestedScrolling">
+    android:layout_marginBottom="100dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
