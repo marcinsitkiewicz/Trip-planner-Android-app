@@ -30,6 +30,8 @@ class NewFlightDetails: AppCompatActivity() {
         var originIataTextView: TextView? = null
         var destinationIataTextView: TextView? = null
         var outboundTime: TextView? = null
+        var outboundTimeTwoWay: TextView? = null
+        var inboundTimeTwoWay: TextView? = null
 
         var destinationIataTextViewTwoWays: TextView? = null
         var originIataTextViewTwoWays: TextView? = null
@@ -46,7 +48,8 @@ class NewFlightDetails: AppCompatActivity() {
 
             originIataTextView = this.findViewById(R.id.origin_iata_two_ways) as TextView
             destinationIataTextView = this.findViewById(R.id.destination_iata_two_ways) as TextView
-            outboundTime = this.findViewById(R.id.outbound_time_two_ways) as TextView
+            outboundTimeTwoWay = this.findViewById(R.id.outbound_time_two_ways) as TextView
+            inboundTimeTwoWay = this.findViewById(R.id.inbound_time_two_ways) as TextView
 
             destinationIataTextViewTwoWays = this.findViewById(R.id.destination_iatatwo) as TextView
             originIataTextViewTwoWays = this.findViewById(R.id.origin_iatatwo) as TextView
@@ -67,14 +70,16 @@ class NewFlightDetails: AppCompatActivity() {
         val intent = Intent(this, SelectSeatActivity::class.java)
         if(!inboundDateString.equals(null)) {
             intent.putExtra("inboundDateString", inboundDateString)
+            outboundTimeTwoWay?.text = time
+            inboundTimeTwoWay?.text = time
+            destinationIataTextViewTwoWays?.text = originIata
+            originIataTextViewTwoWays?.text = destinationIata
         }
         originIataTextView?.text = originIata
         destinationIataTextView?.text = destinationIata
         outboundTime?.text = time
-        println("time----->$time")
-        destinationIataTextViewTwoWays?.text = originIata
-        originIataTextViewTwoWays?.text = destinationIata
 
+        println("time----->$time")
 
         setupCustomSpinner(intent)
 

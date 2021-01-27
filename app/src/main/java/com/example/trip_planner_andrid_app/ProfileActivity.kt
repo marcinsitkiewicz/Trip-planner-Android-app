@@ -43,10 +43,6 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, SearchForFlightsActivity::class.java))
         }
 
-        profile_settings.setOnClickListener() {
-            Toast.makeText(this, "Ustawienia profilu", Toast.LENGTH_SHORT).show()
-        }
-
         logout.setOnClickListener() {
             auth.signOut()
             finish()

@@ -115,17 +115,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <TextView
-                    android:id="@+id/timeDifference"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="4h"
-                    android:textSize="20sp"
-                    android:textColor="#919191"
-            />
-
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,13 +155,13 @@
                     android:layout_alignParentRight="true">
 
                 <TextView
-                        android:id="@+id/timeInbound"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12:50"
-                        android:fontFamily="@font/robotobold"
-                        android:textSize="24sp"
-                        android:textColor="#000" />
+                    android:id="@+id/timeInbound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotobold"
+                    android:text="20:10"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -312,17 +301,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/timeDifference_twoway"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="4h"
-                android:textSize="20sp"
-                android:textColor="#919191"
-                />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -366,10 +344,10 @@
                     android:id="@+id/timeInbound_twoway"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12:50"
                     android:fontFamily="@font/robotobold"
-                    android:textSize="24sp"
-                    android:textColor="#000" />
+                    android:text="23:45"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -386,16 +364,13 @@
             android:id="@+id/seat_ids_twoway"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_twoway"
-                android:scrollbars="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/recycleview_background"
-                >
-            </androidx.recyclerview.widget.RecyclerView>
+                android:scrollbars="horizontal"></androidx.recyclerview.widget.RecyclerView>
 
         </RelativeLayout>
 
@@ -421,13 +396,13 @@
                 android:layout_alignParentLeft="true">
 
             <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="656 PLN"
-                    android:fontFamily="@font/robotobold"
-                    android:textSize="27sp"
-                    android:textColor="#FFF" />
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotobold"
+                android:text="656 PLN"
+                android:textColor="#FFF"
+                android:textSize="25sp" />
 
             <TextView
 
@@ -457,7 +432,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:layout_marginHorizontal="35dp"
+                    android:layout_marginHorizontal="30dp"
             />
         </FrameLayout>
 

@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="18:00"
+                    android:text="20:10"
                     android:fontFamily="@font/robotoregular"
                     android:textSize="16sp"
                     android:textColor="#FFF" />
@@ -145,10 +145,9 @@
                     android:textColor="#FFF" />
 
                 <TextView
-                    android:id="@+id/inbound_time_two_ways"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="14:45"
+                    android:text="23:45"
                     android:fontFamily="@font/robotoregular"
                     android:textSize="11sp"
                     android:textColor="#FFF" />
@@ -174,6 +173,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/inbound_time_two_ways"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/robotoregular"

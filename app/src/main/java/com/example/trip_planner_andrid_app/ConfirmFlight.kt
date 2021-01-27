@@ -84,7 +84,7 @@ class ConfirmFlight: AppCompatActivity() {
         }
         price *= seatValuesOneWay.value.size
         val currency: String
-        findViewById<TextView>(R.id.price).text = convertPriceToString(price)
+        findViewById<TextView>(R.id.price).text = "${convertPriceToString(price)} PLN"
         if(!inboundDateString.equals(null)){
             currency = convertPriceToString(price / 2)
         } else {
@@ -110,6 +110,9 @@ class ConfirmFlight: AppCompatActivity() {
         }
         else{
             findViewById<TextView>(R.id.timeOutbound).text = flightData.time
+            if(!inboundDateString.equals(null)) {
+                findViewById<TextView>(R.id.timeOutbound_twoway).text = flightData.time
+            }
         }
 
         val weekDayFormat = SimpleDateFormat("EEEE")
@@ -162,7 +165,10 @@ class ConfirmFlight: AppCompatActivity() {
         val format: NumberFormat = NumberFormat.getCurrencyInstance()
         var currency: String = format.format(price)
         currency = currency.substring(0, currency.length - 3)
-        return "$currency PLN"
+        while (!currency[0].isDigit()) {
+            currency = currency.substring(1, currency.length)
+        }
+        return currency
     }
 
     private fun saveUserFlight(
