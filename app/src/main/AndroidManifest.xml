@@ -31,7 +31,7 @@
 		</activity>
 
 		<activity android:name=".SearchForFlightsActivity"
-			android:parentActivityName=".MainActivity"
+			android:parentActivityName=".SplashActivity"
 			android:launchMode="singleTask">
 		</activity>
 
@@ -40,7 +40,7 @@
 		</activity>
 
 		<activity android:name=".PaymentActivity"
-				  >
+			android:parentActivityName=".ConfirmFlight">
 		</activity>
 
 		<activity android:name=".FirestoreConnectionActivity"
@@ -52,7 +52,7 @@
 		</activity>
 
 		<activity android:name=".flights.data.NewFlightDetails"
-			android:parentActivityName=".MainActivity">
+			android:parentActivityName=".flights.FlightsListActivity">
 		</activity>
 
 		<activity android:name=".LoginActivity"

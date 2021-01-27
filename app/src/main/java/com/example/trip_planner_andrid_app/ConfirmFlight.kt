@@ -154,7 +154,7 @@ class ConfirmFlight: AppCompatActivity() {
                 )
             }
             val intent = Intent(this, PaymentActivity::class.java)
-            intent.putExtra("price", currency)
+            intent.putExtra("price", convertPriceToString(price))
             intent.putExtra("city", flightData.destinationPlace)
             setIntent(intent)
             startActivity(intent)
