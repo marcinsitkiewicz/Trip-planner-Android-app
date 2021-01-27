@@ -43,6 +43,9 @@ class NewFlightDetails: AppCompatActivity() {
         var airportName: TextView? = null
         var airport1Name: TextView? = null
         var airportNameTwoWay: TextView? = null
+        var dateTextView: TextView? = null
+        var dateTextViewTwoWay: TextView? = null
+        var date1TextViewTwoWay: TextView? = null
         var airport1NameTwoWay: TextView? = null
         var destinationIataTextViewTwoWays: TextView? = null
         var originIataTextViewTwoWays: TextView? = null
@@ -51,6 +54,7 @@ class NewFlightDetails: AppCompatActivity() {
 
         if (inboundDateString.equals(null)) {
             setContentView(R.layout.flight_details_new)
+            dateTextView = this.findViewById(R.id.date) as TextView
             airportName = this.findViewById(R.id.airport) as TextView
             airport1Name = this.findViewById(R.id.airport1) as TextView
             originIataTextView = this.findViewById(R.id.origin_iata) as TextView
@@ -59,6 +63,8 @@ class NewFlightDetails: AppCompatActivity() {
             priceTextView = this.findViewById(R.id.priceTextView) as TextView
         } else {
             setContentView(R.layout.flight_details_two_ways)
+            dateTextViewTwoWay = this.findViewById(R.id.dateTwoWay) as TextView
+            date1TextViewTwoWay = this.findViewById(R.id.date1TwoWay) as TextView
             airportNameTwoWay = this.findViewById(R.id.airportTwoWay) as TextView
             airport1NameTwoWay = this.findViewById(R.id.airport1TwoWay) as TextView
             originIataTextView = this.findViewById(R.id.origin_iata_two_ways) as TextView
@@ -75,6 +81,8 @@ class NewFlightDetails: AppCompatActivity() {
         val flightPrice = bundle?.getString("price")
         val destinationIata = bundle?.getString("destinationIata")
         val time = bundle?.getString("time")
+        val date = bundle?.getString("date")
+        val date1 = bundle?.getString("dateTwoWay")
         val airportNameBundle = bundle?.getString("originPlace")
         val airport1NameBundle = bundle?.getString("destinationPlace")
 
@@ -82,9 +90,12 @@ class NewFlightDetails: AppCompatActivity() {
         if (!inboundDateString.equals(null)) {
             airportNameTwoWay?.text = airportNameBundle
             airport1NameTwoWay?.text = airport1NameBundle
+            dateTextViewTwoWay?.text = date.toString().substring(0,10)
+            date1TextViewTwoWay?.text = date1.toString().substring(0,10)
         } else {
             airportName?.text = airportNameBundle
             airport1Name?.text = airport1NameBundle
+            dateTextView?.text = date.toString().substring(0,10)
         }
 
 //        val originIataTextView: TextView = this.findViewById(R.id.origin_iata) as TextView

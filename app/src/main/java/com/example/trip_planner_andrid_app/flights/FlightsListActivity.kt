@@ -159,6 +159,7 @@ class FlightsListActivity : AppCompatActivity() {
                 if(inboundDateString != ""){
                     args.putString("inboundDateString", inboundDateString)
                     args.putString("carrierTwoWay", carrierTwoWay)
+                    args.putString("dateTwoWay", flight.InboundLeg.DepartureDate)
                 }
                 args.putString("departureDate", flight.OutboundLeg.DepartureDate)
                 args.putString("price", flight.MinPrice.toString())
@@ -167,6 +168,7 @@ class FlightsListActivity : AppCompatActivity() {
                 args.putString("originIata", originIata)
                 args.putString("destinationIata", destinationIata)
                 args.putString("time", flight.FlightTime)
+                args.putString("date", flight.OutboundLeg.DepartureDate)
                 args.putString("carrier", carrier)
 
                 intent.putExtras(args)
