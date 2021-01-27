@@ -26,7 +26,15 @@ class ProfileFlightsDetails: AppCompatActivity() {
         val arrivalPlaceIntent = intent.getStringExtra("przylot_do")
         val priceIntent = intent.getStringExtra("cena")
         val departureDateIntent = intent.getStringExtra("data_wylotu")
+        val originIata = intent.getStringExtra("originIata")
+        val destinationIata = intent.getStringExtra("destinationIata")
         val seatValues = intent.getSerializableExtra("ids") as? SeatValue
+
+        var originIataTextView: TextView = findViewById(R.id.originIata)
+        var destinationIataTextView: TextView = findViewById(R.id.destinationIata)
+
+        originIataTextView.text = originIata
+        destinationIataTextView.text = destinationIata
 
         var payButton: Button = findViewById(R.id.payButton)
         val payButtonBackground : FrameLayout = findViewById(R.id.payButtonBackground)

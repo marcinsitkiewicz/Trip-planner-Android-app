@@ -231,7 +231,7 @@
                         android:id="@+id/airport1TwoWay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="John F. Kennedy New York Airport"
+                        android:text="Los Angeles"
                         android:textColor="#000"
                         android:fontFamily="@font/robotomedium"
                         android:textSize="16sp"
@@ -239,6 +239,41 @@
                         android:layout_marginTop="65dp"
                         android:layout_marginStart="20dp"
                         android:layout_alignParentStart="true"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daty"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/robotoregular"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentEnd="true"/>
+                <TextView
+                        android:id="@+id/dateTwoWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12/02/2021"
+                        android:textColor="#000"
+                        android:fontFamily="@font/robotomedium"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentEnd="true"/>
+                <TextView
+                        android:id="@+id/date1TwoWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="17/02/2021"
+                        android:textColor="#000"
+                        android:fontFamily="@font/robotomedium"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="65dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentEnd="true"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
