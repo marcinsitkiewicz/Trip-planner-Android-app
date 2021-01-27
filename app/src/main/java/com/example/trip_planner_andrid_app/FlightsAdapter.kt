@@ -103,8 +103,23 @@ class FlightsAdapter(
         private var carrierOutbound: TextView = itemView.findViewById(R.id.przewoznik) as TextView
         private var carrierInbound: TextView = itemView.findViewById(R.id.przewoznik2) as TextView
 
+        private lateinit var flightTime : String
+        private lateinit var flightTimeTwoWay : String
+
         fun setTwoWayFlight(searchFeed: SkyscannerResults.SearchFeed) {
             val flight = searchFeed.Quotes[adapterPosition]
+
+            val hours = nextInt(0,23)
+            val minutes = nextInt(0, 11) * 5
+
+            flightTime = if (minutes < 10) {
+                if (hours < 10) "0$hours:0$minutes"
+                else "$hours:0$minutes"
+            } else if (hours < 10) {
+                "0$hours:$minutes"
+            } else "$hours:$minutes"
+
+            flight.FlightTime = flightTime
 
             searchFeed.Places.forEach {
                 if (it.PlaceId == flight.OutboundLeg.OriginId) {
