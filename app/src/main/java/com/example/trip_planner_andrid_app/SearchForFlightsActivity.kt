@@ -204,8 +204,8 @@ class SearchForFlightsActivity : AppCompatActivity() {
                     userName = document["name"] as String?
                     userLastname = document["lastname"] as String?
                     textUsername.text = userName
-                    findViewById<TextView>(R.id.navFullName).text = "$userName $userLastname"
-                    findViewById<TextView>(R.id.navMail).text = user?.email
+                    findViewById<TextView>(R.id.navFullName)?.text = "$userName $userLastname"
+                    findViewById<TextView>(R.id.navMail)?.text = user?.email
                 } else {
                     println("brak dokumentu obecnego usera")
                 }

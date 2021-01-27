@@ -128,7 +128,7 @@ class FlightsListActivity : AppCompatActivity() {
                 lateinit var originIata : String
                 lateinit var destinationIata : String
                 lateinit var carrier: String
-                lateinit var carrierTwoWay: String
+                var carrierTwoWay: String? = null
                 val args = Bundle()
                 val flight = searchFeed.Quotes[it]
 
