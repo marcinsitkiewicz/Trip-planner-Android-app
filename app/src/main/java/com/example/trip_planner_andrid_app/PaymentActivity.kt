@@ -38,16 +38,18 @@ class PaymentActivity : AppCompatActivity() {
                 congratulation.setMinAndMaxProgress(0.0f, 0.5f)
 
                 val city = intent.getStringExtra("city")
-                var hotelsDesc: TextView = findViewById(R.id.niceText)
+                val hotelsDesc: TextView = findViewById(R.id.niceText)
                 hotelsDesc.text = "Powinieneś rozejrzeć się za hotelem w mieście $city. Czy chcesz poszukać hoteli teraz?"
 
                 btn_later.setOnClickListener {
+                    finishAffinity()
                     startActivity(Intent(this, ProfileActivity::class.java))
                 }
 
                 btn_search.setOnClickListener {
                     val openURL = Intent(Intent.ACTION_VIEW)
-                    openURL.data = Uri.parse("https://www.google.pl/travel/hotels/Warszawa")
+                    openURL.data = Uri.parse("https://www.google.pl/travel/hotels/$city")
+                    finish()
                     startActivity(openURL)
                 }
             }
