@@ -14,13 +14,21 @@ import com.example.trip_planner_andrid_app.R
 import com.example.trip_planner_andrid_app.SelectSeatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flight_details_new.*
+import kotlinx.android.synthetic.main.flight_details_new.seatsButton
+import kotlinx.android.synthetic.main.flight_details_new.select_class
+import kotlinx.android.synthetic.main.flight_details_new.select_numberOf_Adults
+import kotlinx.android.synthetic.main.flight_details_new.select_numberOf_Kids
+import kotlinx.android.synthetic.main.flight_details_two_ways.*
 import kotlinx.android.synthetic.main.spinner_item.*
 import kotlinx.android.synthetic.main.spinner_item.view.*
 import java.io.Serializable
+import java.text.NumberFormat
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
 class NewFlightDetails: AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle = intent.extras
@@ -32,33 +40,52 @@ class NewFlightDetails: AppCompatActivity() {
         var outboundTime: TextView? = null
         var outboundTimeTwoWay: TextView? = null
         var inboundTimeTwoWay: TextView? = null
-
+        var airportName: TextView? = null
+        var airport1Name: TextView? = null
+        var airportNameTwoWay: TextView? = null
+        var airport1NameTwoWay: TextView? = null
         var destinationIataTextViewTwoWays: TextView? = null
         var originIataTextViewTwoWays: TextView? = null
+        var priceTextView: TextView? = null
+        var priceTextViewTwoWay: TextView? = null
 
-        if(inboundDateString.equals(null)) {
+        if (inboundDateString.equals(null)) {
             setContentView(R.layout.flight_details_new)
-
+            airportName = this.findViewById(R.id.airport) as TextView
+            airport1Name = this.findViewById(R.id.airport1) as TextView
             originIataTextView = this.findViewById(R.id.origin_iata) as TextView
             destinationIataTextView = this.findViewById(R.id.destination_iata) as TextView
             outboundTime = this.findViewById(R.id.outbound_time) as TextView
-
-        }else{
+            priceTextView = this.findViewById(R.id.priceTextView) as TextView
+        } else {
             setContentView(R.layout.flight_details_two_ways)
-
+            airportNameTwoWay = this.findViewById(R.id.airportTwoWay) as TextView
+            airport1NameTwoWay = this.findViewById(R.id.airport1TwoWay) as TextView
             originIataTextView = this.findViewById(R.id.origin_iata_two_ways) as TextView
             destinationIataTextView = this.findViewById(R.id.destination_iata_two_ways) as TextView
             outboundTimeTwoWay = this.findViewById(R.id.outbound_time_two_ways) as TextView
             inboundTimeTwoWay = this.findViewById(R.id.inbound_time_two_ways) as TextView
-
+            priceTextViewTwoWay = this.findViewById(R.id.priceTextViewTwoWay) as TextView
             destinationIataTextViewTwoWays = this.findViewById(R.id.destination_iatatwo) as TextView
             originIataTextViewTwoWays = this.findViewById(R.id.origin_iatatwo) as TextView
 
         }
 
         val originIata = bundle?.getString("originIata")
+        val flightPrice = bundle?.getString("price")
         val destinationIata = bundle?.getString("destinationIata")
         val time = bundle?.getString("time")
+        val airportNameBundle = bundle?.getString("originPlace")
+        val airport1NameBundle = bundle?.getString("destinationPlace")
+
+
+        if (!inboundDateString.equals(null)) {
+            airportNameTwoWay?.text = airportNameBundle
+            airport1NameTwoWay?.text = airport1NameBundle
+        } else {
+            airportName?.text = airportNameBundle
+            airport1Name?.text = airport1NameBundle
+        }
 
 //        val originIataTextView: TextView = this.findViewById(R.id.origin_iata) as TextView
 //        val destinationIataTextView: TextView = this.findViewById(R.id.destination_iata) as TextView
@@ -68,7 +95,7 @@ class NewFlightDetails: AppCompatActivity() {
         val numberOfKids: TextView = this.findViewById(R.id.numberOf_seatsKids) as TextView
 
         val intent = Intent(this, SelectSeatActivity::class.java)
-        if(!inboundDateString.equals(null)) {
+        if (!inboundDateString.equals(null)) {
             intent.putExtra("inboundDateString", inboundDateString)
             outboundTimeTwoWay?.text = time
             inboundTimeTwoWay?.text = time
@@ -81,9 +108,20 @@ class NewFlightDetails: AppCompatActivity() {
 
         println("time----->$time")
 
-        setupCustomSpinner(intent)
+        if (!inboundDateString.equals(null)) {
+            if (flightPrice != null && priceTextViewTwoWay != null) {
+                setupCustomSpinner(intent, flightPrice, priceTextViewTwoWay)
+            }
+        } else {
+        if (flightPrice != null && priceTextView != null) {
+            setupCustomSpinner(intent, flightPrice, priceTextView)
+        }
+    }
 
-        select_numberOf_Adults.setOnClickListener { showAlertDialogAdults() }
+        select_numberOf_Adults.setOnClickListener {
+            showAlertDialogAdults()
+
+        }
         select_numberOf_Kids.setOnClickListener { showAlertDialogKids() }
         seatsButton.setOnClickListener {
             val pickedValueAdults: Int = Integer.parseInt(numberOfAdults?.text.toString())
@@ -243,7 +281,7 @@ class NewFlightDetails: AppCompatActivity() {
 //        }
     }
 
-    private fun setupCustomSpinner(intent: Intent) {
+    private fun setupCustomSpinner(intent: Intent, price : String, priceTextView : TextView) {
 
         val adapter = SeatsArrayAdapter(this, Classes.list!!)
 
@@ -258,7 +296,27 @@ class NewFlightDetails: AppCompatActivity() {
                 selectedItem = selectedItem.substring(selectedItem.indexOf("name=")+5, selectedItem.length -1)
                 intent.putExtra("SeatClass", selectedItem)
                 println(selectedItem)
+
+                var price: Double = price.toDouble()
+                if ((selectedItem) == "Klasa Business") {
+                    price *= 2.50
+                } else if ((selectedItem) == "Klasa Premium") {
+                    price *= 1.70
+                }
+
+                priceTextView.text = "${convertPriceToString(price)} PLN"
             }
+
+            private fun convertPriceToString(price: Double) : String {
+                val format: NumberFormat = NumberFormat.getCurrencyInstance()
+                var currency: String = format.format(price)
+                currency = currency.substring(0, currency.length - 3)
+                while (!currency[0].isDigit()) {
+                    currency = currency.substring(1, currency.length)
+                }
+                return currency
+            }
+
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")

@@ -196,15 +196,72 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/Detailed_info"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/bg_white_box"
-                android:elevation="2.5dp"
-                android:visibility="visible">
-
+                    android:id="@+id/Detailed_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_white_box"
+                    android:elevation="2.5dp"
+                    android:visibility="visible">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Połączenie"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/robotoregular"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+                <TextView
+                        android:id="@+id/airportTwoWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Warszawa Chopina"
+                        android:textColor="#000"
+                        android:fontFamily="@font/robotomedium"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+                <TextView
+                        android:id="@+id/airport1TwoWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="John F. Kennedy New York Airport"
+                        android:textColor="#000"
+                        android:fontFamily="@font/robotomedium"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="65dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cena za osobę"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/robotoregular"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="95dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+                <TextView
+                        android:id="@+id/priceTextViewTwoWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2590,00 PLN"
+                        android:textColor="#000"
+                        android:fontFamily="@font/robotomedium"
+                        android:textSize="16sp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="120dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
             </RelativeLayout>
 
             <LinearLayout
