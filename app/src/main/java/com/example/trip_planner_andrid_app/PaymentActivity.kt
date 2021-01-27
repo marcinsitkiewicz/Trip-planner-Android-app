@@ -48,8 +48,7 @@ class PaymentActivity : AppCompatActivity() {
 
                 btn_search.setOnClickListener {
                     val openURL = Intent(Intent.ACTION_VIEW)
-                    openURL.data = Uri.parse("https://www.google.pl/travel/hotels/$city")
-                    finish()
+                    openURL.data = Uri.parse("https://www.google.com/maps/search/$city+hotel/")
                     startActivity(openURL)
                 }
             }

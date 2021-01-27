@@ -134,6 +134,8 @@ class ConfirmFlight: AppCompatActivity() {
             saveUserFlight(
                 flightData.originPlace,
                 flightData.destinationPlace,
+                flightData.originIata,
+                flightData.destinationIata,
                 flightData.date.substring(0, 10),
                 currency,
                 flightData.carrier,
@@ -145,6 +147,8 @@ class ConfirmFlight: AppCompatActivity() {
                 saveUserFlight(
                     flightData.destinationPlace,
                     flightData.originPlace,
+                    flightData.destinationIata,
+                    flightData.originIata,
                     inboundDateString?.substring(0, 10).toString(),
                     currency,
                     flightData.carrierTwoWay,
@@ -154,7 +158,7 @@ class ConfirmFlight: AppCompatActivity() {
                 )
             }
             val intent = Intent(this, PaymentActivity::class.java)
-            intent.putExtra("price", convertPriceToString(price))
+            intent.putExtra("price", "${convertPriceToString(price)} PLN")
             intent.putExtra("city", flightData.destinationPlace)
             setIntent(intent)
             startActivity(intent)
@@ -174,6 +178,8 @@ class ConfirmFlight: AppCompatActivity() {
     private fun saveUserFlight(
         origin: String,
         dest: String,
+        originIata: String,
+        destIata: String,
         date: String,
         price: String,
         carrier: String,
@@ -185,6 +191,8 @@ class ConfirmFlight: AppCompatActivity() {
         val flight: MutableMap<String, Any> = HashMap()
         flight["origin_place"] = origin
         flight["dest_place"] = dest
+        flight["origin_iata"] = originIata
+        flight["dest_iata"] = destIata
         flight["date"] = date
         flight["price"] = price
         flight["carrier"] = carrier
@@ -204,22 +212,14 @@ class ConfirmFlight: AppCompatActivity() {
                 db.collection("users").document(currentUserID)
                     .update("flights", FieldValue.arrayUnion(flightHash))
                     .addOnSuccessListener {
-                        Toast.makeText(
-                            this@ConfirmFlight,
-                            "record's fork added successfully to user database ",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        println("OK")
                     }
                     .addOnFailureListener {
-                        Toast.makeText(
-                            this@ConfirmFlight,
-                            "failed to add record's fork to user database ",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        println("NOT OK")
                     }
             }
             .addOnFailureListener{
-                Toast.makeText(this@ConfirmFlight, "record adding to flights database failed ", Toast.LENGTH_LONG).show()
+                println("NOT OK")
             }
     }
 
