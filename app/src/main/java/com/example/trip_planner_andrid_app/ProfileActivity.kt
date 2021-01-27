@@ -419,8 +419,8 @@ class ProfileActivity : AppCompatActivity() {
         documentArray.add(document.data["hour"] as String)
         documentArray.add(document.data["seatClass"] as String)
         documentArray.add(((document.data["seatArray"] as ArrayList<*>).toString()))
-        documentArray.add(document.data["originIata"] as String)
-        documentArray.add(document.data["destinationIata"] as String)
+        documentArray.add(document.data["origin_iata"] as String)
+        documentArray.add(document.data["dest_iata"] as String)
 
         return documentArray
 
