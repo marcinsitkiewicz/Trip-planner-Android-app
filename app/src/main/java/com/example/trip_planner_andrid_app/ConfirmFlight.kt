@@ -1,6 +1,7 @@
 package com.example.trip_planner_andrid_app
 import SeatIdAdapter
 import SeatIdAdapterTwoWay
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -130,7 +131,6 @@ class ConfirmFlight: AppCompatActivity() {
 
 
         payButton.setOnClickListener {
-//            Saving flight data to Firebase
             saveUserFlight(
                 flightData.originPlace,
                 flightData.destinationPlace,
@@ -153,6 +153,11 @@ class ConfirmFlight: AppCompatActivity() {
                     seatValuesTwoWay?.value!!
                 )
             }
+            val intent = Intent(this, PaymentActivity::class.java)
+            intent.putExtra("price", currency)
+            intent.putExtra("city", flightData.destinationPlace)
+            setIntent(intent)
+            startActivity(intent)
         }
     }
 

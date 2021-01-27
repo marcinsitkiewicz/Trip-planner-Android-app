@@ -39,6 +39,10 @@
 				  android:parentActivityName=".ProfileActivity">
 		</activity>
 
+		<activity android:name=".PaymentActivity"
+				  >
+		</activity>
+
 		<activity android:name=".FirestoreConnectionActivity"
 			android:parentActivityName=".MainActivity">
 		</activity>
