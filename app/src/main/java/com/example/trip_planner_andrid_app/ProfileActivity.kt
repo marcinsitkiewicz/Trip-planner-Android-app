@@ -162,6 +162,8 @@ class ProfileActivity : AppCompatActivity() {
                 intent.putExtra("przylot_do", flight[1])
                 intent.putExtra("data_wylotu", flight[0])
                 intent.putExtra("cena", flight[3])
+                intent.putExtra("originIata", flight[8])
+                intent.putExtra("destinationIata", flight[9])
                 setIntent(intent)
                 startActivity(intent)
             }
@@ -348,6 +350,8 @@ class ProfileActivity : AppCompatActivity() {
         intent.putExtra("przylot_do", flight[flightId][1])
         intent.putExtra("data_wylotu", flight[flightId][0])
         intent.putExtra("cena", flight[flightId][3])
+        intent.putExtra("originIata", flight[flightId][8])
+        intent.putExtra("destinationIata", flight[flightId][9])
         setIntent(intent)
         startActivity(intent)
     }
@@ -415,6 +419,8 @@ class ProfileActivity : AppCompatActivity() {
         documentArray.add(document.data["hour"] as String)
         documentArray.add(document.data["seatClass"] as String)
         documentArray.add(((document.data["seatArray"] as ArrayList<*>).toString()))
+        documentArray.add(document.data["originIata"] as String)
+        documentArray.add(document.data["destinationIata"] as String)
 
         return documentArray
 
