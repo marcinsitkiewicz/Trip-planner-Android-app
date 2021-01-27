@@ -7,15 +7,15 @@ data class SeatClass(val image: Int, val name: String)
 object Classes {
 
     private val images = intArrayOf(
-        R.drawable.ic_business_class,
-        R.drawable.ic_premium_class,
         R.drawable.ic_economy_class,
+        R.drawable.ic_premium_class,
+        R.drawable.ic_business_class
     )
 
     private val seats = arrayOf(
-        "Klasa Business",
-        "Klasa Premium",
         "Klasa Ekonomiczna",
+        "Klasa Premium",
+        "Klasa Business"
     )
 
     var list: ArrayList<SeatClass>? = null

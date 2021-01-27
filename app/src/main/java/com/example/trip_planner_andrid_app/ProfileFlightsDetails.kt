@@ -62,7 +62,7 @@ class ProfileFlightsDetails: AppCompatActivity() {
         findViewById<TextView>(R.id.weekDay).text = getDayName(departureDateIntent);
         departurePlace.text = departurePlaceIntent
         arrivalPlace.text = arrivalPlaceIntent
-        price.text = priceIntent
+        price.text = "$priceIntent PLN"
         departureDate.text = departureDateIntent
 
 
